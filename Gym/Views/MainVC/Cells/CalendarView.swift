@@ -15,7 +15,7 @@ class CalendarView: UIView {
         let layout = UICollectionViewFlowLayout()
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
-        collectionView.backgroundColor = .red
+        collectionView.backgroundColor = .none
         
         return collectionView
         
@@ -81,7 +81,7 @@ extension CalendarView: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "idCalendarCell", for: indexPath) as! CalendarCollectionViewCell
-        cell.backgroundColor = .specialYellow
+        cell.backgroundColor = .speciakGreen
         return cell
     }
      
