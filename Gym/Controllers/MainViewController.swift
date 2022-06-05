@@ -21,16 +21,16 @@ class MainViewController: UIViewController {
         
     }()
     
-    private let calendarView: UIView = {
-       let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .speciakGreen
-        view.layer.cornerRadius = 10
-        
-        return view
-        
-        
-    }()
+//    private let calendarView: UIView = {
+//       let view = UIView()
+//        view.translatesAutoresizingMaskIntoConstraints = false
+//        view.backgroundColor = .speciakGreen
+//        view.layer.cornerRadius = 10
+//        
+//        return view
+//        
+//        
+//    }()
     
     private let userNameLabel: UILabel = {
         
@@ -55,11 +55,22 @@ class MainViewController: UIViewController {
         button.titleLabel?.font = .robotoMedium12()
         button.setImage(UIImage(named: "addWorkout"), for: .normal)
         button.tintColor = .specialDarkGreen
+        
         button.imageEdgeInsets = UIEdgeInsets(top: 0, left: 20, bottom: 15, right: 0)
         button.titleEdgeInsets = UIEdgeInsets(top: 50, left: -40, bottom: 0, right: 0)
+        button.addTarget(self, action: #selector(addWorkoutButtonTapped), for: .touchUpInside)
+        button.addShadowOnView()
         
         return button
     }()
+    
+    @objc private func addWorkoutButtonTapped() {
+        print("addWorkoutButton")
+       
+    }
+    
+    private let calendarView = CalendarView()
+    
     
     //из-за особенностей жиз цикла прописываем отделльный меотд для закругления
     override func viewDidLayoutSubviews() {

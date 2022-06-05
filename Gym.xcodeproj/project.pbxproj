@@ -18,6 +18,8 @@
 		8126B235284CAD3B00687A39 /* UIStackView + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8126B234284CAD3A00687A39 /* UIStackView + Extensions.swift */; };
 		8126B23B284CB8D300687A39 /* Roboto-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8126B23A284CB8D300687A39 /* Roboto-Medium.ttf */; };
 		8126B23D284CB8EC00687A39 /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8126B23C284CB8EC00687A39 /* Roboto-Bold.ttf */; };
+		8126B240284CE22D00687A39 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8126B23F284CE22D00687A39 /* CalendarView.swift */; };
+		8126B242284CECC000687A39 /* CalendarCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8126B241284CECC000687A39 /* CalendarCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +36,8 @@
 		8126B234284CAD3A00687A39 /* UIStackView + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView + Extensions.swift"; sourceTree = "<group>"; };
 		8126B23A284CB8D300687A39 /* Roboto-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Roboto-Medium.ttf"; path = "../../../../../Downloads/Font/Roboto/Roboto-Medium.ttf"; sourceTree = "<group>"; };
 		8126B23C284CB8EC00687A39 /* Roboto-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Bold.ttf"; sourceTree = "<group>"; };
+		8126B23F284CE22D00687A39 /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
+		8126B241284CECC000687A39 /* CalendarCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +107,7 @@
 		8126B22A284CA75400687A39 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				8126B23E284CE20E00687A39 /* MainVC */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -144,6 +149,23 @@
 				8126B23C284CB8EC00687A39 /* Roboto-Bold.ttf */,
 			);
 			path = Fonts;
+			sourceTree = "<group>";
+		};
+		8126B23E284CE20E00687A39 /* MainVC */ = {
+			isa = PBXGroup;
+			children = (
+				8126B243284CECD700687A39 /* Cells */,
+			);
+			path = MainVC;
+			sourceTree = "<group>";
+		};
+		8126B243284CECD700687A39 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				8126B23F284CE22D00687A39 /* CalendarView.swift */,
+				8126B241284CECC000687A39 /* CalendarCollectionViewCell.swift */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -220,9 +242,11 @@
 			files = (
 				8126B22F284CA84D00687A39 /* UIFont + Extensions.swift in Sources */,
 				8126B233284CACA300687A39 /* UIview + Exxtensions.swift in Sources */,
+				8126B240284CE22D00687A39 /* CalendarView.swift in Sources */,
 				8126B235284CAD3B00687A39 /* UIStackView + Extensions.swift in Sources */,
 				8126B231284CA93800687A39 /* UIColor + Extensions.swift in Sources */,
 				8126B218284922FC00687A39 /* MainViewController.swift in Sources */,
+				8126B242284CECC000687A39 /* CalendarCollectionViewCell.swift in Sources */,
 				8126B214284922FC00687A39 /* AppDelegate.swift in Sources */,
 				8126B216284922FC00687A39 /* SceneDelegate.swift in Sources */,
 			);
