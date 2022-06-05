@@ -7,6 +7,13 @@
 
 import UIKit
 
+//let stackView = UIStackView()
+//stackView.addArrangedSubview(YourView)
+//stackView.addArrangedSubview(YorView2)
+//stackView.axis = horizontal
+//stackView.spacing = 10
+//stackView.trtranslatesAutoresizingMaskIntoConstraints = false - констрейнты прописыаем сами
+
 extension UIStackView {
     convenience init(arrangeSubviews: [UIView], axis: NSLayoutConstraint.Axis, spacing: CGFloat) {
         self.init(arrangedSubviews: arrangeSubviews)
