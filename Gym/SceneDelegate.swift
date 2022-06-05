@@ -22,7 +22,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.rootViewController = ViewController()
         window?.makeKeyAndVisible()
         
-        //работаем со светлым экраном
+        //работаем со светлым экраном 
         window?.overrideUserInterfaceStyle = .light
     }
 
