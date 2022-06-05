@@ -12,6 +12,10 @@
 		8126B218284922FC00687A39 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8126B217284922FC00687A39 /* ViewController.swift */; };
 		8126B21D284922FE00687A39 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8126B21C284922FE00687A39 /* Assets.xcassets */; };
 		8126B220284922FE00687A39 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8126B21E284922FE00687A39 /* LaunchScreen.storyboard */; };
+		8126B22F284CA84D00687A39 /* UIFont + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8126B22E284CA84D00687A39 /* UIFont + Extensions.swift */; };
+		8126B231284CA93800687A39 /* UIColor + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8126B230284CA93800687A39 /* UIColor + Extensions.swift */; };
+		8126B233284CACA300687A39 /* UIview + Exxtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8126B232284CACA300687A39 /* UIview + Exxtensions.swift */; };
+		8126B235284CAD3B00687A39 /* UIStackView + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8126B234284CAD3A00687A39 /* UIStackView + Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +26,10 @@
 		8126B21C284922FE00687A39 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8126B21F284922FE00687A39 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8126B221284922FE00687A39 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8126B22E284CA84D00687A39 /* UIFont + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont + Extensions.swift"; sourceTree = "<group>"; };
+		8126B230284CA93800687A39 /* UIColor + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor + Extensions.swift"; sourceTree = "<group>"; };
+		8126B232284CACA300687A39 /* UIview + Exxtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIview + Exxtensions.swift"; sourceTree = "<group>"; };
+		8126B234284CAD3A00687A39 /* UIStackView + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView + Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,14 +62,74 @@
 		8126B212284922FC00687A39 /* Gym */ = {
 			isa = PBXGroup;
 			children = (
+				8126B228284CA73C00687A39 /* Models */,
+				8126B22A284CA75400687A39 /* Views */,
+				8126B229284CA74500687A39 /* Controllers */,
+				8126B227284CA6C800687A39 /* Application */,
+				8126B22D284CA79A00687A39 /* Resources */,
+				8126B22B284CA77400687A39 /* Extensions */,
+			);
+			path = Gym;
+			sourceTree = "<group>";
+		};
+		8126B227284CA6C800687A39 /* Application */ = {
+			isa = PBXGroup;
+			children = (
 				8126B213284922FC00687A39 /* AppDelegate.swift */,
 				8126B215284922FC00687A39 /* SceneDelegate.swift */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		8126B228284CA73C00687A39 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		8126B229284CA74500687A39 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
 				8126B217284922FC00687A39 /* ViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		8126B22A284CA75400687A39 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		8126B22B284CA77400687A39 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				8126B22C284CA79000687A39 /* UIKit */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		8126B22C284CA79000687A39 /* UIKit */ = {
+			isa = PBXGroup;
+			children = (
+				8126B22E284CA84D00687A39 /* UIFont + Extensions.swift */,
+				8126B230284CA93800687A39 /* UIColor + Extensions.swift */,
+				8126B232284CACA300687A39 /* UIview + Exxtensions.swift */,
+				8126B234284CAD3A00687A39 /* UIStackView + Extensions.swift */,
+			);
+			path = UIKit;
+			sourceTree = "<group>";
+		};
+		8126B22D284CA79A00687A39 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
 				8126B21C284922FE00687A39 /* Assets.xcassets */,
 				8126B21E284922FE00687A39 /* LaunchScreen.storyboard */,
 				8126B221284922FE00687A39 /* Info.plist */,
 			);
-			path = Gym;
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -134,6 +202,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8126B22F284CA84D00687A39 /* UIFont + Extensions.swift in Sources */,
+				8126B233284CACA300687A39 /* UIview + Exxtensions.swift in Sources */,
+				8126B235284CAD3B00687A39 /* UIStackView + Extensions.swift in Sources */,
+				8126B231284CA93800687A39 /* UIColor + Extensions.swift in Sources */,
 				8126B218284922FC00687A39 /* ViewController.swift in Sources */,
 				8126B214284922FC00687A39 /* AppDelegate.swift in Sources */,
 				8126B216284922FC00687A39 /* SceneDelegate.swift in Sources */,
@@ -279,7 +351,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 7Y6N89L5D4;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Gym/Info.plist;
+				INFOPLIST_FILE = Gym/Resources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
@@ -307,7 +379,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 7Y6N89L5D4;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Gym/Info.plist;
+				INFOPLIST_FILE = Gym/Resources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
