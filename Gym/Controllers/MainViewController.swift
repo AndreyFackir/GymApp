@@ -54,6 +54,20 @@ class MainViewController: UIViewController {
         return button
     }()
     
+    private let workoutToday: UILabel = {
+       
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "Workout Today"
+        label.textColor = .specilaLightBrown
+        label.font = .robotoMedium14()
+        
+        return label
+        
+        
+        
+    }()
+    
     @objc private func addWorkoutButtonTapped() {
         print("addWorkoutButton")
        
@@ -87,7 +101,7 @@ class MainViewController: UIViewController {
         view.addSubview(userNameLabel)
         view.addSubview(addWorkoutButton)
         view.addSubview(weatherView)
-        
+        view.addSubview(workoutToday)
     }
     
     
@@ -140,6 +154,13 @@ extension MainViewController {
             weatherView.leadingAnchor.constraint(equalTo: addWorkoutButton.trailingAnchor, constant: 10),
             weatherView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
             weatherView.heightAnchor.constraint(equalToConstant: 80)
+        
+        ])
+        
+        NSLayoutConstraint.activate([
+        
+            workoutToday.topAnchor.constraint(equalTo: addWorkoutButton.bottomAnchor, constant: 10),
+            workoutToday.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10)
         
         ])
     }
