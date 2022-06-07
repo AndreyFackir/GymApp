@@ -55,7 +55,7 @@ class MainViewController: UIViewController {
     }()
     
     private let workoutToday: UILabel = {
-       
+        
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Workout Today"
@@ -64,18 +64,35 @@ class MainViewController: UIViewController {
         
         return label
         
+    }()
+    
+    //1 - create tableView
+    private let tableView: UITableView = {
+        
+        let tableView = UITableView()
+        tableView.backgroundColor = .none //прозрачный
+        
+        tableView.bounces = false
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        //убираем сепаратор у ячеек
+        tableView.separatorStyle = .none
+        
+        //убираем индикатор прокрутки
+        tableView.showsVerticalScrollIndicator = false
+        
+        return tableView
         
         
     }()
     
     @objc private func addWorkoutButtonTapped() {
         print("addWorkoutButton")
-       
+        
     }
     
     private let calendarView = CalendarView()
     private let weatherView = WeatherView()
-    
+    private let idWorkoutTableViewCell = "idWorkoutTableViewCell"
     
     //из-за особенностей жиз цикла прописываем отделльный меотд для закругления
     override func viewDidLayoutSubviews() {
@@ -88,9 +105,10 @@ class MainViewController: UIViewController {
         
         setupViews()
         setConstraints()
+        setDelegates()
         
-        
-        
+        //не забыть зарегистрировать ячейку!!!!
+        tableView.register(WorkoutTableViewCell.self, forCellReuseIdentifier: idWorkoutTableViewCell)
     }
     
     private func setupViews() {
@@ -102,10 +120,18 @@ class MainViewController: UIViewController {
         view.addSubview(addWorkoutButton)
         view.addSubview(weatherView)
         view.addSubview(workoutToday)
+        view.addSubview(tableView)
+    }
+    
+    private func setDelegates() {
+        tableView.dataSource = self
+        tableView.delegate  = self
     }
     
     
 }
+
+//MARK: - Set constraints
 
 extension MainViewController {
     
@@ -140,7 +166,7 @@ extension MainViewController {
         
         NSLayoutConstraint.activate([
             
-           
+            
             addWorkoutButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 10),
             addWorkoutButton.topAnchor.constraint(equalTo: calendarView.bottomAnchor, constant: 5),
             addWorkoutButton.heightAnchor.constraint(equalToConstant: 80),
@@ -149,19 +175,54 @@ extension MainViewController {
         ])
         
         NSLayoutConstraint.activate([
-        
+            
             weatherView.topAnchor.constraint(equalTo: calendarView.bottomAnchor, constant: 5),
             weatherView.leadingAnchor.constraint(equalTo: addWorkoutButton.trailingAnchor, constant: 10),
             weatherView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
             weatherView.heightAnchor.constraint(equalToConstant: 80)
-        
+            
         ])
         
         NSLayoutConstraint.activate([
-        
+            
             workoutToday.topAnchor.constraint(equalTo: addWorkoutButton.bottomAnchor, constant: 10),
             workoutToday.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10)
-        
+            
         ])
+        NSLayoutConstraint.activate([
+            
+            tableView.topAnchor.constraint(equalTo: workoutToday.bottomAnchor, constant: 0),
+            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
+            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
+            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0)
+            
+        ])
+    }
+}
+
+//MARK: - UITableViewDataSource
+extension MainViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 10
+    }
+    
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "idWorkoutTableViewCell", for: indexPath) as! WorkoutTableViewCell
+        
+        return cell
+    }
+    
+    
+}
+
+//MARK: - UITableViewDelegate
+
+extension MainViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        
+        //устанавливаем выоту ячейки
+        return 100
+        
     }
 }
