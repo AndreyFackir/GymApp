@@ -95,13 +95,17 @@ class WorkoutTableViewCell: UITableViewCell {
         
         //убираем нажатие на ячейку и выделение
         selectionStyle = .none
+        
         addSubview(backgroundCell)
+       
         addSubview(square)
         addSubview(exersizeImage)
         addSubview(exersizeLabel)
         addSubview(repsCountLabel)
-        addSubview(setsCountLabel)
         addSubview(startButton)
+        addSubview(setsCountLabel)
+        contentView.isUserInteractionEnabled = false
+       
         
     }
     
