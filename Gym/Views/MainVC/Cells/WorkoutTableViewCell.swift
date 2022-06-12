@@ -98,12 +98,9 @@ class WorkoutTableViewCell: UITableViewCell {
         selectionStyle = .none
         
         addSubview(backgroundCell)
-       
         addSubview(square)
         addSubview(exersizeImage)
         addSubview(exersizeLabel)
-        addSubview(startButton)
-
         contentView.addSubview(startButton)
         labelStackView = UIStackView(arrangeSubviews: [repsCountLabel, setsCountLabel], axis: .horizontal, spacing: 10)
         addSubview(labelStackView)

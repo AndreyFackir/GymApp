@@ -81,22 +81,26 @@ class MainViewController: UIViewController {
         
         //убираем индикатор прокрутки
         tableView.showsVerticalScrollIndicator = false
-        tableView.isHidden = false
+        //tableView.isHidden = true
         return tableView
         
     }()
     
-    private let noWorkoutImage: UIImageView = {
-       let image = UIImageView()
-        image.image = UIImage(named: "noTrain")
-        image.contentMode = .scaleAspectFit
-        image.translatesAutoresizingMaskIntoConstraints = true
-        image.isHidden = true
-       return image
-    }()
+//    private let noWorkoutImage: UIImageView = {
+//       let image = UIImageView()
+//        image.image = UIImage(named: "noTrain")
+//
+//        image.translatesAutoresizingMaskIntoConstraints = true
+//        image.isHidden = false
+//       return image
+//    }()
+    
     
     @objc private func addWorkoutButtonTapped() {
-        print("addWorkoutButton")
+      
+        let newWorkoutViewController = NewWorkoutViewController()
+        //newWorkoutViewController.modalPresentationStyle = .fullScreen
+        present(newWorkoutViewController, animated: true, completion: nil)
         
     }
     
@@ -132,8 +136,9 @@ class MainViewController: UIViewController {
         view.addSubview(addWorkoutButton)
         view.addSubview(weatherView)
         view.addSubview(workoutToday)
+        //view.addSubview(noWorkoutImage)
         view.addSubview(tableView)
-        view.addSubview(noWorkoutImage)
+      
         
     }
     
@@ -203,6 +208,13 @@ extension MainViewController {
             workoutToday.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10)
             
         ])
+//        NSLayoutConstraint.activate([
+//
+//
+//            noWorkoutImage.topAnchor.constraint(equalTo: workoutToday.bottomAnchor, constant: 0),
+//
+//
+//        ])
         NSLayoutConstraint.activate([
             
             tableView.topAnchor.constraint(equalTo: workoutToday.bottomAnchor, constant: 0),
@@ -212,12 +224,7 @@ extension MainViewController {
             
         ])
         
-        NSLayoutConstraint.activate([
-            noWorkoutImage.bottomAnchor.constraint(equalTo: view.bottomAnchor,constant: 40),
-            noWorkoutImage.widthAnchor.constraint(equalToConstant: 100),
-            noWorkoutImage.heightAnchor.constraint(equalToConstant: 100)
-            
-        ])
+        
         
     }
 }

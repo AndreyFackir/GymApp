@@ -22,6 +22,7 @@
 		8126B242284CECC000687A39 /* CalendarCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8126B241284CECC000687A39 /* CalendarCollectionViewCell.swift */; };
 		8126B245284CFAB300687A39 /* WeatherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8126B244284CFAB300687A39 /* WeatherView.swift */; };
 		8126B247284FC64F00687A39 /* WorkoutTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8126B246284FC64F00687A39 /* WorkoutTableViewCell.swift */; };
+		81E8E0722855EFB4005B4E87 /* NewWorkoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E8E0712855EFB4005B4E87 /* NewWorkoutViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,7 @@
 		8126B241284CECC000687A39 /* CalendarCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCollectionViewCell.swift; sourceTree = "<group>"; };
 		8126B244284CFAB300687A39 /* WeatherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherView.swift; sourceTree = "<group>"; };
 		8126B246284FC64F00687A39 /* WorkoutTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutTableViewCell.swift; sourceTree = "<group>"; };
+		81E8E0712855EFB4005B4E87 /* NewWorkoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewWorkoutViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +106,7 @@
 			isa = PBXGroup;
 			children = (
 				8126B217284922FC00687A39 /* MainViewController.swift */,
+				81E8E0712855EFB4005B4E87 /* NewWorkoutViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -255,6 +258,7 @@
 				8126B245284CFAB300687A39 /* WeatherView.swift in Sources */,
 				8126B218284922FC00687A39 /* MainViewController.swift in Sources */,
 				8126B242284CECC000687A39 /* CalendarCollectionViewCell.swift in Sources */,
+				81E8E0722855EFB4005B4E87 /* NewWorkoutViewController.swift in Sources */,
 				8126B214284922FC00687A39 /* AppDelegate.swift in Sources */,
 				8126B216284922FC00687A39 /* SceneDelegate.swift in Sources */,
 			);
