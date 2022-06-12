@@ -23,6 +23,7 @@
 		8126B245284CFAB300687A39 /* WeatherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8126B244284CFAB300687A39 /* WeatherView.swift */; };
 		8126B247284FC64F00687A39 /* WorkoutTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8126B246284FC64F00687A39 /* WorkoutTableViewCell.swift */; };
 		81E8E0722855EFB4005B4E87 /* NewWorkoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E8E0712855EFB4005B4E87 /* NewWorkoutViewController.swift */; };
+		81E8E07428562D03005B4E87 /* DateAndRepeatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E8E07328562D03005B4E87 /* DateAndRepeatView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +45,7 @@
 		8126B244284CFAB300687A39 /* WeatherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherView.swift; sourceTree = "<group>"; };
 		8126B246284FC64F00687A39 /* WorkoutTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutTableViewCell.swift; sourceTree = "<group>"; };
 		81E8E0712855EFB4005B4E87 /* NewWorkoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewWorkoutViewController.swift; sourceTree = "<group>"; };
+		81E8E07328562D03005B4E87 /* DateAndRepeatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateAndRepeatView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -163,6 +165,7 @@
 			children = (
 				8126B243284CECD700687A39 /* Cells */,
 				8126B244284CFAB300687A39 /* WeatherView.swift */,
+				81E8E07328562D03005B4E87 /* DateAndRepeatView.swift */,
 			);
 			path = MainVC;
 			sourceTree = "<group>";
@@ -254,6 +257,7 @@
 				8126B240284CE22D00687A39 /* CalendarView.swift in Sources */,
 				8126B235284CAD3B00687A39 /* UIStackView + Extensions.swift in Sources */,
 				8126B247284FC64F00687A39 /* WorkoutTableViewCell.swift in Sources */,
+				81E8E07428562D03005B4E87 /* DateAndRepeatView.swift in Sources */,
 				8126B231284CA93800687A39 /* UIColor + Extensions.swift in Sources */,
 				8126B245284CFAB300687A39 /* WeatherView.swift in Sources */,
 				8126B218284922FC00687A39 /* MainViewController.swift in Sources */,
