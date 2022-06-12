@@ -63,13 +63,13 @@ class WorkoutTableViewCell: UITableViewCell {
     private let startButton:UIButton = {
         let start = UIButton(type: .system)
         start.translatesAutoresizingMaskIntoConstraints = false
-        start.addTarget(self, action: #selector(startButtonPressed), for: .touchUpInside)
         start.setTitle("START", for: .normal)
         start.titleLabel?.font = .robotoBold16()
         start.layer.cornerRadius = 10
         start.backgroundColor = .specialYellow
         start.tintColor = .specialDarkGreen
         start.addShadowOnView()
+        start.addTarget(self, action: #selector(startButtonPressed), for: .touchUpInside)
         return start
     }()
     
@@ -88,6 +88,7 @@ class WorkoutTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    var labelStackView = UIStackView()
     
     private func setupViews() {
         //прозрачный фон ячейки
@@ -101,10 +102,11 @@ class WorkoutTableViewCell: UITableViewCell {
         addSubview(square)
         addSubview(exersizeImage)
         addSubview(exersizeLabel)
-        addSubview(repsCountLabel)
         addSubview(startButton)
-        addSubview(setsCountLabel)
-        contentView.isUserInteractionEnabled = false
+
+        contentView.addSubview(startButton)
+        labelStackView = UIStackView(arrangeSubviews: [repsCountLabel, setsCountLabel], axis: .horizontal, spacing: 10)
+        addSubview(labelStackView)
        
         
     }
@@ -138,13 +140,9 @@ class WorkoutTableViewCell: UITableViewCell {
         ])
         
         NSLayoutConstraint.activate([
-            repsCountLabel.bottomAnchor.constraint(equalTo: startButton.topAnchor, constant: -1),
-            repsCountLabel.leadingAnchor.constraint(equalTo: backgroundCell.leadingAnchor, constant: 100)
-        ])
-        
-        NSLayoutConstraint.activate([
-            setsCountLabel.bottomAnchor.constraint(equalTo: startButton.topAnchor, constant: -1),
-            setsCountLabel.leadingAnchor.constraint(equalTo: repsCountLabel.trailingAnchor, constant: 10)
+            labelStackView.topAnchor.constraint(equalTo: exersizeLabel.bottomAnchor,constant: 0),
+            labelStackView.bottomAnchor.constraint(equalTo: startButton.topAnchor, constant: -1),
+            labelStackView.leadingAnchor.constraint(equalTo: backgroundCell.leadingAnchor, constant: 100)
         ])
         
         NSLayoutConstraint.activate([

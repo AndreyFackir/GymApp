@@ -81,10 +81,18 @@ class MainViewController: UIViewController {
         
         //убираем индикатор прокрутки
         tableView.showsVerticalScrollIndicator = false
-        
+        tableView.isHidden = false
         return tableView
         
-        
+    }()
+    
+    private let noWorkoutImage: UIImageView = {
+       let image = UIImageView()
+        image.image = UIImage(named: "noTrain")
+        image.contentMode = .scaleAspectFit
+        image.translatesAutoresizingMaskIntoConstraints = true
+        image.isHidden = true
+       return image
     }()
     
     @objc private func addWorkoutButtonTapped() {
@@ -125,6 +133,7 @@ class MainViewController: UIViewController {
         view.addSubview(weatherView)
         view.addSubview(workoutToday)
         view.addSubview(tableView)
+        view.addSubview(noWorkoutImage)
         
     }
     
@@ -203,6 +212,12 @@ extension MainViewController {
             
         ])
         
+        NSLayoutConstraint.activate([
+            noWorkoutImage.bottomAnchor.constraint(equalTo: view.bottomAnchor,constant: 40),
+            noWorkoutImage.widthAnchor.constraint(equalToConstant: 100),
+            noWorkoutImage.heightAnchor.constraint(equalToConstant: 100)
+            
+        ])
         
     }
 }
