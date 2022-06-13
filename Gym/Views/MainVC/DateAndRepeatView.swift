@@ -20,7 +20,7 @@ class DateAndRepeatView: UIView {
     }
     
     private let dateLabel: UILabel = {
-       let label = UILabel()
+        let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Date"
         label.textColor = .specialGray
@@ -29,7 +29,7 @@ class DateAndRepeatView: UIView {
     }()
     
     private let datePicker: UIDatePicker = {
-       let picker = UIDatePicker()
+        let picker = UIDatePicker()
         picker.datePickerMode = .date
         picker.tintColor = .speciakGreen
         picker.translatesAutoresizingMaskIntoConstraints = false
@@ -37,7 +37,7 @@ class DateAndRepeatView: UIView {
     }()
     
     private let repeatLabel: UILabel = {
-       let label = UILabel()
+        let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Repeat every 7 days"
         label.textColor = .specialGray
@@ -46,7 +46,7 @@ class DateAndRepeatView: UIView {
     }()
     
     private let switcherRepeat: UISwitch = {
-       let switchRepeat = UISwitch()
+        let switchRepeat = UISwitch()
         switchRepeat.isOn = true
         switchRepeat.onTintColor = .speciakGreen
         switchRepeat.translatesAutoresizingMaskIntoConstraints = false
@@ -56,7 +56,7 @@ class DateAndRepeatView: UIView {
     private var dateLabelStackView = UIStackView()
     private var switckStackView = UIStackView()
     
-//MARK: - Setup View
+    //MARK: - Setup View
     private func setupView() {
         backgroundColor = .specialBrown
         translatesAutoresizingMaskIntoConstraints = false
@@ -66,12 +66,12 @@ class DateAndRepeatView: UIView {
         addSubview(dateLabelStackView)
         switckStackView = UIStackView(arrangeSubviews: [repeatLabel, switcherRepeat], axis: .horizontal, spacing: 10)
         addSubview(switckStackView)
-      
+        
+    }
 }
-}
-    
+
 //MARK: - Set Constraints
-    
+
 extension DateAndRepeatView {
     
     private func setConstraints() {
@@ -84,7 +84,7 @@ extension DateAndRepeatView {
             switckStackView.topAnchor.constraint(equalTo: dateLabelStackView.bottomAnchor, constant: 10),
             switckStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 15),
             switckStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -15),
-           
+            
             
         ])
     }

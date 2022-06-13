@@ -73,7 +73,17 @@ class NewWorkoutViewController: UIViewController {
         return label
     }()
     
+    private let repsOrTimerLabel: UILabel = {
+       let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "Reps or timer"
+        label.textColor = .specilaLightBrown
+        label.font = .robotoMedium12()
+        return label
+    }()
+    
     private let dateAndRepeatView = DateAndRepeatView()
+    private let repsOrTimerView = RepsOrTimerView()
     
 //MARK: - SetupViews
     private func setupView() {
@@ -84,6 +94,8 @@ class NewWorkoutViewController: UIViewController {
         view.addSubview(nameTextField)
         view.addSubview(dateAndRepeatLabel)
         view.addSubview(dateAndRepeatView)
+        view.addSubview(repsOrTimerLabel)
+        view.addSubview(repsOrTimerView)
     }
 }
 
@@ -128,6 +140,19 @@ extension NewWorkoutViewController {
             dateAndRepeatView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             dateAndRepeatView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             dateAndRepeatView.heightAnchor.constraint(equalToConstant: 94)
+        ])
+        
+        NSLayoutConstraint.activate([
+            repsOrTimerLabel.topAnchor.constraint(equalTo: dateAndRepeatView.bottomAnchor, constant: 15),
+            repsOrTimerLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20)
+        
+        ])
+        
+        NSLayoutConstraint.activate([
+            repsOrTimerView.topAnchor.constraint(equalTo: repsOrTimerLabel.bottomAnchor, constant: 5),
+            repsOrTimerView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            repsOrTimerView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            repsOrTimerView.heightAnchor.constraint(equalToConstant: 300)
         ])
        
     }

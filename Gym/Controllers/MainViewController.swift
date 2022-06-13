@@ -91,6 +91,7 @@ class MainViewController: UIViewController {
     private let calendarView = CalendarView()
     private let weatherView = WeatherView()
     private let idWorkoutTableViewCell = "idWorkoutTableViewCell"
+   
     
     //из-за особенностей жиз цикла прописываем отделльный меотд для закругления
     override func viewDidLayoutSubviews() {
@@ -117,6 +118,7 @@ class MainViewController: UIViewController {
         view.addSubview(weatherView)
         view.addSubview(workoutToday)
         view.addSubview(tableView)
+        
     }
     
     private func setDelegates() {
@@ -184,7 +186,7 @@ extension MainViewController {
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0)
         ])
         
-        
+       
         
     }
 }
