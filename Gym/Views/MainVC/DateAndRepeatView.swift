@@ -66,13 +66,14 @@ class DateAndRepeatView: UIView {
         addSubview(dateLabelStackView)
         switckStackView = UIStackView(arrangeSubviews: [repeatLabel, switcherRepeat], axis: .horizontal, spacing: 10)
         addSubview(switckStackView)
-    }
-    
-   
-    
+      
 }
+}
+    
 //MARK: - Set Constraints
+    
 extension DateAndRepeatView {
+    
     private func setConstraints() {
         NSLayoutConstraint.activate([
             dateLabelStackView.topAnchor.constraint(equalTo: topAnchor, constant: 10),
@@ -88,3 +89,4 @@ extension DateAndRepeatView {
         ])
     }
 }
+
