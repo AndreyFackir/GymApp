@@ -53,7 +53,14 @@ class RepsOrTimerView: UIView {
         print("\(setsSlider.value)")
     }
     
-    
+    private let chooseLabel: UILabel = {
+       let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "Choose repeat or timer"
+        label.textColor = .specilaLightBrown
+        label.font = .robotoMedium12()
+        return label
+    }()
     
     private var setStackView = UIStackView()
     
@@ -67,6 +74,7 @@ class RepsOrTimerView: UIView {
         setStackView = UIStackView(arrangeSubviews: [setsLabel, valueOfSetsLabel], axis: .horizontal, spacing: 10)
         addSubview(setStackView)
         addSubview(setsSlider)
+        addSubview(chooseLabel)
     }
     
 }
@@ -84,6 +92,11 @@ extension RepsOrTimerView{
             setsSlider.topAnchor.constraint(equalTo: setStackView.bottomAnchor, constant: 10),
             setsSlider.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 15),
             setsSlider.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -15)
+        ])
+        
+        NSLayoutConstraint.activate([
+            chooseLabel.topAnchor.constraint(equalTo: setsSlider.bottomAnchor, constant: 10),
+            chooseLabel.centerXAnchor.constraint(equalTo: centerXAnchor)
         ])
         
     }
