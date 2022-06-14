@@ -152,7 +152,7 @@ extension NewWorkoutViewController {
             repsOrTimerView.topAnchor.constraint(equalTo: repsOrTimerLabel.bottomAnchor, constant: 5),
             repsOrTimerView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             repsOrTimerView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            repsOrTimerView.heightAnchor.constraint(equalToConstant: 300)
+            repsOrTimerView.heightAnchor.constraint(equalToConstant: 280)
         ])
        
     }
