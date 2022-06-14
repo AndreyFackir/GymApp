@@ -85,6 +85,22 @@ class NewWorkoutViewController: UIViewController {
     private let dateAndRepeatView = DateAndRepeatView()
     private let repsOrTimerView = RepsOrTimerView()
     
+    private let saveButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitle("SAVE", for: .normal)
+        button.titleLabel?.font = .robotoMedium18()
+        button.tintColor = .white
+        button.addTarget(self, action: #selector(saveButtonPressed), for: .touchUpInside)
+        button.backgroundColor = .speciakGreen
+        button.layer.cornerRadius = 10
+        return button
+    }()
+    
+    @objc func saveButtonPressed() {
+        print("saveButtonPressed")
+    }
+    
 //MARK: - SetupViews
     private func setupView() {
         view.backgroundColor = .specialbackground
@@ -96,6 +112,7 @@ class NewWorkoutViewController: UIViewController {
         view.addSubview(dateAndRepeatView)
         view.addSubview(repsOrTimerLabel)
         view.addSubview(repsOrTimerView)
+        view.addSubview(saveButton)
     }
 }
 
@@ -154,14 +171,23 @@ extension NewWorkoutViewController {
             repsOrTimerView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             repsOrTimerView.heightAnchor.constraint(equalToConstant: 280)
         ])
-       
-    }
+        
+        NSLayoutConstraint.activate([
+            saveButton.topAnchor.constraint(equalTo: repsOrTimerView.bottomAnchor, constant: 20),
+            saveButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            saveButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            saveButton.heightAnchor.constraint(equalToConstant: 50)
+        ])
+     }
 }
 
 import SwiftUI
 struct FlowProvider: PreviewProvider {
     static var previews: some View {
-        ContainterView().edgesIgnoringSafeArea(.all)
+        Group {
+            ContainterView().edgesIgnoringSafeArea(.all)
+            ContainterView().edgesIgnoringSafeArea(.all)
+        }
     }
     
     struct ContainterView: UIViewControllerRepresentable {
