@@ -99,6 +99,7 @@ class NewWorkoutViewController: UIViewController {
     
     @objc func saveButtonPressed() {
         print("saveButtonPressed")
+        
     }
     
 //MARK: - SetupViews
@@ -186,7 +187,7 @@ struct FlowProvider: PreviewProvider {
     static var previews: some View {
         Group {
             ContainterView().edgesIgnoringSafeArea(.all)
-            ContainterView().edgesIgnoringSafeArea(.all)
+           
         }
     }
     

@@ -41,7 +41,7 @@ class RepsOrTimerView: UIView {
        let slider = UISlider()
         slider.translatesAutoresizingMaskIntoConstraints = false
         slider.minimumValue = 0
-        slider.maximumValue = 1
+        slider.maximumValue = 100
         slider.isContinuous = true
         slider.tintColor = .speciakGreen
         slider.value = 0
@@ -49,8 +49,8 @@ class RepsOrTimerView: UIView {
         return slider
     }()
     
-    @objc func setSliderValuseChanged() {
-        print(setsSlider.value)
+    @objc private func setSliderValuseChanged() {
+        valueOfSetsLabel.text = "\(Int(setsSlider.value))"
     }
     
     private let chooseLabel: UILabel = {
@@ -86,7 +86,7 @@ class RepsOrTimerView: UIView {
        let slider = UISlider()
         slider.translatesAutoresizingMaskIntoConstraints = false
         slider.minimumValue = 0
-        slider.maximumValue = 1
+        slider.maximumValue = 100
         slider.isContinuous = true
         slider.tintColor = .speciakGreen
         slider.value = 0
@@ -94,8 +94,8 @@ class RepsOrTimerView: UIView {
         return slider
     }()
     
-    @objc func repsSliderValuseChanged() {
-        //print("\(repsSlider.value)")
+    @objc private func repsSliderValuseChanged() {
+        valueOfRepsLabel.text = "\(Int(repsSlider.value))"
     }
     
     private var repsStackView = UIStackView()
@@ -122,7 +122,7 @@ class RepsOrTimerView: UIView {
        let slider = UISlider()
         slider.translatesAutoresizingMaskIntoConstraints = false
         slider.minimumValue = 0
-        slider.maximumValue = 1
+        slider.maximumValue = 3599
         slider.isContinuous = true
         slider.tintColor = .speciakGreen
         slider.value = 0
@@ -130,8 +130,15 @@ class RepsOrTimerView: UIView {
         return slider
     }()
     
-    @objc func timerSliderValuseChanged() {
-       // print("\(timerSlider.value)")
+    @objc private func timerSliderValuseChanged() {
+        valueOfTimerLabel.text = "\(Int(timerSlider.value)) min"
+        
+        //настройка лейбла - в кложуре берем значение в секундах и переводим в минуты и секнуды
+        let (min, sec) = { (sec:Int) -> (Int, Int) in
+            return ((sec % 3600) / 60, (sec % 3600) % 60)}(Int(timerSlider.value))
+        
+        
+        valueOfTimerLabel.text = (sec != 0 ? "\(min) min \(sec) sec" : "\(min) min")
     }
     
     private var timerStackView = UIStackView()
