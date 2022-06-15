@@ -96,6 +96,17 @@ class RepsOrTimerView: UIView {
     
     @objc private func repsSliderValuseChanged() {
         valueOfRepsLabel.text = "\(Int(repsSlider.value))"
+        
+        timerLabel.alpha = 0.5
+        valueOfTimerLabel.alpha = 0.5
+        timerSlider.alpha = 0.5
+        
+         valueOfTimerLabel.text = "0"
+        timerSlider.value = 0
+        
+        repsLabel.alpha = 1
+        valueOfRepsLabel.alpha = 1
+        repsSlider.alpha = 1
     }
     
     private var repsStackView = UIStackView()
@@ -131,7 +142,17 @@ class RepsOrTimerView: UIView {
     }()
     
     @objc private func timerSliderValuseChanged() {
-        valueOfTimerLabel.text = "\(Int(timerSlider.value)) min"
+       
+        repsLabel.alpha = 0.5
+        valueOfRepsLabel.alpha = 0.5
+        repsSlider.alpha = 0.5
+        
+        valueOfRepsLabel.text = "0"
+        repsSlider.value = 0
+        
+        timerLabel.alpha = 1
+        valueOfTimerLabel.alpha = 1
+        timerSlider.alpha = 1
         
         //настройка лейбла - в кложуре берем значение в секундах и переводим в минуты и секнуды
         let (min, sec) = { (sec:Int) -> (Int, Int) in
