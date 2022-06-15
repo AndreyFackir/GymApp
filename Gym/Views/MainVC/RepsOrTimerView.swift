@@ -95,18 +95,10 @@ class RepsOrTimerView: UIView {
     }()
     
     @objc private func repsSliderValuseChanged() {
-        valueOfRepsLabel.text = "\(Int(repsSlider.value))"
         
-        timerLabel.alpha = 0.5
-        valueOfTimerLabel.alpha = 0.5
-        timerSlider.alpha = 0.5
-        
-         valueOfTimerLabel.text = "0"
-        timerSlider.value = 0
-        
-        repsLabel.alpha = 1
-        valueOfRepsLabel.alpha = 1
-        repsSlider.alpha = 1
+        setNegative(label: timerLabel, valueLabel: valueOfTimerLabel, slider: timerSlider)
+
+        setActive(label: repsLabel, valueLabel: valueOfRepsLabel, slider: repsSlider)
     }
     
     private var repsStackView = UIStackView()
@@ -143,16 +135,19 @@ class RepsOrTimerView: UIView {
     
     @objc private func timerSliderValuseChanged() {
        
-        repsLabel.alpha = 0.5
-        valueOfRepsLabel.alpha = 0.5
-        repsSlider.alpha = 0.5
+//        repsLabel.alpha = 0.5
+//        valueOfRepsLabel.alpha = 0.5
+//        repsSlider.alpha = 0.5
+//
+//        valueOfRepsLabel.text = "0"
+//        repsSlider.value = 0
         
-        valueOfRepsLabel.text = "0"
-        repsSlider.value = 0
+        setNegative(label: repsLabel, valueLabel: valueOfRepsLabel, slider: repsSlider)
         
-        timerLabel.alpha = 1
-        valueOfTimerLabel.alpha = 1
-        timerSlider.alpha = 1
+//        timerLabel.alpha = 1
+//        valueOfTimerLabel.alpha = 1
+//        timerSlider.alpha = 1
+        setActive(label: timerLabel, valueLabel: valueOfTimerLabel, slider: timerSlider)
         
         //настройка лейбла - в кложуре берем значение в секундах и переводим в минуты и секнуды
         let (min, sec) = { (sec:Int) -> (Int, Int) in
@@ -160,6 +155,21 @@ class RepsOrTimerView: UIView {
         
         
         valueOfTimerLabel.text = (sec != 0 ? "\(min) min \(sec) sec" : "\(min) min")
+    }
+    
+    
+    private func setActive(label: UILabel, valueLabel: UILabel, slider: UISlider){
+        label.alpha = 1
+        valueLabel.alpha = 1
+        slider.alpha = 1
+    }
+    
+    private func setNegative(label: UILabel, valueLabel: UILabel, slider: UISlider){
+        label.alpha = 0.5
+        valueLabel.alpha = 0.5
+        slider.alpha = 0.5
+        valueLabel.text = "0"
+        slider.value = 0
     }
     
     private var timerStackView = UIStackView()
