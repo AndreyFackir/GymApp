@@ -38,7 +38,7 @@ class RepsOrTimerView: UIView {
     }()
     
     private let setsSlider: UISlider = {
-       let slider = UISlider()
+        let slider = UISlider()
         slider.translatesAutoresizingMaskIntoConstraints = false
         slider.minimumValue = 0
         slider.maximumValue = 100
@@ -54,7 +54,7 @@ class RepsOrTimerView: UIView {
     }
     
     private let chooseLabel: UILabel = {
-       let label = UILabel()
+        let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Choose repeat or timer"
         label.textColor = .specilaLightBrown
@@ -83,7 +83,7 @@ class RepsOrTimerView: UIView {
     }()
     
     private let repsSlider: UISlider = {
-       let slider = UISlider()
+        let slider = UISlider()
         slider.translatesAutoresizingMaskIntoConstraints = false
         slider.minimumValue = 0
         slider.maximumValue = 100
@@ -95,9 +95,7 @@ class RepsOrTimerView: UIView {
     }()
     
     @objc private func repsSliderValuseChanged() {
-        
         setNegative(label: timerLabel, valueLabel: valueOfTimerLabel, slider: timerSlider)
-
         setActive(label: repsLabel, valueLabel: valueOfRepsLabel, slider: repsSlider)
     }
     
@@ -122,7 +120,7 @@ class RepsOrTimerView: UIView {
     }()
     
     private let timerSlider: UISlider = {
-       let slider = UISlider()
+        let slider = UISlider()
         slider.translatesAutoresizingMaskIntoConstraints = false
         slider.minimumValue = 0
         slider.maximumValue = 3599
@@ -134,29 +132,27 @@ class RepsOrTimerView: UIView {
     }()
     
     @objc private func timerSliderValuseChanged() {
-       
-//        repsLabel.alpha = 0.5
-//        valueOfRepsLabel.alpha = 0.5
-//        repsSlider.alpha = 0.5
-//
-//        valueOfRepsLabel.text = "0"
-//        repsSlider.value = 0
+        
+        //        repsLabel.alpha = 0.5
+        //        valueOfRepsLabel.alpha = 0.5
+        //        repsSlider.alpha = 0.5
+        //
+        //        valueOfRepsLabel.text = "0"
+        //        repsSlider.value = 0
         
         setNegative(label: repsLabel, valueLabel: valueOfRepsLabel, slider: repsSlider)
         
-//        timerLabel.alpha = 1
-//        valueOfTimerLabel.alpha = 1
-//        timerSlider.alpha = 1
+        //        timerLabel.alpha = 1
+        //        valueOfTimerLabel.alpha = 1
+        //        timerSlider.alpha = 1
         setActive(label: timerLabel, valueLabel: valueOfTimerLabel, slider: timerSlider)
         
         //настройка лейбла - в кложуре берем значение в секундах и переводим в минуты и секнуды
         let (min, sec) = { (sec:Int) -> (Int, Int) in
             return ((sec % 3600) / 60, (sec % 3600) % 60)}(Int(timerSlider.value))
         
-        
         valueOfTimerLabel.text = (sec != 0 ? "\(min) min \(sec) sec" : "\(min) min")
     }
-    
     
     private func setActive(label: UILabel, valueLabel: UILabel, slider: UISlider){
         label.alpha = 1

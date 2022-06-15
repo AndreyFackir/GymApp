@@ -13,6 +13,8 @@ class NewWorkoutViewController: UIViewController {
         super.viewDidLoad()
         setupView()
         setConstraints()
+        setDelegates()
+        addTaps()
     }
     
     private let headerLabel: UILabel = {
@@ -102,6 +104,22 @@ class NewWorkoutViewController: UIViewController {
         
     }
     
+    private func setDelegates() {
+        nameTextField.delegate = self
+    }
+    
+    
+    private func addTaps() {
+        //скрываем клаву по тапу
+        let tapScreen = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
+        tapScreen.cancelsTouchesInView = false
+        view.addGestureRecognizer(tapScreen)
+    }
+    
+    @objc private func hideKeyboard(){
+        view.endEditing(true)
+    }
+    
 //MARK: - SetupViews
     private func setupView() {
         view.backgroundColor = .specialbackground
@@ -180,6 +198,15 @@ extension NewWorkoutViewController {
             saveButton.heightAnchor.constraint(equalToConstant: 50)
         ])
      }
+}
+
+extension NewWorkoutViewController: UITextFieldDelegate {
+    // чтобы клава убиралась по нажатию на кнопку done
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        nameTextField.resignFirstResponder()
+    }
+    
+    
 }
 
 import SwiftUI
