@@ -200,15 +200,16 @@ extension NewWorkoutViewController {
      }
 }
 
+//MARK: - UITextFieldDelegate
 extension NewWorkoutViewController: UITextFieldDelegate {
     // чтобы клава убиралась по нажатию на кнопку done
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         nameTextField.resignFirstResponder()
     }
-    
-    
+  
 }
 
+//MARK: - import SwiftUI
 import SwiftUI
 struct FlowProvider: PreviewProvider {
     static var previews: some View {

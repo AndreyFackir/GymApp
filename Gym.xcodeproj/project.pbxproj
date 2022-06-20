@@ -22,6 +22,9 @@
 		8126B242284CECC000687A39 /* CalendarCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8126B241284CECC000687A39 /* CalendarCollectionViewCell.swift */; };
 		8126B245284CFAB300687A39 /* WeatherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8126B244284CFAB300687A39 /* WeatherView.swift */; };
 		8126B247284FC64F00687A39 /* WorkoutTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8126B246284FC64F00687A39 /* WorkoutTableViewCell.swift */; };
+		815C2D6C2860D1EE00BDD273 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 815C2D6B2860D1EE00BDD273 /* MainTabBarController.swift */; };
+		815C2D6E2860D37300BDD273 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 815C2D6D2860D37300BDD273 /* ProfileViewController.swift */; };
+		815C2D702860D3C500BDD273 /* StatisticViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 815C2D6F2860D3C500BDD273 /* StatisticViewController.swift */; };
 		81E8E0722855EFB4005B4E87 /* NewWorkoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E8E0712855EFB4005B4E87 /* NewWorkoutViewController.swift */; };
 		81E8E07428562D03005B4E87 /* DateAndRepeatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E8E07328562D03005B4E87 /* DateAndRepeatView.swift */; };
 		81E8E07E2857A0CA005B4E87 /* RepsOrTimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E8E07D2857A0CA005B4E87 /* RepsOrTimerView.swift */; };
@@ -45,6 +48,9 @@
 		8126B241284CECC000687A39 /* CalendarCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCollectionViewCell.swift; sourceTree = "<group>"; };
 		8126B244284CFAB300687A39 /* WeatherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherView.swift; sourceTree = "<group>"; };
 		8126B246284FC64F00687A39 /* WorkoutTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutTableViewCell.swift; sourceTree = "<group>"; };
+		815C2D6B2860D1EE00BDD273 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
+		815C2D6D2860D37300BDD273 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		815C2D6F2860D3C500BDD273 /* StatisticViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticViewController.swift; sourceTree = "<group>"; };
 		81E8E0712855EFB4005B4E87 /* NewWorkoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewWorkoutViewController.swift; sourceTree = "<group>"; };
 		81E8E07328562D03005B4E87 /* DateAndRepeatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateAndRepeatView.swift; sourceTree = "<group>"; };
 		81E8E07D2857A0CA005B4E87 /* RepsOrTimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepsOrTimerView.swift; sourceTree = "<group>"; };
@@ -111,6 +117,9 @@
 			children = (
 				8126B217284922FC00687A39 /* MainViewController.swift */,
 				81E8E0712855EFB4005B4E87 /* NewWorkoutViewController.swift */,
+				815C2D6B2860D1EE00BDD273 /* MainTabBarController.swift */,
+				815C2D6D2860D37300BDD273 /* ProfileViewController.swift */,
+				815C2D6F2860D3C500BDD273 /* StatisticViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -257,6 +266,7 @@
 			files = (
 				8126B22F284CA84D00687A39 /* UIFont + Extensions.swift in Sources */,
 				8126B233284CACA300687A39 /* UIview + Exxtensions.swift in Sources */,
+				815C2D6C2860D1EE00BDD273 /* MainTabBarController.swift in Sources */,
 				8126B240284CE22D00687A39 /* CalendarView.swift in Sources */,
 				8126B235284CAD3B00687A39 /* UIStackView + Extensions.swift in Sources */,
 				8126B247284FC64F00687A39 /* WorkoutTableViewCell.swift in Sources */,
@@ -268,7 +278,9 @@
 				8126B242284CECC000687A39 /* CalendarCollectionViewCell.swift in Sources */,
 				81E8E0722855EFB4005B4E87 /* NewWorkoutViewController.swift in Sources */,
 				8126B214284922FC00687A39 /* AppDelegate.swift in Sources */,
+				815C2D702860D3C500BDD273 /* StatisticViewController.swift in Sources */,
 				8126B216284922FC00687A39 /* SceneDelegate.swift in Sources */,
+				815C2D6E2860D37300BDD273 /* ProfileViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -17,4 +17,5 @@ extension UIColor {
     static let specilaLightBrown = UIColor(red: 203/255, green: 211/255, blue: 169/255, alpha: 1.0)
     static let specialBrown = UIColor(red: 234/255, green: 228/255, blue: 208/255, alpha: 1.0)
     static let specialBlack = UIColor(red: 42/255, green: 43/255, blue: 40/255, alpha: 1.0)
+    static let specialTabBar = UIColor(red: 210/255, green: 205/255, blue: 196/255, alpha: 1.0)
 }
