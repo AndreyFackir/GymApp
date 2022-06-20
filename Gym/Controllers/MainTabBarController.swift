@@ -11,7 +11,8 @@ class MainTabBarController: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        setupTabBar()
+        setupItems()
         
     }
     
@@ -43,6 +44,8 @@ class MainTabBarController: UITabBarController {
         items[0].image = UIImage(named: "Document Justify Center 2")
         items[1].image = UIImage(named: "Filter 5")
         items[2].image = UIImage(named: "Profile 1")
+        
+        UITabBarItem.appearance().setTitleTextAttributes([.font: UIFont(name: "Roboto-Bold", size: 12) as Any], for: .normal)
     }
     
 }
