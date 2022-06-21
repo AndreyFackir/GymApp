@@ -28,6 +28,7 @@
 		815C2D722860D82F00BDD273 /* UILabel + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 815C2D712860D82F00BDD273 /* UILabel + Extension.swift */; };
 		81666F1028622FE300746946 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 81666F0F28622FE300746946 /* Realm */; };
 		81666F1228622FE300746946 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 81666F1128622FE300746946 /* RealmSwift */; };
+		81666F142862315500746946 /* WorkoutModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81666F132862315500746946 /* WorkoutModel.swift */; };
 		81E8E0722855EFB4005B4E87 /* NewWorkoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E8E0712855EFB4005B4E87 /* NewWorkoutViewController.swift */; };
 		81E8E07428562D03005B4E87 /* DateAndRepeatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E8E07328562D03005B4E87 /* DateAndRepeatView.swift */; };
 		81E8E07E2857A0CA005B4E87 /* RepsOrTimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E8E07D2857A0CA005B4E87 /* RepsOrTimerView.swift */; };
@@ -55,6 +56,7 @@
 		815C2D6D2860D37300BDD273 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		815C2D6F2860D3C500BDD273 /* StatisticViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticViewController.swift; sourceTree = "<group>"; };
 		815C2D712860D82F00BDD273 /* UILabel + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel + Extension.swift"; sourceTree = "<group>"; };
+		81666F132862315500746946 /* WorkoutModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutModel.swift; sourceTree = "<group>"; };
 		81E8E0712855EFB4005B4E87 /* NewWorkoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewWorkoutViewController.swift; sourceTree = "<group>"; };
 		81E8E07328562D03005B4E87 /* DateAndRepeatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateAndRepeatView.swift; sourceTree = "<group>"; };
 		81E8E07D2857A0CA005B4E87 /* RepsOrTimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepsOrTimerView.swift; sourceTree = "<group>"; };
@@ -114,6 +116,7 @@
 		8126B228284CA73C00687A39 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				81666F132862315500746946 /* WorkoutModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -285,6 +288,7 @@
 				8126B235284CAD3B00687A39 /* UIStackView + Extensions.swift in Sources */,
 				8126B247284FC64F00687A39 /* WorkoutTableViewCell.swift in Sources */,
 				815C2D722860D82F00BDD273 /* UILabel + Extension.swift in Sources */,
+				81666F142862315500746946 /* WorkoutModel.swift in Sources */,
 				81E8E07428562D03005B4E87 /* DateAndRepeatView.swift in Sources */,
 				8126B231284CA93800687A39 /* UIColor + Extensions.swift in Sources */,
 				8126B245284CFAB300687A39 /* WeatherView.swift in Sources */,
