@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 class MainViewController: UIViewController {
     
@@ -91,6 +92,26 @@ class MainViewController: UIViewController {
     private let calendarView = CalendarView()
     private let weatherView = WeatherView()
     private let idWorkoutTableViewCell = "idWorkoutTableViewCell"
+    
+    
+    //создаем объект реалма
+    private let localRealm = try! Realm()
+    //создаем массив для хранения данных с типом РЕЗАЛТС и в скобках модель которую хотим получить
+    //сюда будут записывать все данные
+    private let workoutArray: Results<WorkoutModel>! = nil
+    
+    //параметр ДЕЙТ нужен для подставления даты по нажатию на календарь
+    private func getWorkouts(date: Date) {
+        
+        let calendar = Calendar.current //cоздаем календарь и выбираем наш календарь в заависимотси от нахождения устройства
+        
+        let components = calendar.dateComponents([.weekday], from: date) //массив викдей - номер дня, берем из дейт( входной параметр)
+        
+        guard let weekday = components.weekday else { return }
+        print(weekday)
+        
+    }
+    
    
     
     //из-за особенностей жиз цикла прописываем отделльный меотд для закругления
@@ -105,6 +126,7 @@ class MainViewController: UIViewController {
         setDelegates()
         //не забыть зарегистрировать ячейку!!!!
         tableView.register(WorkoutTableViewCell.self, forCellReuseIdentifier: idWorkoutTableViewCell)
+        getWorkouts(date: Date()) //cегодншная дата
     }
     
     private func setupViews() {
