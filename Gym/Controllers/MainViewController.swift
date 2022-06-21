@@ -98,7 +98,7 @@ class MainViewController: UIViewController {
     private let localRealm = try! Realm()
     //создаем массив для хранения данных с типом РЕЗАЛТС и в скобках модель которую хотим получить
     //сюда будут записывать все данные
-    private let workoutArray: Results<WorkoutModel>! = nil
+    private var workoutArray: Results<WorkoutModel>! = nil
     
     //параметр ДЕЙТ нужен для подставления даты по нажатию на календарь
     private func getWorkouts(date: Date) {
@@ -108,11 +108,28 @@ class MainViewController: UIViewController {
         let components = calendar.dateComponents([.weekday], from: date) //массив викдей - номер дня, берем из дейт( входной параметр)
         
         guard let weekday = components.weekday else { return }
-        print(weekday)
+        print(weekday) //день недели
         
+        let dateStart = date //сегоднящний день
+        
+        let dateEnd: Date = {
+            let components = DateComponents(day: 1, second: -1) //мы хотим взять день и сделать минус 1 сек, даные будут получены до 23:59:59
+            
+            return Calendar.current.date(byAdding: components, to: dateStart) ?? Date()
+        }()
+        
+        //cоздаем предикаты - условия, по которым получают данные( по дате и по дню недели в данном случае)
+        //если наш день недели равен викдей и свитч репитов = тру
+        let predicateRepeat = NSPredicate(format: "workoutNumberOfDay = \(weekday) AND workoutRepeats = true")
+        let predicateUnrepeat = NSPredicate(format: " workoutRepeats = false AND workoutDate BETWEEN %@", [dateStart, dateEnd]) //если вораутДата МЕЖДУ датой начал и датой конца
+        
+        //создадим компаунд - исползуем оба предиката
+        let compound = NSCompoundPredicate(type: .or, subpredicates: [predicateRepeat, predicateUnrepeat])
+        
+        workoutArray = localRealm.objects(WorkoutModel.self).filter(compound).sorted(byKeyPath: "workoutName")
     }
     
-   
+    
     
     //из-за особенностей жиз цикла прописываем отделльный меотд для закругления
     override func viewDidLayoutSubviews() {
@@ -208,7 +225,7 @@ extension MainViewController {
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0)
         ])
         
-       
+        
         
     }
 }
