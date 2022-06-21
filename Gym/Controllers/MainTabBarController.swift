@@ -28,7 +28,7 @@ class MainTabBarController: UITabBarController {
     
     private func setupItems() {
         
-        //создадим у айтемов ссылки на вьюшки
+        //создадим у айтемов ссылки на вьюшки 
         let mainVC = MainViewController()
         let statisticVC = StatisticViewController()
         let profile = ProfileViewController()

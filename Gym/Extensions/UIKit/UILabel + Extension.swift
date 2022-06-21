@@ -12,7 +12,7 @@ extension UILabel {
         self.init()
         
         self.text = text
-        self.font = .robotoMedium14()
+        self.font = .robotoMedium12()
         self.textColor = .specilaLightBrown
         self.translatesAutoresizingMaskIntoConstraints = false
     }

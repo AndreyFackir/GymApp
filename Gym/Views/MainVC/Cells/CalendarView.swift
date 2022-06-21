@@ -8,21 +8,6 @@
 import UIKit
 
 class CalendarView: UIView {
-   
-    
-    //1- cоздаем коллекшн вью
-    private let collectionView: UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.translatesAutoresizingMaskIntoConstraints = false
-        collectionView.backgroundColor = .none
-        
-        return collectionView
-        
-    }()
-    
-    //2
-    private let idCalendarCell = "idCalendarCell"
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -36,11 +21,28 @@ class CalendarView: UIView {
       
     }
     
-   
-    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    
+   
+    
+    //1- cоздаем коллекшн вью
+    private let collectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.backgroundColor = .none
+        
+        return collectionView
+        
+    }()
+    
+    //2 - создаем айди ячейки
+    private let idCalendarCell = "idCalendarCell"
+    
+   
     
     private func setupViews() {
         
@@ -93,7 +95,7 @@ extension CalendarView: UICollectionViewDataSource {
 
 //MARK: - Collection Delegate
 
-//5
+//5 - подписываем на делегаты
 extension CalendarView: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print("collection View tapped")

@@ -43,14 +43,17 @@ class NewWorkoutViewController: UIViewController {
         closeButton.layer.cornerRadius = closeButton.frame.height / 2
     }
     
-    private let nameLabel: UILabel = {
-        let name = UILabel()
-        name.translatesAutoresizingMaskIntoConstraints = false
-        name.text = "Name"
-        name.textColor = .specilaLightBrown
-        name.font = .robotoMedium12()
-        return name
-    }()
+//    private let nameLabel: UILabel = {
+//        let name = UILabel()
+//        name.translatesAutoresizingMaskIntoConstraints = false
+//        name.text = "Name"
+//        name.textColor = .specilaLightBrown
+//        name.font = .robotoMedium12()
+//        return name
+//    }()
+    
+    //то же что и запись выше, только с использование экстеншена для UILabel
+    private let nameLabel = UILabel(text: "Name")
     
     private let nameTextField: UITextField = {
         let text = UITextField()
