@@ -138,6 +138,15 @@ class MainViewController: UIViewController {
         userPhotoImageView.layer.cornerRadius = userPhotoImageView.frame.width / 2 // делаем круг
     }
     
+    
+    //для того, чтобы после сохранения в БД наша таблица обновлялась
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        tableView.reloadData()
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
@@ -165,6 +174,35 @@ class MainViewController: UIViewController {
     private func setDelegates() {
         tableView.dataSource = self
         tableView.delegate  = self
+    }
+}
+
+
+
+//MARK: - UITableViewDataSource
+extension MainViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        workoutArray.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "idWorkoutTableViewCell", for: indexPath) as! WorkoutTableViewCell
+        
+        let model = workoutArray[indexPath.row] //по каждой яейке получаем запись из массива
+        
+        cell.cellConfigure(model: model)
+        return cell
+    }
+}
+
+//MARK: - UITableViewDelegate
+
+extension MainViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        
+        //устанавливаем выоту ячейки
+        return 100
+        
     }
 }
 
@@ -228,33 +266,6 @@ extension MainViewController {
         ])
         
         
-        
-    }
-}
-
-//MARK: - UITableViewDataSource
-extension MainViewController: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        workoutArray.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "idWorkoutTableViewCell", for: indexPath) as! WorkoutTableViewCell
-        
-        let model = workoutArray[indexPath.row] //по каждой яейке получаем запись из массива
-        
-        cell.cellConfigure(model: model)
-        return cell
-    }
-}
-
-//MARK: - UITableViewDelegate
-
-extension MainViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        
-        //устанавливаем выоту ячейки
-        return 100
         
     }
 }

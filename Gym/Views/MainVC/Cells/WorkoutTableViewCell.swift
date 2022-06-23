@@ -141,9 +141,10 @@ class WorkoutTableViewCell: UITableViewCell {
         ])
         
         NSLayoutConstraint.activate([
-            exersizeImage.topAnchor.constraint(equalTo: square.topAnchor, constant: 5),
-            exersizeImage.leadingAnchor.constraint(equalTo: square.leadingAnchor, constant: 12),
-            exersizeImage.bottomAnchor.constraint(equalTo: square.bottomAnchor, constant: -5)
+            exersizeImage.centerXAnchor.constraint(equalTo: square.centerXAnchor),
+            exersizeImage.centerYAnchor.constraint(equalTo: square.centerYAnchor),
+            exersizeImage.heightAnchor.constraint(equalToConstant: 60),
+            exersizeImage.widthAnchor.constraint(equalToConstant: 60)
         ])
         
         NSLayoutConstraint.activate([

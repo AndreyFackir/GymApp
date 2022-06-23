@@ -44,14 +44,14 @@ class NewWorkoutViewController: UIViewController {
         closeButton.layer.cornerRadius = closeButton.frame.height / 2
     }
     
-//    private let nameLabel: UILabel = {
-//        let name = UILabel()
-//        name.translatesAutoresizingMaskIntoConstraints = false
-//        name.text = "Name"
-//        name.textColor = .specilaLightBrown
-//        name.font = .robotoMedium12()
-//        return name
-//    }()
+    //    private let nameLabel: UILabel = {
+    //        let name = UILabel()
+    //        name.translatesAutoresizingMaskIntoConstraints = false
+    //        name.text = "Name"
+    //        name.textColor = .specilaLightBrown
+    //        name.font = .robotoMedium12()
+    //        return name
+    //    }()
     
     //то же что и запись выше, только с использование экстеншена для UILabel
     private let nameLabel = UILabel(text: "Name")
@@ -71,7 +71,7 @@ class NewWorkoutViewController: UIViewController {
     }()
     
     private let dateAndRepeatLabel: UILabel = {
-       let label =  UILabel()
+        let label =  UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Date and Repeat"
         label.textColor = .specilaLightBrown
@@ -80,7 +80,7 @@ class NewWorkoutViewController: UIViewController {
     }()
     
     private let repsOrTimerLabel: UILabel = {
-       let label = UILabel()
+        let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Reps or timer"
         label.textColor = .specilaLightBrown
@@ -114,7 +114,7 @@ class NewWorkoutViewController: UIViewController {
         print("saveButtonPressed")
         setModel()
         saveModel()
-      // RealmManager.shared.saveWorkoutModel(model: workoutModel)
+       
         
     }
     
@@ -148,7 +148,7 @@ class NewWorkoutViewController: UIViewController {
         guard let weekday = components.weekday else { return }
         workoutModel.workoutNumberOfDay = weekday
         
-            //берем положение свитча
+        //берем положение свитча
         workoutModel.workoutRepeats = dateAndRepeatView.switcherRepeat.isOn
         
         //берем сеты, репсы
@@ -175,6 +175,9 @@ class NewWorkoutViewController: UIViewController {
             //после записи в БД сразу обновляем модель, иначе если нажать два раза подряд выпадет ошибка
             workoutModel = WorkoutModel()
             
+            //обнуляем все лейблы
+            refreshWorkoutObject()
+            
         } else {
             alertOK(title: "Attensione", message: "Fill all parameters")
             
@@ -182,7 +185,17 @@ class NewWorkoutViewController: UIViewController {
     }
     
     
-//MARK: - SetupViews
+    private func refreshWorkoutObject() {
+        //устанавливаем дату на данный момент
+        dateAndRepeatView.datePicker.setDate(Date(), animated: true)
+        nameTextField.text = ""
+        dateAndRepeatView.switcherRepeat.isOn = true
+        repsOrTimerView.valueOfSetsLabel.text = "0"
+        repsOrTimerView.valueOfRepsLabel.text = "0"
+    }
+    
+    
+    //MARK: - SetupViews
     private func setupView() {
         view.backgroundColor = .specialbackground
         view.addSubview(headerLabel)
@@ -197,6 +210,15 @@ class NewWorkoutViewController: UIViewController {
     }
 }
 
+
+//MARK: - UITextFieldDelegate
+extension NewWorkoutViewController: UITextFieldDelegate {
+    // чтобы клава убиралась по нажатию на кнопку done
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        nameTextField.resignFirstResponder()
+    }
+    
+}
 //MARK: - SetConstrints
 extension NewWorkoutViewController {
     
@@ -243,7 +265,7 @@ extension NewWorkoutViewController {
         NSLayoutConstraint.activate([
             repsOrTimerLabel.topAnchor.constraint(equalTo: dateAndRepeatView.bottomAnchor, constant: 15),
             repsOrTimerLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20)
-        
+            
         ])
         
         NSLayoutConstraint.activate([
@@ -259,40 +281,9 @@ extension NewWorkoutViewController {
             saveButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             saveButton.heightAnchor.constraint(equalToConstant: 50)
         ])
-     }
+    }
 }
 
-//MARK: - UITextFieldDelegate
-extension NewWorkoutViewController: UITextFieldDelegate {
-    // чтобы клава убиралась по нажатию на кнопку done
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        nameTextField.resignFirstResponder()
-    }
-  
-}
 
-//MARK: - import SwiftUI
-import SwiftUI
-struct FlowProvider: PreviewProvider {
-    static var previews: some View {
-        Group {
-            ContainterView().edgesIgnoringSafeArea(.all)
-           
-        }
-    }
-    
-    struct ContainterView: UIViewControllerRepresentable {
-        
-        let view = NewWorkoutViewController()
-        func makeUIViewController(context: UIViewControllerRepresentableContext<FlowProvider.ContainterView>) -> NewWorkoutViewController {
-            return view
-        }
-        
-        func updateUIViewController(_ uiViewController: FlowProvider.ContainterView.UIViewControllerType, context: UIViewControllerRepresentableContext<FlowProvider.ContainterView>) {
-            
-        }
-        
-    }
-    
-}
+
 
