@@ -22,6 +22,7 @@
 		8126B242284CECC000687A39 /* CalendarCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8126B241284CECC000687A39 /* CalendarCollectionViewCell.swift */; };
 		8126B245284CFAB300687A39 /* WeatherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8126B244284CFAB300687A39 /* WeatherView.swift */; };
 		8126B247284FC64F00687A39 /* WorkoutTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8126B246284FC64F00687A39 /* WorkoutTableViewCell.swift */; };
+		815AED0B2864DC9A0047E8A8 /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 815AED0A2864DC9A0047E8A8 /* RealmManager.swift */; };
 		815C2D6C2860D1EE00BDD273 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 815C2D6B2860D1EE00BDD273 /* MainTabBarController.swift */; };
 		815C2D6E2860D37300BDD273 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 815C2D6D2860D37300BDD273 /* ProfileViewController.swift */; };
 		815C2D702860D3C500BDD273 /* StatisticViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 815C2D6F2860D3C500BDD273 /* StatisticViewController.swift */; };
@@ -52,6 +53,7 @@
 		8126B241284CECC000687A39 /* CalendarCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCollectionViewCell.swift; sourceTree = "<group>"; };
 		8126B244284CFAB300687A39 /* WeatherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherView.swift; sourceTree = "<group>"; };
 		8126B246284FC64F00687A39 /* WorkoutTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutTableViewCell.swift; sourceTree = "<group>"; };
+		815AED0A2864DC9A0047E8A8 /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
 		815C2D6B2860D1EE00BDD273 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		815C2D6D2860D37300BDD273 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		815C2D6F2860D3C500BDD273 /* StatisticViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticViewController.swift; sourceTree = "<group>"; };
@@ -168,6 +170,7 @@
 				8126B21C284922FE00687A39 /* Assets.xcassets */,
 				8126B21E284922FE00687A39 /* LaunchScreen.storyboard */,
 				8126B221284922FE00687A39 /* Info.plist */,
+				815AED092864DC7D0047E8A8 /* Services */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -200,6 +203,14 @@
 				8126B246284FC64F00687A39 /* WorkoutTableViewCell.swift */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		815AED092864DC7D0047E8A8 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				815AED0A2864DC9A0047E8A8 /* RealmManager.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -298,6 +309,7 @@
 				81E8E0722855EFB4005B4E87 /* NewWorkoutViewController.swift in Sources */,
 				8126B214284922FC00687A39 /* AppDelegate.swift in Sources */,
 				815C2D702860D3C500BDD273 /* StatisticViewController.swift in Sources */,
+				815AED0B2864DC9A0047E8A8 /* RealmManager.swift in Sources */,
 				8126B216284922FC00687A39 /* SceneDelegate.swift in Sources */,
 				815C2D6E2860D37300BDD273 /* ProfileViewController.swift in Sources */,
 			);
