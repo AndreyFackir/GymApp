@@ -23,6 +23,7 @@
 		8126B245284CFAB300687A39 /* WeatherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8126B244284CFAB300687A39 /* WeatherView.swift */; };
 		8126B247284FC64F00687A39 /* WorkoutTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8126B246284FC64F00687A39 /* WorkoutTableViewCell.swift */; };
 		815AED0B2864DC9A0047E8A8 /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 815AED0A2864DC9A0047E8A8 /* RealmManager.swift */; };
+		815AED0D2864E3FE0047E8A8 /* Alerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 815AED0C2864E3FE0047E8A8 /* Alerts.swift */; };
 		815C2D6C2860D1EE00BDD273 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 815C2D6B2860D1EE00BDD273 /* MainTabBarController.swift */; };
 		815C2D6E2860D37300BDD273 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 815C2D6D2860D37300BDD273 /* ProfileViewController.swift */; };
 		815C2D702860D3C500BDD273 /* StatisticViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 815C2D6F2860D3C500BDD273 /* StatisticViewController.swift */; };
@@ -54,6 +55,7 @@
 		8126B244284CFAB300687A39 /* WeatherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherView.swift; sourceTree = "<group>"; };
 		8126B246284FC64F00687A39 /* WorkoutTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutTableViewCell.swift; sourceTree = "<group>"; };
 		815AED0A2864DC9A0047E8A8 /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
+		815AED0C2864E3FE0047E8A8 /* Alerts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alerts.swift; sourceTree = "<group>"; };
 		815C2D6B2860D1EE00BDD273 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		815C2D6D2860D37300BDD273 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		815C2D6F2860D3C500BDD273 /* StatisticViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticViewController.swift; sourceTree = "<group>"; };
@@ -139,6 +141,7 @@
 			isa = PBXGroup;
 			children = (
 				8126B23E284CE20E00687A39 /* MainVC */,
+				815AED0C2864E3FE0047E8A8 /* Alerts.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -311,6 +314,7 @@
 				815C2D702860D3C500BDD273 /* StatisticViewController.swift in Sources */,
 				815AED0B2864DC9A0047E8A8 /* RealmManager.swift in Sources */,
 				8126B216284922FC00687A39 /* SceneDelegate.swift in Sources */,
+				815AED0D2864E3FE0047E8A8 /* Alerts.swift in Sources */,
 				815C2D6E2860D37300BDD273 /* ProfileViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

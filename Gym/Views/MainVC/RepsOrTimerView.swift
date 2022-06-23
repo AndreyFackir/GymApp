@@ -31,7 +31,7 @@ class RepsOrTimerView: UIView {
      let valueOfSetsLabel:UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "1"
+        label.text = "0"
         label.textColor = .specialGray
         label.font = .robotoMedium18()
         return label
@@ -76,7 +76,7 @@ class RepsOrTimerView: UIView {
      let valueOfRepsLabel:UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "1"
+        label.text = "0"
         label.textColor = .specialGray
         label.font = .robotoMedium18()
         return label

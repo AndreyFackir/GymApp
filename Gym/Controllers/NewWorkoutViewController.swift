@@ -112,6 +112,9 @@ class NewWorkoutViewController: UIViewController {
     
     @objc func saveButtonPressed() {
         print("saveButtonPressed")
+        setModel()
+        saveModel()
+      // RealmManager.shared.saveWorkoutModel(model: workoutModel)
         
     }
     
@@ -152,6 +155,30 @@ class NewWorkoutViewController: UIViewController {
         workoutModel.workoutSets = Int(repsOrTimerView.setsSlider.value)
         workoutModel.workoutReps = Int(repsOrTimerView.repsSlider.value)
         workoutModel.workoutTimer = Int(repsOrTimerView.timerSlider.value)
+        
+        guard let imageData = testImage?.pngData() else { return }
+        workoutModel.workoutImage = imageData
+    }
+    
+    //сохраняем модель в БД
+    private func saveModel() {
+        
+        //проверка на то, что в текстифлд написаны буквы или цифры( пробелы не считаются)
+        guard let text = nameTextField.text else { return }
+        let count = text.filter {$0.isNumber || $0.isLetter}.count
+        print(count)
+        
+        //если строка не пустая(количесвто символов не 0), то сохраняем в БД
+        if count != 0 && workoutModel.workoutSets != 0 && (workoutModel.workoutReps != 0 || workoutModel.workoutTimer != 0){
+            RealmManager.shared.saveWorkoutModel(model: workoutModel)
+            alertOK(title: "Sucsess", message: nil)
+            //после записи в БД сразу обновляем модель, иначе если нажать два раза подряд выпадет ошибка
+            workoutModel = WorkoutModel()
+            
+        } else {
+            alertOK(title: "Attensione", message: "Fill all parameters")
+            
+        }
     }
     
     
