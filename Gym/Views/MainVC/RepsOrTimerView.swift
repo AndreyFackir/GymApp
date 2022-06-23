@@ -28,7 +28,7 @@ class RepsOrTimerView: UIView {
         return label
     }()
     
-    private let valueOfSetsLabel:UILabel = {
+     let valueOfSetsLabel:UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "1"
@@ -37,7 +37,7 @@ class RepsOrTimerView: UIView {
         return label
     }()
     
-    private let setsSlider: UISlider = {
+     let setsSlider: UISlider = {
         let slider = UISlider()
         slider.translatesAutoresizingMaskIntoConstraints = false
         slider.minimumValue = 0
@@ -73,7 +73,7 @@ class RepsOrTimerView: UIView {
         return label
     }()
     
-    private let valueOfRepsLabel:UILabel = {
+     let valueOfRepsLabel:UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "1"
@@ -82,7 +82,7 @@ class RepsOrTimerView: UIView {
         return label
     }()
     
-    private let repsSlider: UISlider = {
+     let repsSlider: UISlider = {
         let slider = UISlider()
         slider.translatesAutoresizingMaskIntoConstraints = false
         slider.minimumValue = 0
@@ -111,7 +111,7 @@ class RepsOrTimerView: UIView {
         return label
     }()
     
-    private let valueOfTimerLabel:UILabel = {
+     let valueOfTimerLabel:UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "0 min"
@@ -120,7 +120,7 @@ class RepsOrTimerView: UIView {
         return label
     }()
     
-    private let timerSlider: UISlider = {
+     let timerSlider: UISlider = {
         let slider = UISlider()
         slider.translatesAutoresizingMaskIntoConstraints = false
         slider.minimumValue = 0

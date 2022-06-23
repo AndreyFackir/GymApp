@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 class NewWorkoutViewController: UIViewController {
     
@@ -90,6 +91,13 @@ class NewWorkoutViewController: UIViewController {
     private let dateAndRepeatView = DateAndRepeatView()
     private let repsOrTimerView = RepsOrTimerView()
     
+    private let localRealm = try! Realm()
+    
+    //создаем модель
+    private var workoutModel = WorkoutModel()
+    
+    private let testImage = UIImage(named: "Bell")
+    
     private let saveButton: UIButton = {
         let button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -122,6 +130,30 @@ class NewWorkoutViewController: UIViewController {
     @objc private func hideKeyboard(){
         view.endEditing(true)
     }
+    
+    
+    private func setModel() {
+        //1 - берем имя из текстфилда в БД
+        guard let nameWorkout = nameTextField.text else { return }
+        workoutModel.workoutName = nameWorkout
+        
+        //берем дату
+        workoutModel.workoutDate = dateAndRepeatView.datePicker.date
+        // берем день недели
+        let calendar = Calendar.current
+        let components = calendar.dateComponents([.weekday], from: dateAndRepeatView.datePicker.date)
+        guard let weekday = components.weekday else { return }
+        workoutModel.workoutNumberOfDay = weekday
+        
+            //берем положение свитча
+        workoutModel.workoutRepeats = dateAndRepeatView.switcherRepeat.isOn
+        
+        //берем сеты, репсы
+        workoutModel.workoutSets = Int(repsOrTimerView.setsSlider.value)
+        workoutModel.workoutReps = Int(repsOrTimerView.repsSlider.value)
+        workoutModel.workoutTimer = Int(repsOrTimerView.timerSlider.value)
+    }
+    
     
 //MARK: - SetupViews
     private func setupView() {
