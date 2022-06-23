@@ -77,6 +77,21 @@ class WorkoutTableViewCell: UITableViewCell {
         print("Start button is pressed")
     }
     
+    func cellConfigure(model: WorkoutModel) {
+        //заполняем ячейку
+        exersizeLabel.text = model.workoutName
+        let (min, sec) = { (sec:Int) -> (Int, Int) in
+            return (sec / 60, sec % 60)}(model.workoutTimer)
+        
+        repsCountLabel.text = (model.workoutTimer == 0 ? "Reps: \(model.workoutReps)" : "Timer: \(min) min \(sec) sec")
+        setsCountLabel.text = "Sets: \(model.workoutSets)"
+        
+        //получаем изображение
+        guard let imageData = model.workoutImage else { return }
+        guard let image = UIImage(data: imageData) else { return }
+        exersizeImage.image = image
+    }
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupViews()

@@ -69,7 +69,7 @@ class MainViewController: UIViewController {
         tableView.separatorStyle = .none
         //убираем индикатор прокрутки
         tableView.showsVerticalScrollIndicator = false
-        tableView.isHidden = true
+        tableView.isHidden = false
         return tableView
     }()
     
@@ -78,7 +78,7 @@ class MainViewController: UIViewController {
         image.image = UIImage(named: "Frame 1")
         image.contentMode = .scaleAspectFit
         image.translatesAutoresizingMaskIntoConstraints = false
-        //image.isHidden = false
+        image.isHidden = true
         return image
     }()
     
@@ -98,7 +98,7 @@ class MainViewController: UIViewController {
     private let localRealm = try! Realm()
     //создаем массив для хранения данных с типом РЕЗАЛТС и в скобках модель которую хотим получить
     //сюда будут записывать все данные
-    private var workoutArray: Results<WorkoutModel>! = nil
+    private var workoutArray: Results<WorkoutModel>! 
     
     //параметр ДЕЙТ нужен для подставления даты по нажатию на календарь
     private func getWorkouts(date: Date) {
@@ -127,6 +127,8 @@ class MainViewController: UIViewController {
         let compound = NSCompoundPredicate(type: .or, subpredicates: [predicateRepeat, predicateUnrepeat])
         
         workoutArray = localRealm.objects(WorkoutModel.self).filter(compound).sorted(byKeyPath: "workoutName")
+        
+        tableView.reloadData()
     }
     
     
@@ -233,11 +235,15 @@ extension MainViewController {
 //MARK: - UITableViewDataSource
 extension MainViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        workoutArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "idWorkoutTableViewCell", for: indexPath) as! WorkoutTableViewCell
+        
+        let model = workoutArray[indexPath.row] //по каждой яейке получаем запись из массива
+        
+        cell.cellConfigure(model: model)
         return cell
     }
 }
