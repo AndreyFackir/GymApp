@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		8115B0002866F58500768B61 /* StartWorkoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8115AFFF2866F58500768B61 /* StartWorkoutViewController.swift */; };
+		8115B0032866FCD000768B61 /* StartWorkoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8115B0022866FCD000768B61 /* StartWorkoutView.swift */; };
 		8126B214284922FC00687A39 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8126B213284922FC00687A39 /* AppDelegate.swift */; };
 		8126B216284922FC00687A39 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8126B215284922FC00687A39 /* SceneDelegate.swift */; };
 		8126B218284922FC00687A39 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8126B217284922FC00687A39 /* MainViewController.swift */; };
@@ -39,6 +40,7 @@
 
 /* Begin PBXFileReference section */
 		8115AFFF2866F58500768B61 /* StartWorkoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartWorkoutViewController.swift; sourceTree = "<group>"; };
+		8115B0022866FCD000768B61 /* StartWorkoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartWorkoutView.swift; sourceTree = "<group>"; };
 		8126B210284922FC00687A39 /* Gym.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Gym.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8126B213284922FC00687A39 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8126B215284922FC00687A39 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -81,6 +83,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8115B0012866FC7C00768B61 /* Alerts */ = {
+			isa = PBXGroup;
+			children = (
+				815AED0C2864E3FE0047E8A8 /* Alerts.swift */,
+			);
+			path = Alerts;
+			sourceTree = "<group>";
+		};
 		8126B207284922FC00687A39 = {
 			isa = PBXGroup;
 			children = (
@@ -143,8 +153,12 @@
 		8126B22A284CA75400687A39 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				8126B244284CFAB300687A39 /* WeatherView.swift */,
+				81E8E07328562D03005B4E87 /* DateAndRepeatView.swift */,
+				81E8E07D2857A0CA005B4E87 /* RepsOrTimerView.swift */,
+				8115B0022866FCD000768B61 /* StartWorkoutView.swift */,
 				8126B23E284CE20E00687A39 /* MainVC */,
-				815AED0C2864E3FE0047E8A8 /* Alerts.swift */,
+				8115B0012866FC7C00768B61 /* Alerts */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -194,9 +208,6 @@
 			isa = PBXGroup;
 			children = (
 				8126B243284CECD700687A39 /* Cells */,
-				8126B244284CFAB300687A39 /* WeatherView.swift */,
-				81E8E07328562D03005B4E87 /* DateAndRepeatView.swift */,
-				81E8E07D2857A0CA005B4E87 /* RepsOrTimerView.swift */,
 			);
 			path = MainVC;
 			sourceTree = "<group>";
@@ -317,6 +328,7 @@
 				8115B0002866F58500768B61 /* StartWorkoutViewController.swift in Sources */,
 				815C2D702860D3C500BDD273 /* StatisticViewController.swift in Sources */,
 				815AED0B2864DC9A0047E8A8 /* RealmManager.swift in Sources */,
+				8115B0032866FCD000768B61 /* StartWorkoutView.swift in Sources */,
 				8126B216284922FC00687A39 /* SceneDelegate.swift in Sources */,
 				815AED0D2864E3FE0047E8A8 /* Alerts.swift in Sources */,
 				815C2D6E2860D37300BDD273 /* ProfileViewController.swift in Sources */,
