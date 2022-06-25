@@ -20,13 +20,13 @@ class StartWorkoutView: UIView {
     }
     
     private let nameLabel: UILabel = {
-       let label = UILabel()
+        let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Name"
         label.textColor = .specialBlack
         label.font = .robotoMedium24()
         return label
-     }()
+    }()
     
     private let setsLabel:UILabel = {
         let label = UILabel()
@@ -37,7 +37,7 @@ class StartWorkoutView: UIView {
         return label
     }()
     
-     let valueOfSetsLabel:UILabel = {
+    let valueOfSetsLabel:UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "1/4"
@@ -64,7 +64,7 @@ class StartWorkoutView: UIView {
         return label
     }()
     
-     let valueOfRepssLabel:UILabel = {
+    let valueOfRepsLabel:UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "20"
@@ -74,6 +74,13 @@ class StartWorkoutView: UIView {
     }()
     
     private var repsStackView = UIStackView()
+    
+    private let repsUnderline: UIView = {
+        let line = UIView()
+        line.translatesAutoresizingMaskIntoConstraints = false
+        line.backgroundColor = .specialLine
+        return line
+    }()
 }
 
 //MARK: - SetupViews
@@ -86,8 +93,9 @@ extension StartWorkoutView {
         setStackView = UIStackView(arrangeSubviews: [setsLabel, valueOfSetsLabel], axis: .horizontal, spacing: 10)
         addSubview(setStackView)
         addSubview(setsUnderline)
-        repsStackView = UIStackView(arrangeSubviews: [repsLabel, valueOfRepssLabel], axis: .horizontal, spacing: 10)
+        repsStackView = UIStackView(arrangeSubviews: [repsLabel, valueOfRepsLabel], axis: .horizontal, spacing: 10)
         addSubview(repsStackView)
+        addSubview(repsUnderline)
     }
 }
 
@@ -107,16 +115,25 @@ extension StartWorkoutView {
         ])
         
         NSLayoutConstraint.activate([
-            setsUnderline.topAnchor.constraint(equalTo: setStackView.bottomAnchor, constant: 5),
+            setsUnderline.topAnchor.constraint(equalTo: setStackView.bottomAnchor, constant: 2),
             setsUnderline.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 15),
             setsUnderline.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -15),
             setsUnderline.heightAnchor.constraint(equalToConstant: 1)
         ])
         
         NSLayoutConstraint.activate([
-            repsStackView.topAnchor.constraint(equalTo: setsUnderline.bottomAnchor, constant: 10),
+            repsStackView.topAnchor.constraint(equalTo: setStackView.bottomAnchor, constant: 20),
             repsStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 15),
-            repsStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -15)
+            repsStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -15),
+            repsStackView.widthAnchor.constraint(equalToConstant: 200)
         ])
+        
+        NSLayoutConstraint.activate([
+            repsUnderline.topAnchor.constraint(equalTo: repsStackView.bottomAnchor, constant: 2),
+            repsUnderline.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 15),
+            repsUnderline.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -15),
+            repsUnderline.heightAnchor.constraint(equalToConstant: 1)
+        ])
+        
     }
 }
