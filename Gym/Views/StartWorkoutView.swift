@@ -48,6 +48,13 @@ class StartWorkoutView: UIView {
     
     private var setStackView = UIStackView()
     
+    private let setsUnderline: UIView = {
+        let line = UIView()
+        line.translatesAutoresizingMaskIntoConstraints = false
+        line.backgroundColor = .specialLine
+        return line
+    }()
+    
 }
 
 //MARK: - SetupViews
@@ -59,6 +66,7 @@ extension StartWorkoutView {
         addSubview(nameLabel)
         setStackView = UIStackView(arrangeSubviews: [setsLabel, valueOfSetsLabel], axis: .horizontal, spacing: 10)
         addSubview(setStackView)
+        addSubview(setsUnderline)
     }
 }
 
@@ -75,6 +83,13 @@ extension StartWorkoutView {
             setStackView.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 10),
             setStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 15),
             setStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -15)
+        ])
+        
+        NSLayoutConstraint.activate([
+            setsUnderline.topAnchor.constraint(equalTo: setStackView.bottomAnchor, constant: 5),
+            setsUnderline.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 15),
+            setsUnderline.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -15),
+            setsUnderline.heightAnchor.constraint(equalToConstant: 1)
         ])
     }
 }
