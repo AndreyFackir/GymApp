@@ -81,6 +81,20 @@ class StartWorkoutView: UIView {
         line.backgroundColor = .specialLine
         return line
     }()
+    
+    private let editingButton: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitle("Editing", for: .normal)
+        button.tintColor = .specilaLightBrown
+        button.titleLabel?.font = .robotoMedium14()
+        button.addTarget(self, action: #selector(editingButtonTapped), for: .touchUpInside)
+        return button
+    }()
+    
+    @objc private func editingButtonTapped () {
+        print("editingButtonTapped")
+    }
 }
 
 //MARK: - SetupViews
@@ -96,6 +110,7 @@ extension StartWorkoutView {
         repsStackView = UIStackView(arrangeSubviews: [repsLabel, valueOfRepsLabel], axis: .horizontal, spacing: 10)
         addSubview(repsStackView)
         addSubview(repsUnderline)
+        addSubview(editingButton)
     }
 }
 
@@ -133,6 +148,12 @@ extension StartWorkoutView {
             repsUnderline.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 15),
             repsUnderline.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -15),
             repsUnderline.heightAnchor.constraint(equalToConstant: 1)
+        ])
+        
+        NSLayoutConstraint.activate([
+            editingButton.topAnchor.constraint(equalTo: repsUnderline.bottomAnchor, constant: 10),
+            editingButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -15)
+         
         ])
         
     }
