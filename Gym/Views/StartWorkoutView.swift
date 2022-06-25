@@ -55,6 +55,25 @@ class StartWorkoutView: UIView {
         return line
     }()
     
+    private let repsLabel:UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "Reps"
+        label.textColor = .specialGray
+        label.font = .robotoMedium18()
+        return label
+    }()
+    
+     let valueOfRepssLabel:UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "20"
+        label.textColor = .specialGray
+        label.font = .robotoMedium18()
+        return label
+    }()
+    
+    private var repsStackView = UIStackView()
 }
 
 //MARK: - SetupViews
@@ -67,6 +86,8 @@ extension StartWorkoutView {
         setStackView = UIStackView(arrangeSubviews: [setsLabel, valueOfSetsLabel], axis: .horizontal, spacing: 10)
         addSubview(setStackView)
         addSubview(setsUnderline)
+        repsStackView = UIStackView(arrangeSubviews: [repsLabel, valueOfRepssLabel], axis: .horizontal, spacing: 10)
+        addSubview(repsStackView)
     }
 }
 
@@ -90,6 +111,12 @@ extension StartWorkoutView {
             setsUnderline.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 15),
             setsUnderline.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -15),
             setsUnderline.heightAnchor.constraint(equalToConstant: 1)
+        ])
+        
+        NSLayoutConstraint.activate([
+            repsStackView.topAnchor.constraint(equalTo: setsUnderline.bottomAnchor, constant: 10),
+            repsStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 15),
+            repsStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -15)
         ])
     }
 }
