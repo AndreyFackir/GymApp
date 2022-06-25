@@ -83,18 +83,46 @@ class StartWorkoutView: UIView {
     }()
     
     private let editingButton: UIButton = {
-        let button = UIButton()
+        
+        var configuration = UIButton.Configuration.plain()
+        configuration.image = UIImage(systemName: "pencil")
+        configuration.imagePlacement = .leading
+        configuration.imagePadding = 5
+        configuration.baseForegroundColor = .specilaLightBrown
+        configuration.contentInsets = .zero
+        
+        var text = AttributeContainer()
+        text.font = .robotoMedium14()
+        configuration.attributedTitle = AttributedString("Editing", attributes: text)
+        
+        let button = UIButton(configuration: configuration, primaryAction: UIAction() {_ in
+            print("editingButtonTapped")
+        })
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("Editing", for: .normal)
-        button.tintColor = .specilaLightBrown
-        button.titleLabel?.font = .robotoMedium14()
-        button.addTarget(self, action: #selector(editingButtonTapped), for: .touchUpInside)
         return button
     }()
     
-    @objc private func editingButtonTapped () {
-        print("editingButtonTapped")
-    }
+    
+    private let nextSetButton: UIButton = {
+        
+        var configuration  = UIButton.Configuration.filled()
+        configuration.baseForegroundColor = .specialBlack
+        configuration.baseBackgroundColor = .specialYellow
+        configuration.contentInsets = .zero
+        configuration.cornerStyle = .large
+    
+        var text = AttributeContainer()
+        text.font = .robotoMedium18()
+        configuration.attributedTitle = AttributedString("Next Set", attributes: text)
+        
+        let button = UIButton(configuration: configuration, primaryAction: UIAction() {_ in
+            print("nextSetButtonTapped")
+        })
+        
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+    
 }
 
 //MARK: - SetupViews
@@ -111,6 +139,7 @@ extension StartWorkoutView {
         addSubview(repsStackView)
         addSubview(repsUnderline)
         addSubview(editingButton)
+        addSubview(nextSetButton)
     }
 }
 
@@ -153,8 +182,13 @@ extension StartWorkoutView {
         NSLayoutConstraint.activate([
             editingButton.topAnchor.constraint(equalTo: repsUnderline.bottomAnchor, constant: 10),
             editingButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -15)
-         
         ])
         
-    }
+        NSLayoutConstraint.activate([
+            nextSetButton.topAnchor.constraint(equalTo: editingButton.bottomAnchor, constant: 20),
+            nextSetButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 15),
+            nextSetButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -15),
+            nextSetButton.heightAnchor.constraint(equalToConstant: 40)
+         ])
+     }
 }

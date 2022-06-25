@@ -75,6 +75,7 @@ class WorkoutTableViewCell: UITableViewCell {
     
     @objc private func startButtonPressed() {
         print("Start button is pressed")
+        
     }
     
     func cellConfigure(model: WorkoutModel) {

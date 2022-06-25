@@ -8,7 +8,7 @@
 import UIKit
 
 class StartWorkoutViewController: UIViewController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
@@ -17,13 +17,13 @@ class StartWorkoutViewController: UIViewController {
     }
     
     private let startWorkoutLabel: UILabel = {
-       let label = UILabel()
+        let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "START WORKOUT"
         label.textColor = .specialBlack
         label.font = .robotoMedium24()
         return label
-     }()
+    }()
     
     private let closeButton: UIButton = {
         let button =  UIButton()
@@ -43,10 +43,29 @@ class StartWorkoutViewController: UIViewController {
         image.image = UIImage(named: "sportsman")
         return image
     }()
-
+    
     private let detailsLabel = UILabel(text: "Details")
     
     private let startWorkoutView = StartWorkoutView()
+    
+    private let finishButton: UIButton = {
+        
+        var configuration = UIButton.Configuration.filled()
+        configuration.cornerStyle = .large
+        configuration.baseForegroundColor = .white
+        configuration.baseBackgroundColor = .specialDarkGreen
+        
+        var text = AttributeContainer()
+        text.font = .robotoMedium18()
+        configuration.attributedTitle = AttributedString("FINISH", attributes: text)
+        
+        let button = UIButton(configuration: configuration, primaryAction: UIAction(){_ in
+            print("finishbuttonTapped")
+        })
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+        
+    }()
     
 }
 
@@ -60,6 +79,7 @@ extension StartWorkoutViewController {
         view.addSubview(sportsmanImage)
         view.addSubview(detailsLabel)
         view.addSubview(startWorkoutView)
+        view.addSubview(finishButton)
     }
 }
 
@@ -72,7 +92,7 @@ extension StartWorkoutViewController {
         NSLayoutConstraint.activate([
             startWorkoutLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
             startWorkoutLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor)
-         ])
+        ])
         
         NSLayoutConstraint.activate([
             closeButton.centerYAnchor.constraint(equalTo: startWorkoutLabel.centerYAnchor, constant: 0),
@@ -84,19 +104,26 @@ extension StartWorkoutViewController {
         NSLayoutConstraint.activate([
             sportsmanImage.topAnchor.constraint(equalTo: startWorkoutLabel.bottomAnchor, constant: 20),
             sportsmanImage.centerXAnchor.constraint(equalTo: view.centerXAnchor)
-         ])
+        ])
         
         NSLayoutConstraint.activate([
             detailsLabel.topAnchor.constraint(equalTo: sportsmanImage.bottomAnchor, constant: 20),
             detailsLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 25)
-         ])
+        ])
         
         NSLayoutConstraint.activate([
             startWorkoutView.topAnchor.constraint(equalTo: detailsLabel.bottomAnchor, constant: 5),
             startWorkoutView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
             startWorkoutView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20),
-            startWorkoutView.heightAnchor.constraint(equalToConstant: 200)
-         ])
+            startWorkoutView.heightAnchor.constraint(equalToConstant: 225)
+        ])
+        
+        NSLayoutConstraint.activate([
+            finishButton.topAnchor.constraint(equalTo: startWorkoutView.bottomAnchor, constant: 40),
+            finishButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            finishButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            finishButton.heightAnchor.constraint(equalToConstant: 60)
+        ])
         
     }
 }
