@@ -46,6 +46,8 @@ class StartWorkoutViewController: UIViewController {
 
     private let detailsLabel = UILabel(text: "Details")
     
+    private let startWorkoutView = StartWorkoutView()
+    
 }
 
 
@@ -57,6 +59,7 @@ extension StartWorkoutViewController {
         view.addSubview(closeButton)
         view.addSubview(sportsmanImage)
         view.addSubview(detailsLabel)
+        view.addSubview(startWorkoutView)
     }
 }
 
@@ -85,8 +88,16 @@ extension StartWorkoutViewController {
         
         NSLayoutConstraint.activate([
             detailsLabel.topAnchor.constraint(equalTo: sportsmanImage.bottomAnchor, constant: 20),
-            detailsLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20)
+            detailsLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 25)
          ])
+        
+        NSLayoutConstraint.activate([
+            startWorkoutView.topAnchor.constraint(equalTo: detailsLabel.bottomAnchor, constant: 5),
+            startWorkoutView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
+            startWorkoutView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20),
+            startWorkoutView.heightAnchor.constraint(equalToConstant: 200)
+         ])
+        
     }
 }
 
