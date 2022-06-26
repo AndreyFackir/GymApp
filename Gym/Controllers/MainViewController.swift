@@ -25,7 +25,7 @@ class MainViewController: UIViewController {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "User NameUser "
-        label.font = .robotoMedium24()
+        label.font = .robotoMedium24
         label.textColor = .specialGray
         label.adjustsFontSizeToFitWidth = true // уменьшает шрифт в зависимотси от ширины лейбла
         label.minimumScaleFactor = 0.5 //на сколько может шрифт уменьшиться. Если 24, то будет 12 если не влезает в лейбл
@@ -38,7 +38,7 @@ class MainViewController: UIViewController {
         button.backgroundColor = .specialYellow
         button.layer.cornerRadius = 10
         button.setTitle("Add Workout", for: .normal)
-        button.titleLabel?.font = .robotoMedium12()
+        button.titleLabel?.font = .robotoMedium12
         button.setImage(UIImage(named: "addWorkout"), for: .normal)
         button.tintColor = .specialDarkGreen
         button.imageEdgeInsets = UIEdgeInsets(top: 0, left: 20, bottom: 15, right: 0)
@@ -53,7 +53,7 @@ class MainViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Workout Today"
         label.textColor = .specilaLightBrown
-        label.font = .robotoMedium14()
+        label.font = .robotoMedium14
         return label
     }()
     

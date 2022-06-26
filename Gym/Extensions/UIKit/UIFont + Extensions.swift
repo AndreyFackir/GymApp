@@ -9,38 +9,11 @@ import UIKit
 
 extension UIFont {
     
-    //добавление и изменение шрифтов
     
-    
-    //Medium
-    static func robotoMedium24() -> UIFont? {
-        return UIFont.init(name: "Roboto-Medium", size: 24)
-    }
-    
-    static func robotoMedium12() -> UIFont? {
-        return UIFont.init(name: "Roboto-Medium", size: 12)
-    }
-    
-    static func robotoMedium14() -> UIFont? {
-        return UIFont.init(name: "Roboto-Medium", size: 14)
-    }
-    
-    static func robotoMedium16() -> UIFont? {
-        return UIFont.init(name: "Roboto-Medium", size: 16)
-    }
-    
-    static func robotoMedium18() -> UIFont? {
-        return UIFont.init(name: "Roboto-Medium", size: 18)
-    }
-    
-    
-    //Bold
-    static func robotoBold16() -> UIFont? {
-        return UIFont.init(name: "Roboto-Bold", size: 18)
-    }
-    
-    static func robotoBold20() -> UIFont? {
-        return UIFont.init(name: "Roboto-Bold", size: 20)
-    }
-    
-}
+    static let robotoMedium24 = UIFont(name: "Roboto-Medium", size: 24)
+    static let robotoMedium12 = UIFont(name: "Roboto-Medium", size: 12)
+    static let robotoMedium14 = UIFont(name: "Roboto-Medium", size: 14)
+    static let robotoMedium18 = UIFont(name: "Roboto-Medium", size: 18)
+    static let robotoBold16 = UIFont(name: "Roboto-Bold", size: 18)
+    static let robotoBold20 = UIFont(name: "Roboto-Bold", size: 20)
+ }

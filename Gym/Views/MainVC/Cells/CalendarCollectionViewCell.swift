@@ -24,7 +24,7 @@ class CalendarCollectionViewCell: UICollectionViewCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "We"
-        label.font = .robotoBold16()
+        label.font = .robotoBold16
         label.textColor = .white
         label.textAlignment = .center
         return label
@@ -34,7 +34,7 @@ class CalendarCollectionViewCell: UICollectionViewCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "29"
-        label.font = .robotoBold20()
+        label.font = .robotoBold20
         label.textColor = .white
         label.textAlignment = .center
         return label

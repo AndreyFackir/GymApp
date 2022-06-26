@@ -58,7 +58,7 @@ class WorkoutTableViewCell: UITableViewCell {
     private let exersizeLabel: UILabel = {
         let label = UILabel()
         label.text = "Pull Ups"
-        label.font = .robotoBold20()
+        label.font = .robotoBold20
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -67,7 +67,7 @@ class WorkoutTableViewCell: UITableViewCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Reps: 20"
-        label.font = .robotoMedium14()
+        label.font = .robotoMedium14
         label.textColor = .specialGray
         return label
     }()
@@ -76,7 +76,7 @@ class WorkoutTableViewCell: UITableViewCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Sets: 2"
-        label.font = .robotoMedium14()
+        label.font = .robotoMedium14
         label.textColor = .specialGray
         return label
     }()
@@ -85,7 +85,7 @@ class WorkoutTableViewCell: UITableViewCell {
         let start = UIButton(type: .system)
         start.translatesAutoresizingMaskIntoConstraints = false
         //start.setTitle("START", for: .normal)
-        start.titleLabel?.font = .robotoBold16()
+        start.titleLabel?.font = .robotoBold16
         start.layer.cornerRadius = 10
        //start.backgroundColor = .specialYellow
        //start.tintColor = .specialDarkGreen

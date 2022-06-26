@@ -24,7 +24,7 @@ class RepsOrTimerView: UIView {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Sets"
         label.textColor = .specialGray
-        label.font = .robotoMedium18()
+        label.font = .robotoMedium18
         return label
     }()
     
@@ -33,7 +33,7 @@ class RepsOrTimerView: UIView {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "0"
         label.textColor = .specialGray
-        label.font = .robotoMedium18()
+        label.font = .robotoMedium18
         return label
     }()
     
@@ -58,7 +58,7 @@ class RepsOrTimerView: UIView {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Choose repeat or timer"
         label.textColor = .specilaLightBrown
-        label.font = .robotoMedium12()
+        label.font = .robotoMedium12
         return label
     }()
     
@@ -69,7 +69,7 @@ class RepsOrTimerView: UIView {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Reps"
         label.textColor = .specialGray
-        label.font = .robotoMedium18()
+        label.font = .robotoMedium18
         return label
     }()
     
@@ -78,7 +78,7 @@ class RepsOrTimerView: UIView {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "0"
         label.textColor = .specialGray
-        label.font = .robotoMedium18()
+        label.font = .robotoMedium18
         return label
     }()
     
@@ -107,7 +107,7 @@ class RepsOrTimerView: UIView {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Timer"
         label.textColor = .specialGray
-        label.font = .robotoMedium18()
+        label.font = .robotoMedium18
         return label
     }()
     
@@ -116,7 +116,7 @@ class RepsOrTimerView: UIView {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "0 min"
         label.textColor = .specialGray
-        label.font = .robotoMedium18()
+        label.font = .robotoMedium18
         return label
     }()
     

@@ -23,7 +23,7 @@ class NewWorkoutViewController: UIViewController {
         label.text =  "NEW WORKOUT"
         label.textColor = .specialBlack
         label.textAlignment = .center
-        label.font = .robotoBold20()
+        label.font = .robotoBold20
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -62,7 +62,7 @@ class NewWorkoutViewController: UIViewController {
         text.translatesAutoresizingMaskIntoConstraints = false
         text.backgroundColor = .specialBrown
         text.layer.cornerRadius = 10
-        text.font = .robotoBold20()
+        text.font = .robotoBold20
         text.textColor = .specialGray
         text.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 15, height: text.frame.height))
         text.leftViewMode = .always
@@ -75,7 +75,7 @@ class NewWorkoutViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Date and Repeat"
         label.textColor = .specilaLightBrown
-        label.font = .robotoMedium12()
+        label.font = .robotoMedium12
         return label
     }()
     
@@ -84,7 +84,7 @@ class NewWorkoutViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Reps or timer"
         label.textColor = .specilaLightBrown
-        label.font = .robotoMedium12()
+        label.font = .robotoMedium12
         return label
     }()
     
@@ -102,7 +102,7 @@ class NewWorkoutViewController: UIViewController {
         let button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("SAVE", for: .normal)
-        button.titleLabel?.font = .robotoMedium18()
+        button.titleLabel?.font = .robotoMedium18
         button.tintColor = .white
         button.addTarget(self, action: #selector(saveButtonPressed), for: .touchUpInside)
         button.backgroundColor = .speciakGreen

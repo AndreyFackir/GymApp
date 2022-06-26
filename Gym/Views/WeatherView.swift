@@ -25,7 +25,7 @@ class WeatherView: UIView {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Солнечно"
         label.textColor = .specialBlack
-        label.font = .robotoBold20()
+        label.font = .robotoBold20
         
         return label
     }()
@@ -36,7 +36,7 @@ class WeatherView: UIView {
         description.translatesAutoresizingMaskIntoConstraints = false
         description.textColor = .specilaLightBrown
         description.text = "Хорошая погодa, чтобы позаниматься на улице"
-        description.font = .robotoMedium12()
+        description.font = .robotoMedium12
         description.numberOfLines = 2
         description.adjustsFontSizeToFitWidth = true
         description.minimumScaleFactor = 0.5

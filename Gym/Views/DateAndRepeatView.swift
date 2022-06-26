@@ -24,7 +24,7 @@ class DateAndRepeatView: UIView {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Date"
         label.textColor = .specialGray
-        label.font = .robotoMedium18()
+        label.font = .robotoMedium18
         return label
     }()
     
@@ -41,7 +41,7 @@ class DateAndRepeatView: UIView {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Repeat every 7 days"
         label.textColor = .specialGray
-        label.font = .robotoMedium18()
+        label.font = .robotoMedium18
         return label
     }()
     

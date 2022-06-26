@@ -24,7 +24,7 @@ class StartWorkoutView: UIView {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Name"
         label.textColor = .specialBlack
-        label.font = .robotoMedium24()
+        label.font = .robotoMedium24
         return label
     }()
     
@@ -33,7 +33,7 @@ class StartWorkoutView: UIView {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Sets"
         label.textColor = .specialGray
-        label.font = .robotoMedium18()
+        label.font = .robotoMedium18
         return label
     }()
     
@@ -42,7 +42,7 @@ class StartWorkoutView: UIView {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "1/4"
         label.textColor = .specialGray
-        label.font = .robotoMedium18()
+        label.font = .robotoMedium18
         return label
     }()
     
@@ -60,7 +60,7 @@ class StartWorkoutView: UIView {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Reps"
         label.textColor = .specialGray
-        label.font = .robotoMedium18()
+        label.font = .robotoMedium18
         return label
     }()
     
@@ -69,7 +69,7 @@ class StartWorkoutView: UIView {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "20"
         label.textColor = .specialGray
-        label.font = .robotoMedium18()
+        label.font = .robotoMedium18
         return label
     }()
     
@@ -92,7 +92,7 @@ class StartWorkoutView: UIView {
         configuration.contentInsets = .zero
         
         var text = AttributeContainer()
-        text.font = .robotoMedium14()
+        text.font = .robotoMedium14
         configuration.attributedTitle = AttributedString("Editing", attributes: text)
         
         let button = UIButton(configuration: configuration, primaryAction: UIAction() {_ in
@@ -112,7 +112,7 @@ class StartWorkoutView: UIView {
         configuration.cornerStyle = .large
     
         var text = AttributeContainer()
-        text.font = .robotoMedium18()
+        text.font = .robotoMedium18
         configuration.attributedTitle = AttributedString("Next Set", attributes: text)
         
         let button = UIButton(configuration: configuration, primaryAction: UIAction() {_ in

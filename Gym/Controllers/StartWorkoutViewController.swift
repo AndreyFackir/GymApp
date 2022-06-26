@@ -17,7 +17,7 @@ class StartWorkoutViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "START WORKOUT"
         label.textColor = .specialBlack
-        label.font = .robotoMedium24()
+        label.font = .robotoMedium24
         return label
     }()
     
@@ -62,7 +62,7 @@ class StartWorkoutViewController: UIViewController {
         configuration.baseBackgroundColor = .specialDarkGreen
         
         var text = AttributeContainer()
-        text.font = .robotoMedium18()
+        text.font = .robotoMedium18
         configuration.attributedTitle = AttributedString("FINISH", attributes: text)
         
         let button = UIButton(configuration: configuration, primaryAction: UIAction() {_ in
