@@ -21,8 +21,7 @@ class MainViewController: UIViewController {
         return imageView
     }()
     
-    
-    private let userNameLabel: UILabel = {
+     private let userNameLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "User NameUser "
@@ -88,7 +87,7 @@ class MainViewController: UIViewController {
         let newWorkoutViewController = NewWorkoutViewController()
         newWorkoutViewController.modalPresentationStyle = .fullScreen
         present(newWorkoutViewController, animated: true, completion: nil)
-        print(workoutModel)
+       
     }
     
     private let calendarView = CalendarView()
@@ -166,12 +165,9 @@ class MainViewController: UIViewController {
         //не забыть зарегистрировать ячейку!!!!
         tableView.register(WorkoutTableViewCell.self, forCellReuseIdentifier: idWorkoutTableViewCell)
         getWorkouts(date: Date()) //cегодншная дата
-        
-        
+          
     }
-    
-   
-    
+      
 }
 
 //MARK: - StartWorkoutProtocol

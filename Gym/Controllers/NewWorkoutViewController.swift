@@ -175,7 +175,7 @@ class NewWorkoutViewController: UIViewController {
             RealmManager.shared.saveWorkoutModel(model: workoutModel)
            
             //после записи в БД сразу обновляем модель, иначе если нажать два раза подряд выпадет ошибка
-           workoutModel = WorkoutModel()
+            workoutModel = WorkoutModel()
             alertOK(title: "Sucsess", message: nil)
             //обнуляем все лейблы
             refreshWorkoutObject()
@@ -184,6 +184,7 @@ class NewWorkoutViewController: UIViewController {
             alertOK(title: "Attensione", message: "Fill all parameters")
             
         }
+        
     }
     
     

@@ -19,7 +19,7 @@ class StartWorkoutView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private let nameLabel: UILabel = {
+     let nameLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Name"

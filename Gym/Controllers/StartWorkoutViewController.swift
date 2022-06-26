@@ -6,10 +6,11 @@
 //
 
 import UIKit
+import SwiftUI
 
 class StartWorkoutViewController: UIViewController {
     
-   
+    
     
     private let startWorkoutLabel: UILabel = {
         let label = UILabel()
@@ -49,10 +50,11 @@ class StartWorkoutViewController: UIViewController {
         super.viewDidLoad()
         setupViews()
         setConstraints()
-        
+        setWorkoutParameters()
+        print(workoutModel)
     }
     
-    private let finishButton: UIButton = {
+    private lazy var finishButton: UIButton = {
         
         var configuration = UIButton.Configuration.filled()
         configuration.cornerStyle = .large
@@ -63,17 +65,22 @@ class StartWorkoutViewController: UIViewController {
         text.font = .robotoMedium18()
         configuration.attributedTitle = AttributedString("FINISH", attributes: text)
         
-        let button = UIButton(configuration: configuration, primaryAction: UIAction(){ _ in
-            print("finishbuttonTapped")
+        let button = UIButton(configuration: configuration, primaryAction: UIAction() {_ in
+            print("FAF")
+            self.dismiss(animated: true)
             
         })
-        
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
-        
-    }()
+      }()
+     
+    private var numberOfSet = 0
     
-    
+    private func setWorkoutParameters() {
+        startWorkoutView.nameLabel.text = workoutModel.workoutName
+        startWorkoutView.valueOfSetsLabel.text = "\(numberOfSet)/\(workoutModel.workoutSets)"
+        startWorkoutView.valueOfRepsLabel.text = "\(workoutModel.workoutReps)"
+    }
     
 }
 

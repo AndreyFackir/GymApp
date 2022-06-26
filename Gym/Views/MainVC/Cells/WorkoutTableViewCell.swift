@@ -103,6 +103,8 @@ class WorkoutTableViewCell: UITableViewCell {
     }
     
     func cellConfigure(model: WorkoutModel) {
+        
+        workoutModel = model
         //заполняем ячейку
         exersizeLabel.text = model.workoutName
         
@@ -134,12 +136,7 @@ class WorkoutTableViewCell: UITableViewCell {
     
    
     var labelStackView = UIStackView()
-    
-    
-   
-    
-    
-    
+      
 }
 
 //MARK: - Setup Views
