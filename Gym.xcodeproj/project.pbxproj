@@ -110,6 +110,7 @@
 		8126B212284922FC00687A39 /* Gym */ = {
 			isa = PBXGroup;
 			children = (
+				815AED092864DC7D0047E8A8 /* Services */,
 				8126B228284CA73C00687A39 /* Models */,
 				8126B22A284CA75400687A39 /* Views */,
 				8126B229284CA74500687A39 /* Controllers */,
@@ -190,7 +191,6 @@
 				8126B21C284922FE00687A39 /* Assets.xcassets */,
 				8126B21E284922FE00687A39 /* LaunchScreen.storyboard */,
 				8126B221284922FE00687A39 /* Info.plist */,
-				815AED092864DC7D0047E8A8 /* Services */,
 			);
 			path = Resources;
 			sourceTree = "<group>";

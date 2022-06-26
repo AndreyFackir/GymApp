@@ -7,7 +7,28 @@
 
 import UIKit
 
+//для работы кнопки старт из ячейки создаем протокол
+protocol StartWorkoutProtocol: AnyObject {
+    func startButtonTapped(model: WorkoutModel)
+}
+
 class WorkoutTableViewCell: UITableViewCell {
+    
+    var workoutModel = WorkoutModel()
+    
+    //создаем переменную черз которую будем работать с протоколом, weak - чтобы не было утечки памяти
+    weak var cellStartWorkoutDelegate: StartWorkoutProtocol?
+    
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        setupViews()
+        setConstraints()
+        
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     private let backgroundCell: UIView = {
         let view = UIView()
@@ -76,6 +97,9 @@ class WorkoutTableViewCell: UITableViewCell {
     @objc private func startButtonPressed() {
         print("Start button is pressed")
         
+        //будем обращаться к методу протокола когда нажимаем на кнопку Старт, поэтому указываем
+        cellStartWorkoutDelegate?.startButtonTapped(model: workoutModel)
+        
     }
     
     func cellConfigure(model: WorkoutModel) {
@@ -93,19 +117,20 @@ class WorkoutTableViewCell: UITableViewCell {
         exersizeImage.image = image
     }
     
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
-        setupViews()
-        setConstraints()
-       
-    }
     
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
+   
     var labelStackView = UIStackView()
     
+    
+   
+    
+    
+    
+}
+
+//MARK: - Setup Views
+
+extension WorkoutTableViewCell{
     private func setupViews() {
         //прозрачный фон ячейки
         backgroundColor = .clear
@@ -120,10 +145,14 @@ class WorkoutTableViewCell: UITableViewCell {
         contentView.addSubview(startButton)
         labelStackView = UIStackView(arrangeSubviews: [repsCountLabel, setsCountLabel], axis: .horizontal, spacing: 10)
         addSubview(labelStackView)
-       
+        
         
     }
-    
+}
+
+//MARK: - Set Constraints
+
+extension WorkoutTableViewCell {
     private func setConstraints() {
         
         NSLayoutConstraint.activate([
@@ -166,5 +195,4 @@ class WorkoutTableViewCell: UITableViewCell {
             startButton.bottomAnchor.constraint(equalTo: backgroundCell.bottomAnchor, constant: -10)
         ])
     }
-    
 }

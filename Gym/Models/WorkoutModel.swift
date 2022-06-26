@@ -18,4 +18,5 @@ class WorkoutModel: Object {
     @Persisted var workoutReps: Int = 0
     @Persisted var workoutTimer: Int = 0
     @Persisted var workoutImage: Data? //здесь будем хранить изображение
+    @Persisted var status = false //чтобы понимать закночилось упражнение или нет
 }

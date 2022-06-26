@@ -9,11 +9,13 @@ import UIKit
 
 class StartWorkoutViewController: UIViewController {
     
+    var workoutModel = WorkoutModel()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
         setConstraints()
-        
+        print(workoutModel)
     }
     
     private let startWorkoutLabel: UILabel = {
@@ -48,6 +50,8 @@ class StartWorkoutViewController: UIViewController {
     
     private let startWorkoutView = StartWorkoutView()
     
+    
+    
     private let finishButton: UIButton = {
         
         var configuration = UIButton.Configuration.filled()
@@ -59,13 +63,17 @@ class StartWorkoutViewController: UIViewController {
         text.font = .robotoMedium18()
         configuration.attributedTitle = AttributedString("FINISH", attributes: text)
         
-        let button = UIButton(configuration: configuration, primaryAction: UIAction(){_ in
+        let button = UIButton(configuration: configuration, primaryAction: UIAction(){ _ in
             print("finishbuttonTapped")
+            
         })
+        
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
         
     }()
+    
+    
     
 }
 

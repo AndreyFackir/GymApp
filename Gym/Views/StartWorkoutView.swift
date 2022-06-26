@@ -136,6 +136,7 @@ extension StartWorkoutView {
         addSubview(setStackView)
         addSubview(setsUnderline)
         repsStackView = UIStackView(arrangeSubviews: [repsLabel, valueOfRepsLabel], axis: .horizontal, spacing: 10)
+        repsStackView.distribution = .equalSpacing
         addSubview(repsStackView)
         addSubview(repsUnderline)
         addSubview(editingButton)
@@ -168,8 +169,7 @@ extension StartWorkoutView {
         NSLayoutConstraint.activate([
             repsStackView.topAnchor.constraint(equalTo: setStackView.bottomAnchor, constant: 20),
             repsStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 15),
-            repsStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -15),
-            repsStackView.widthAnchor.constraint(equalToConstant: 200)
+            repsStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -15)
         ])
         
         NSLayoutConstraint.activate([

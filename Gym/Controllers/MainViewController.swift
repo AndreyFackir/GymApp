@@ -10,7 +10,7 @@ import RealmSwift
 
 class MainViewController: UIViewController {
     
-    
+   
     //1 - создали элемент
     private let userPhotoImageView: UIImageView = {
         let imageView = UIImageView()
@@ -58,6 +58,7 @@ class MainViewController: UIViewController {
         return label
     }()
     
+    
     //1 - create tableView
     private let tableView: UITableView = {
         let tableView = UITableView()
@@ -85,7 +86,7 @@ class MainViewController: UIViewController {
     
     @objc private func addWorkoutButtonTapped() {
         let newWorkoutViewController = NewWorkoutViewController()
-        //newWorkoutViewController.modalPresentationStyle = .fullScreen
+        newWorkoutViewController.modalPresentationStyle = .fullScreen
         present(newWorkoutViewController, animated: true, completion: nil)
     }
     
@@ -93,24 +94,33 @@ class MainViewController: UIViewController {
     private let weatherView = WeatherView()
     private let idWorkoutTableViewCell = "idWorkoutTableViewCell"
     
+    var workoutModel = WorkoutModel()
     
     //создаем объект реалма
     private let localRealm = try! Realm()
     //создаем массив для хранения данных с типом РЕЗАЛТС и в скобках модель которую хотим получить
     //сюда будут записывать все данные
-    private var workoutArray: Results<WorkoutModel>! 
+    private var workoutArray: Results<WorkoutModel>! = nil
     
     //параметр ДЕЙТ нужен для подставления даты по нажатию на календарь
     private func getWorkouts(date: Date) {
         
         let calendar = Calendar.current //cоздаем календарь и выбираем наш календарь в заависимотси от нахождения устройства
         
-        let components = calendar.dateComponents([.weekday], from: date) //массив викдей - номер дня, берем из дейт( входной параметр)
+        let formatter = DateFormatter()
+        
+        let components = calendar.dateComponents([.weekday, .day, .month, .year], from: date) //массив викдей - номер дня, берем из дейт( входной параметр)
         
         guard let weekday = components.weekday else { return }
+        guard let day = components.day else { return }
+        guard let month = components.month else { return }
+        guard let year = components.year else { return }
         print(weekday) //день недели
         
-        let dateStart = date //сегоднящний день
+        formatter.timeZone = TimeZone(abbreviation: "UTC")
+        formatter.dateFormat = "yyyy/MM/dd HH:mm"
+        
+        guard let dateStart = formatter.date(from: "\(year)/\(month)/\(day) 00:00") else { return } //сегоднящний день
         
         let dateEnd: Date = {
             let components = DateComponents(day: 1, second: -1) //мы хотим взять день и сделать минус 1 сек, даные будут получены до 23:59:59
@@ -126,7 +136,7 @@ class MainViewController: UIViewController {
         //создадим компаунд - исползуем оба предиката
         let compound = NSCompoundPredicate(type: .or, subpredicates: [predicateRepeat, predicateUnrepeat])
         
-        workoutArray = localRealm.objects(WorkoutModel.self).filter(compound).sorted(byKeyPath: "workoutName")
+        workoutArray = localRealm.objects(WorkoutModel.self).filter(compound).sorted(byKeyPath: "workoutName").sorted(byKeyPath: "workoutName")
         
         tableView.reloadData()
     }
@@ -138,14 +148,14 @@ class MainViewController: UIViewController {
         userPhotoImageView.layer.cornerRadius = userPhotoImageView.frame.width / 2 // делаем круг
     }
     
-    
     //для того, чтобы после сохранения в БД наша таблица обновлялась
-    override func viewWillAppear(_ animated: Bool) {
+    override func viewWillAppear (_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+
         tableView.reloadData()
     }
     
+   
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -155,8 +165,47 @@ class MainViewController: UIViewController {
         //не забыть зарегистрировать ячейку!!!!
         tableView.register(WorkoutTableViewCell.self, forCellReuseIdentifier: idWorkoutTableViewCell)
         getWorkouts(date: Date()) //cегодншная дата
+        
+        
     }
     
+   
+    
+}
+
+//MARK: - StartWorkoutProtocol
+
+extension MainViewController: StartWorkoutProtocol {
+    
+    func startButtonTapped(model: WorkoutModel) {
+        
+        //так как у нас два варианты( либо reps либо timer, то зададим условия)
+        if model.workoutTimer == 0 {
+            let startVC = StartWorkoutViewController()
+            startVC.modalPresentationStyle = .fullScreen
+            startVC.workoutModel = model
+            present(startVC, animated: true, completion: nil)
+        } else {
+            print("timer")
+        }
+        print("tap")
+        
+    }
+}
+
+//MARK: - Set Delegates
+
+extension MainViewController {
+    private func setDelegates() {
+        tableView.dataSource = self
+        tableView.delegate  = self
+        
+    }
+}
+
+//MARK: - Setup Views
+
+extension MainViewController {
     private func setupViews() {
         view.backgroundColor = .specialbackground
         view.addSubview(noWorkoutImage)
@@ -170,13 +219,7 @@ class MainViewController: UIViewController {
         view.addSubview(tableView)
         
     }
-    
-    private func setDelegates() {
-        tableView.dataSource = self
-        tableView.delegate  = self
-    }
 }
-
 
 
 //MARK: - UITableViewDataSource
@@ -191,6 +234,10 @@ extension MainViewController: UITableViewDataSource {
         let model = workoutArray[indexPath.row] //по каждой яейке получаем запись из массива
         
         cell.cellConfigure(model: model)
+         
+        //после того как прописаи протокол, назначаем делегата...так как у нас ячейка, то назначаем ячейку
+        cell.cellStartWorkoutDelegate = self
+        
         return cell
     }
 }
@@ -264,8 +311,5 @@ extension MainViewController {
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0)
         ])
-        
-        
-        
-    }
+     }
 }

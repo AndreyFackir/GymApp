@@ -114,6 +114,7 @@ class NewWorkoutViewController: UIViewController {
         print("saveButtonPressed")
         setModel()
         saveModel()
+        print(workoutModel)
        
         
     }
@@ -171,10 +172,10 @@ class NewWorkoutViewController: UIViewController {
         //если строка не пустая(количесвто символов не 0), то сохраняем в БД
         if count != 0 && workoutModel.workoutSets != 0 && (workoutModel.workoutReps != 0 || workoutModel.workoutTimer != 0){
             RealmManager.shared.saveWorkoutModel(model: workoutModel)
-            alertOK(title: "Sucsess", message: nil)
+           
             //после записи в БД сразу обновляем модель, иначе если нажать два раза подряд выпадет ошибка
             workoutModel = WorkoutModel()
-            
+            alertOK(title: "Sucsess", message: nil)
             //обнуляем все лейблы
             refreshWorkoutObject()
             
