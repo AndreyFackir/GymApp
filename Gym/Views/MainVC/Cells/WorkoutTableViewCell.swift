@@ -84,11 +84,11 @@ class WorkoutTableViewCell: UITableViewCell {
     private let startButton:UIButton = {
         let start = UIButton(type: .system)
         start.translatesAutoresizingMaskIntoConstraints = false
-        start.setTitle("START", for: .normal)
+        //start.setTitle("START", for: .normal)
         start.titleLabel?.font = .robotoBold16()
         start.layer.cornerRadius = 10
-        start.backgroundColor = .specialYellow
-        start.tintColor = .specialDarkGreen
+       //start.backgroundColor = .specialYellow
+       //start.tintColor = .specialDarkGreen
         start.addShadowOnView()
         start.addTarget(self, action: #selector(startButtonPressed), for: .touchUpInside)
         return start
@@ -99,12 +99,13 @@ class WorkoutTableViewCell: UITableViewCell {
         
         //будем обращаться к методу протокола когда нажимаем на кнопку Старт, поэтому указываем
         cellStartWorkoutDelegate?.startButtonTapped(model: workoutModel)
-        
+        print(workoutModel)
     }
     
     func cellConfigure(model: WorkoutModel) {
         //заполняем ячейку
         exersizeLabel.text = model.workoutName
+        
         let (min, sec) = { (sec:Int) -> (Int, Int) in
             return (sec / 60, sec % 60)}(model.workoutTimer)
         
@@ -115,6 +116,19 @@ class WorkoutTableViewCell: UITableViewCell {
         guard let imageData = model.workoutImage else { return }
         guard let image = UIImage(data: imageData) else { return }
         exersizeImage.image = image
+        
+        //конфиг в зависимости от стаутса( выполненно или нет)
+        if model.status {
+            startButton.setTitle("Complete", for: .normal)
+            startButton.tintColor = .white
+            startButton.backgroundColor = .speciakGreen
+            startButton.isEnabled = false
+        } else {
+            startButton.setTitle("Start", for: .normal)
+            startButton.tintColor = .specialDarkGreen
+            startButton.backgroundColor = .specialYellow
+            startButton.isEnabled = true
+        }
     }
     
     

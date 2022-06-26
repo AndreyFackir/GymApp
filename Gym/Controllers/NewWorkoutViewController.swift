@@ -94,7 +94,7 @@ class NewWorkoutViewController: UIViewController {
     private let localRealm = try! Realm()
     
     //создаем модель
-    private var workoutModel = WorkoutModel()
+    var workoutModel = WorkoutModel()
     
     private let testImage = UIImage(named: "Bell")
     
@@ -112,11 +112,11 @@ class NewWorkoutViewController: UIViewController {
     
     @objc func saveButtonPressed() {
         print("saveButtonPressed")
+        print(workoutModel)
         setModel()
+        print(workoutModel)
         saveModel()
         print(workoutModel)
-       
-        
     }
     
     private func setDelegates() {
@@ -163,18 +163,19 @@ class NewWorkoutViewController: UIViewController {
     
     //сохраняем модель в БД
     private func saveModel() {
-        
+       
         //проверка на то, что в текстифлд написаны буквы или цифры( пробелы не считаются)
         guard let text = nameTextField.text else { return }
-        let count = text.filter {$0.isNumber || $0.isLetter}.count
+        let count = text.filter { $0.isNumber || $0.isLetter }.count
         print(count)
         
         //если строка не пустая(количесвто символов не 0), то сохраняем в БД
         if count != 0 && workoutModel.workoutSets != 0 && (workoutModel.workoutReps != 0 || workoutModel.workoutTimer != 0){
+            
             RealmManager.shared.saveWorkoutModel(model: workoutModel)
            
             //после записи в БД сразу обновляем модель, иначе если нажать два раза подряд выпадет ошибка
-            workoutModel = WorkoutModel()
+           workoutModel = WorkoutModel()
             alertOK(title: "Sucsess", message: nil)
             //обнуляем все лейблы
             refreshWorkoutObject()
@@ -192,7 +193,11 @@ class NewWorkoutViewController: UIViewController {
         nameTextField.text = ""
         dateAndRepeatView.switcherRepeat.isOn = true
         repsOrTimerView.valueOfSetsLabel.text = "0"
+        repsOrTimerView.setsSlider.value = 0
         repsOrTimerView.valueOfRepsLabel.text = "0"
+        repsOrTimerView.repsSlider.value = 0
+        repsOrTimerView.timerSlider.value = 0
+        repsOrTimerView.valueOfTimerLabel.text = "0 min"
     }
     
     

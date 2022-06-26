@@ -9,14 +9,7 @@ import UIKit
 
 class StartWorkoutViewController: UIViewController {
     
-    var workoutModel = WorkoutModel()
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        setupViews()
-        setConstraints()
-        print(workoutModel)
-    }
+   
     
     private let startWorkoutLabel: UILabel = {
         let label = UILabel()
@@ -50,7 +43,14 @@ class StartWorkoutViewController: UIViewController {
     
     private let startWorkoutView = StartWorkoutView()
     
+    var workoutModel = WorkoutModel()
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setupViews()
+        setConstraints()
+        
+    }
     
     private let finishButton: UIButton = {
         

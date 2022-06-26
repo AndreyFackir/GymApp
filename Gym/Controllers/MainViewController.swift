@@ -88,6 +88,7 @@ class MainViewController: UIViewController {
         let newWorkoutViewController = NewWorkoutViewController()
         newWorkoutViewController.modalPresentationStyle = .fullScreen
         present(newWorkoutViewController, animated: true, completion: nil)
+        print(workoutModel)
     }
     
     private let calendarView = CalendarView()
@@ -100,7 +101,7 @@ class MainViewController: UIViewController {
     private let localRealm = try! Realm()
     //создаем массив для хранения данных с типом РЕЗАЛТС и в скобках модель которую хотим получить
     //сюда будут записывать все данные
-    private var workoutArray: Results<WorkoutModel>! = nil
+    private var workoutArray: Results<WorkoutModel>! 
     
     //параметр ДЕЙТ нужен для подставления даты по нажатию на календарь
     private func getWorkouts(date: Date) {
@@ -131,12 +132,12 @@ class MainViewController: UIViewController {
         //cоздаем предикаты - условия, по которым получают данные( по дате и по дню недели в данном случае)
         //если наш день недели равен викдей и свитч репитов = тру
         let predicateRepeat = NSPredicate(format: "workoutNumberOfDay = \(weekday) AND workoutRepeats = true")
-        let predicateUnrepeat = NSPredicate(format: " workoutRepeats = false AND workoutDate BETWEEN %@", [dateStart, dateEnd]) //если вораутДата МЕЖДУ датой начал и датой конца
+        let predicateUnrepeat = NSPredicate(format: "workoutRepeats = false AND workoutDate BETWEEN %@", [dateStart, dateEnd]) //если ворkаутДата МЕЖДУ датой начал и датой конца
         
         //создадим компаунд - исползуем оба предиката
         let compound = NSCompoundPredicate(type: .or, subpredicates: [predicateRepeat, predicateUnrepeat])
         
-        workoutArray = localRealm.objects(WorkoutModel.self).filter(compound).sorted(byKeyPath: "workoutName").sorted(byKeyPath: "workoutName")
+        workoutArray = localRealm.objects(WorkoutModel.self).filter(compound).sorted(byKeyPath: "workoutName")
         
         tableView.reloadData()
     }

@@ -73,13 +73,13 @@ class CalendarView: UIView {
         for i in -6...0 {
             let date = calendar.date(byAdding: .weekday, value: i, to: today)
             guard let date = date else { return weekArray }
-            print(date)
+    
             let components = calendar.dateComponents([.day], from: date)
-            print(components)
+   
             weekArray[1].append(String(components.day ?? 0))
             let weekDay = dateFormatter.string(from: date)
             weekArray[0].append(String(weekDay))
-            print(weekArray)
+ 
 
         }
         
