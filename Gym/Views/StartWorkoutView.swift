@@ -7,7 +7,13 @@
 
 import UIKit
 
+protocol NextSetProtocol: AnyObject {
+    func nextSetTapped()
+}
+
 class StartWorkoutView: UIView {
+    
+    weak var cellNextSetDelegate: NextSetProtocol?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -82,7 +88,7 @@ class StartWorkoutView: UIView {
         return line
     }()
     
-    private let editingButton: UIButton = {
+    private lazy var editingButton: UIButton = {
         
         var configuration = UIButton.Configuration.plain()
         configuration.image = UIImage(systemName: "pencil")
@@ -97,6 +103,7 @@ class StartWorkoutView: UIView {
         
         let button = UIButton(configuration: configuration, primaryAction: UIAction() {_ in
             print("editingButtonTapped")
+            self.cellNextSetDelegate?.nextSetTapped()
         })
         button.translatesAutoresizingMaskIntoConstraints = false
         return button

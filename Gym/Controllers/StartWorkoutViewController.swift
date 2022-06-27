@@ -46,12 +46,17 @@ class StartWorkoutViewController: UIViewController {
     
     var workoutModel = WorkoutModel()
     
+    private func setDelegates() {
+        startWorkoutView.cellNextSetDelegate = self
+    }
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
         setConstraints()
         setWorkoutParameters()
-       
+       setDelegates()
     }
     
     private lazy var finishButton: UIButton = {
@@ -83,6 +88,15 @@ class StartWorkoutViewController: UIViewController {
     }
     
 }
+
+extension StartWorkoutViewController: NextSetProtocol {
+    func nextSetTapped() {
+        print("nextSetTapped")
+    }
+    
+    
+}
+    
 
 
 //MARK: - Setup Views
