@@ -34,6 +34,7 @@
 		81666F1228622FE300746946 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 81666F1128622FE300746946 /* RealmSwift */; };
 		81666F142862315500746946 /* WorkoutModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81666F132862315500746946 /* WorkoutModel.swift */; };
 		816D6561286A1BFA00B36637 /* OkCancelAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816D6560286A1BFA00B36637 /* OkCancelAlert.swift */; };
+		816D6563286A3DCC00B36637 /* TimerWorkoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816D6562286A3DCC00B36637 /* TimerWorkoutViewController.swift */; };
 		81E8E0722855EFB4005B4E87 /* NewWorkoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E8E0712855EFB4005B4E87 /* NewWorkoutViewController.swift */; };
 		81E8E07428562D03005B4E87 /* DateAndRepeatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E8E07328562D03005B4E87 /* DateAndRepeatView.swift */; };
 		81E8E07E2857A0CA005B4E87 /* RepsOrTimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E8E07D2857A0CA005B4E87 /* RepsOrTimerView.swift */; };
@@ -67,6 +68,7 @@
 		815C2D712860D82F00BDD273 /* UILabel + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel + Extension.swift"; sourceTree = "<group>"; };
 		81666F132862315500746946 /* WorkoutModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutModel.swift; sourceTree = "<group>"; };
 		816D6560286A1BFA00B36637 /* OkCancelAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OkCancelAlert.swift; sourceTree = "<group>"; };
+		816D6562286A3DCC00B36637 /* TimerWorkoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerWorkoutViewController.swift; sourceTree = "<group>"; };
 		81E8E0712855EFB4005B4E87 /* NewWorkoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewWorkoutViewController.swift; sourceTree = "<group>"; };
 		81E8E07328562D03005B4E87 /* DateAndRepeatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateAndRepeatView.swift; sourceTree = "<group>"; };
 		81E8E07D2857A0CA005B4E87 /* RepsOrTimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepsOrTimerView.swift; sourceTree = "<group>"; };
@@ -150,6 +152,7 @@
 				815C2D6B2860D1EE00BDD273 /* MainTabBarController.swift */,
 				815C2D6D2860D37300BDD273 /* ProfileViewController.swift */,
 				815C2D6F2860D3C500BDD273 /* StatisticViewController.swift */,
+				816D6562286A3DCC00B36637 /* TimerWorkoutViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -313,6 +316,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8126B22F284CA84D00687A39 /* UIFont + Extensions.swift in Sources */,
+				816D6563286A3DCC00B36637 /* TimerWorkoutViewController.swift in Sources */,
 				8126B233284CACA300687A39 /* UIview + Exxtensions.swift in Sources */,
 				815C2D6C2860D1EE00BDD273 /* MainTabBarController.swift in Sources */,
 				8126B240284CE22D00687A39 /* CalendarView.swift in Sources */,
