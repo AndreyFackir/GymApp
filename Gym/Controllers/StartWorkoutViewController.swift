@@ -73,7 +73,18 @@ class StartWorkoutViewController: UIViewController {
         
         let button = UIButton(configuration: configuration, primaryAction: UIAction() {_ in
             print("FAF")
-            self.dismiss(animated: true)
+            
+            //если количество сетов равно искомому количеству
+            if self.numberOfSet == self.workoutModel.workoutSets {
+                //закрываем экран
+                self.dismiss(animated: true, completion: nil)
+                //меняем статус модели на законченное упражнение
+                RealmManager.shared.updateWorkoutModel(model: self.workoutModel, bool: true)
+            } else {
+                self.alertOkCancel(title: "Warning", message: "The exercise havent done yet") {
+                    self.dismiss(animated: true)
+                }
+            }
             
         })
         button.translatesAutoresizingMaskIntoConstraints = false

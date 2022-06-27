@@ -7,7 +7,14 @@
 
 import UIKit
 
+
+//чтобы по нужным датам обновлялся тейблвью и показывал тренировки на конкретную дату создаем протокол
+protocol SelectCollectionViewItemProtocol: AnyObject {
+    func selectIem(date: Date)
+}
 class CalendarView: UIView {
+    
+    weak var cellCollectionViewDelegate: SelectCollectionViewItemProtocol?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -41,6 +48,7 @@ class CalendarView: UIView {
     
     //2 - создаем айди ячейки
     private let idCalendarCell = "idCalendarCell"
+    
     
    
     
@@ -113,6 +121,7 @@ extension CalendarView: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "idCalendarCell", for: indexPath) as! CalendarCollectionViewCell
+        
         cell.cellConfigure(weekArray: weekArray(), indexPath: indexPath)
         
         if indexPath.item == 6 {
@@ -132,6 +141,27 @@ extension CalendarView: UICollectionViewDataSource {
 extension CalendarView: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print("collection View tapped")
+        
+        
+        // по нажатию на ячейку будет выбрана дата и обновиться тейблвью на эту дату
+        let calendar = Calendar.current
+        let formatter = DateFormatter()
+        formatter.timeZone = TimeZone(abbreviation: "UTC")
+        formatter.dateFormat = "yyyy/MM/dd HH:mm"
+        
+        let components = calendar.dateComponents([.month, .year], from: Date())
+        guard let month = components.month else { return }
+        guard let year = components.year else { return }
+        
+        //обращаеемся к ячейке
+        guard  let cell = collectionView.cellForItem(at: indexPath) as? CalendarCollectionViewCell else { return }
+        guard let numberOfDayString = cell.numberOfDayLabel.text else { return }
+        guard let numberOfDay = Int(numberOfDayString) else { return }
+        
+        guard let date = formatter.date(from: "\(year)/\(month)/\(numberOfDay) 00:00") else {return}
+        
+        cellCollectionViewDelegate?.selectIem(date: date)
+        
     }
 }
 

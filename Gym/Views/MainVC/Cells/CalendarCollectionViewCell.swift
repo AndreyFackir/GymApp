@@ -30,7 +30,7 @@ class CalendarCollectionViewCell: UICollectionViewCell {
         return label
     }()
     
-    private let numberOfDayLabel: UILabel = {
+     let numberOfDayLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "29"
@@ -59,8 +59,8 @@ class CalendarCollectionViewCell: UICollectionViewCell {
     }
     
      func cellConfigure(weekArray:[[String]], indexPath: IndexPath) {
-        numberOfDayLabel.text = weekArray[0][indexPath.item]
-        dayOfWeek.text = weekArray[1][indexPath.item]
+        numberOfDayLabel.text = weekArray[1][indexPath.item]
+        dayOfWeek.text = weekArray[0][indexPath.item]
     }
  }
 

@@ -162,9 +162,9 @@ class MainViewController: UIViewController {
         setupViews()
         setConstraints()
         setDelegates()
+        getWorkouts(date: Date()) //cегодншная дата
         //не забыть зарегистрировать ячейку!!!!
         tableView.register(WorkoutTableViewCell.self, forCellReuseIdentifier: idWorkoutTableViewCell)
-        getWorkouts(date: Date()) //cегодншная дата
           
     }
       
@@ -196,7 +196,7 @@ extension MainViewController {
     private func setDelegates() {
         tableView.dataSource = self
         tableView.delegate  = self
-        
+        calendarView.cellCollectionViewDelegate = self
     }
 }
 
@@ -218,6 +218,13 @@ extension MainViewController {
     }
 }
 
+extension MainViewController: SelectCollectionViewItemProtocol {
+    func selectIem(date: Date) {
+        getWorkouts(date: date)
+    }
+    
+    
+}
 
 //MARK: - UITableViewDataSource
 extension MainViewController: UITableViewDataSource {
