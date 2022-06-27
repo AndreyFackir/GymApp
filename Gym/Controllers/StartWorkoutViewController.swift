@@ -51,7 +51,7 @@ class StartWorkoutViewController: UIViewController {
         setupViews()
         setConstraints()
         setWorkoutParameters()
-        print(workoutModel)
+       
     }
     
     private lazy var finishButton: UIButton = {
@@ -74,7 +74,7 @@ class StartWorkoutViewController: UIViewController {
         return button
       }()
      
-    private var numberOfSet = 0
+    private var numberOfSet = 1
     
     private func setWorkoutParameters() {
         startWorkoutView.nameLabel.text = workoutModel.workoutName
