@@ -35,6 +35,7 @@
 		81666F142862315500746946 /* WorkoutModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81666F132862315500746946 /* WorkoutModel.swift */; };
 		816D6561286A1BFA00B36637 /* OkCancelAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816D6560286A1BFA00B36637 /* OkCancelAlert.swift */; };
 		816D6563286A3DCC00B36637 /* TimerWorkoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816D6562286A3DCC00B36637 /* TimerWorkoutViewController.swift */; };
+		816D6565286A41AA00B36637 /* TimerWorkoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816D6564286A41AA00B36637 /* TimerWorkoutView.swift */; };
 		81E8E0722855EFB4005B4E87 /* NewWorkoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E8E0712855EFB4005B4E87 /* NewWorkoutViewController.swift */; };
 		81E8E07428562D03005B4E87 /* DateAndRepeatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E8E07328562D03005B4E87 /* DateAndRepeatView.swift */; };
 		81E8E07E2857A0CA005B4E87 /* RepsOrTimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E8E07D2857A0CA005B4E87 /* RepsOrTimerView.swift */; };
@@ -69,6 +70,7 @@
 		81666F132862315500746946 /* WorkoutModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutModel.swift; sourceTree = "<group>"; };
 		816D6560286A1BFA00B36637 /* OkCancelAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OkCancelAlert.swift; sourceTree = "<group>"; };
 		816D6562286A3DCC00B36637 /* TimerWorkoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerWorkoutViewController.swift; sourceTree = "<group>"; };
+		816D6564286A41AA00B36637 /* TimerWorkoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerWorkoutView.swift; sourceTree = "<group>"; };
 		81E8E0712855EFB4005B4E87 /* NewWorkoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewWorkoutViewController.swift; sourceTree = "<group>"; };
 		81E8E07328562D03005B4E87 /* DateAndRepeatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateAndRepeatView.swift; sourceTree = "<group>"; };
 		81E8E07D2857A0CA005B4E87 /* RepsOrTimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepsOrTimerView.swift; sourceTree = "<group>"; };
@@ -149,10 +151,10 @@
 				8126B217284922FC00687A39 /* MainViewController.swift */,
 				81E8E0712855EFB4005B4E87 /* NewWorkoutViewController.swift */,
 				8115AFFF2866F58500768B61 /* StartWorkoutViewController.swift */,
+				816D6562286A3DCC00B36637 /* TimerWorkoutViewController.swift */,
 				815C2D6B2860D1EE00BDD273 /* MainTabBarController.swift */,
 				815C2D6D2860D37300BDD273 /* ProfileViewController.swift */,
 				815C2D6F2860D3C500BDD273 /* StatisticViewController.swift */,
-				816D6562286A3DCC00B36637 /* TimerWorkoutViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -164,6 +166,7 @@
 				81E8E07328562D03005B4E87 /* DateAndRepeatView.swift */,
 				81E8E07D2857A0CA005B4E87 /* RepsOrTimerView.swift */,
 				8115B0022866FCD000768B61 /* StartWorkoutView.swift */,
+				816D6564286A41AA00B36637 /* TimerWorkoutView.swift */,
 				8126B23E284CE20E00687A39 /* MainVC */,
 				8115B0012866FC7C00768B61 /* Alerts */,
 			);
@@ -335,6 +338,7 @@
 				8115B0002866F58500768B61 /* StartWorkoutViewController.swift in Sources */,
 				815C2D702860D3C500BDD273 /* StatisticViewController.swift in Sources */,
 				815AED0B2864DC9A0047E8A8 /* RealmManager.swift in Sources */,
+				816D6565286A41AA00B36637 /* TimerWorkoutView.swift in Sources */,
 				8115B0032866FCD000768B61 /* StartWorkoutView.swift in Sources */,
 				8126B216284922FC00687A39 /* SceneDelegate.swift in Sources */,
 				815AED0D2864E3FE0047E8A8 /* Alerts.swift in Sources */,
