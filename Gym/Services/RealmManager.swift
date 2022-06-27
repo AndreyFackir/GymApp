@@ -23,6 +23,21 @@ class RealmManager {
             localRealm.add(model)
         }
     }
+    
+    //обновляем статус тренировки( закончена она или нет)
+    func updateWorkoutModel(model: WorkoutModel, bool: Bool) {
+        try! localRealm.write{
+            model.status = bool
+            
+        }
+    }
+    
+    // удаляем тренировку
+    func deleteWorkoutModel(model: WorkoutModel) {
+        try! localRealm.write{
+            localRealm.delete(model)
+        }
+    }
 }
 
 

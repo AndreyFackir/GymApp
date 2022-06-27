@@ -7,12 +7,14 @@
 
 import UIKit
 
+// 1 - создаем протокол
 protocol NextSetProtocol: AnyObject {
     func nextSetTapped()
 }
 
 class StartWorkoutView: UIView {
     
+    //2 - создаем переменную делагат
     weak var cellNextSetDelegate: NextSetProtocol?
     
     override init(frame: CGRect) {
@@ -103,14 +105,15 @@ class StartWorkoutView: UIView {
         
         let button = UIButton(configuration: configuration, primaryAction: UIAction() {_ in
             print("editingButtonTapped")
-            self.cellNextSetDelegate?.nextSetTapped()
+          
+           
         })
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
     
     
-    private let nextSetButton: UIButton = {
+    private lazy var nextSetButton: UIButton = {
         
         var configuration  = UIButton.Configuration.filled()
         configuration.baseForegroundColor = .specialBlack
@@ -124,6 +127,8 @@ class StartWorkoutView: UIView {
         
         let button = UIButton(configuration: configuration, primaryAction: UIAction() {_ in
             print("nextSetButtonTapped")
+            //3 - вызываем метод протокола через делегат
+            self.cellNextSetDelegate?.nextSetTapped()
         })
         
         button.translatesAutoresizingMaskIntoConstraints = false

@@ -46,6 +46,7 @@ class StartWorkoutViewController: UIViewController {
     
     var workoutModel = WorkoutModel()
     
+    //2 - назанчам данный класс делегатом
     private func setDelegates() {
         startWorkoutView.cellNextSetDelegate = self
     }
@@ -89,9 +90,17 @@ class StartWorkoutViewController: UIViewController {
     
 }
 
+//1 - подписываемся под протокол и вызываем функцию
 extension StartWorkoutViewController: NextSetProtocol {
     func nextSetTapped() {
         print("nextSetTapped")
+        
+        if numberOfSet < workoutModel.workoutSets {
+            numberOfSet += 1
+            startWorkoutView.valueOfSetsLabel.text = "\(numberOfSet)/\(workoutModel.workoutSets)"
+        } else {
+            alertOK(title: "Congrats!", message: "Now you can finish your workout")
+        }
     }
     
     
