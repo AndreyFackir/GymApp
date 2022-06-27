@@ -255,6 +255,21 @@ extension MainViewController: UITableViewDelegate {
         return 100
         
     }
+    
+    //чтобы удалить ячейки по свайпу
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        
+        let action = UIContextualAction(style: .destructive, title: "") { _, _, _ in
+            let deleteModel  = self.workoutArray[indexPath.row]
+            RealmManager.shared.deleteWorkoutModel(model: deleteModel)
+            tableView.reloadData()
+        }
+        action.backgroundColor = .specialbackground
+        action.image = UIImage(named: "delete")
+        
+        return UISwipeActionsConfiguration(actions: [action])
+    }
 }
 
 //MARK: - Set constraints
