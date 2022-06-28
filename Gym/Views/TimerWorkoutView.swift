@@ -8,6 +8,8 @@
 import UIKit
 
 class TimerWorkoutView: UIView {
+    
+    weak var nextSetDelegate: NextSetProtocol?
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -18,6 +20,8 @@ class TimerWorkoutView: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    
     
     let exercizeNameLabel: UILabel = {
        let label = UILabel()
@@ -64,7 +68,7 @@ class TimerWorkoutView: UIView {
         return label
     }()
     
-    let valueOfRepsLabel:UILabel = {
+    let valueOfTimerLabel:UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "1 min 30 sec"
@@ -116,8 +120,9 @@ class TimerWorkoutView: UIView {
         text.font = .robotoMedium18
         configuration.attributedTitle = AttributedString("Next Set", attributes: text)
         
-        let button = UIButton(configuration: configuration, primaryAction: UIAction() {_ in
+        let button = UIButton(configuration: configuration, primaryAction: UIAction() { [self]_ in
             print("nextSetButtonTapped")
+            nextSetDelegate?.nextSetTapped()
          })
         
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -125,6 +130,8 @@ class TimerWorkoutView: UIView {
     }()
     
 }
+
+
 
 //MARK: - setupViews
 extension TimerWorkoutView {
@@ -137,7 +144,7 @@ extension TimerWorkoutView {
         addSubview(setStackView)
         addSubview(setStackView)
         addSubview(setsUnderline)
-        repsStackView = UIStackView(arrangeSubviews: [repsLabel, valueOfRepsLabel], axis: .horizontal, spacing: 10)
+        repsStackView = UIStackView(arrangeSubviews: [repsLabel, valueOfTimerLabel], axis: .horizontal, spacing: 10)
         repsStackView.distribution = .equalSpacing
         addSubview(repsStackView)
         addSubview(repsUnderline)

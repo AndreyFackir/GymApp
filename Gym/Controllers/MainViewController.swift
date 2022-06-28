@@ -186,8 +186,11 @@ extension MainViewController: StartWorkoutProtocol {
             present(startVC, animated: true, completion: nil)
         } else {
             print("timer")
+            let timerVC = TimerWorkoutViewController()
+            timerVC.modalPresentationStyle = .fullScreen
+            timerVC.workoutModel = model
+            present(timerVC, animated: true, completion: nil)
         }
-        print("tap")
         
     }
 }

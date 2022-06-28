@@ -9,11 +9,14 @@ import UIKit
 
 class TimerWorkoutViewController: UIViewController {
     
+    var workoutModel = WorkoutModel()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
         setConstraints()
-        
+        setParameters()
+        timerWorkoutView.nextSetDelegate = self
     }
     
     private let startWorkoutLabel: UILabel = {
@@ -67,15 +70,45 @@ class TimerWorkoutViewController: UIViewController {
         text.font = .robotoMedium18
         configuration.attributedTitle = AttributedString("FINISH", attributes: text)
         
-        let button = UIButton(configuration: configuration, primaryAction: UIAction() {_ in
+        let button = UIButton(configuration: configuration, primaryAction: UIAction() { [self]_ in
             print("FAF")
             
-          
+            if setNumber == workoutModel.workoutSets {
+                dismiss(animated: true)
+                RealmManager.shared.updateWorkoutModel(model: workoutModel, bool: true)
+            } else {
+                alertOkCancel(title: "Warning", message: "The excercize havent done yet") {
+                    dismiss(animated: true)
+                }
+            }
+            
         })
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
       }()
+    
+    private var setNumber = 1
+    private func setParameters() {
+        timerWorkoutView.valueOfSetsLabel.text = "\(setNumber)/\(workoutModel.workoutSets)"
+        timerWorkoutView.valueOfTimerLabel.text = "\(workoutModel.workoutTimer)"
+    }
      
+    
+    
+}
+
+
+
+
+extension TimerWorkoutViewController: NextSetProtocol {
+    func nextSetTapped() {
+        if setNumber < workoutModel.workoutSets {
+            setNumber += 1
+            timerWorkoutView.valueOfSetsLabel.text = "\(setNumber)/\(workoutModel.workoutSets)"
+        } else {
+            alertOK(title: "Congras", message: "Toy finished your work")
+        }
+    }
     
     
 }
