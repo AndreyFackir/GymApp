@@ -25,6 +25,14 @@ class StatisticViewController: UITabBarController {
         return label
     }()
     
+    private let segments: UISegmentedControl = {
+        let element = UISegmentedControl()
+        element.translatesAutoresizingMaskIntoConstraints = false
+       
+      
+        
+        return element
+    }()
     
     
 }

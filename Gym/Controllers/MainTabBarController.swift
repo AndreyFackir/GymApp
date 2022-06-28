@@ -40,10 +40,12 @@ class MainTabBarController: UITabBarController {
         items[0].title = "Main"
         items[1].title = "Statistic"
         items[2].title = "Profile"
+       
         
         items[0].image = UIImage(named: "Document Justify Center 2")
         items[1].image = UIImage(named: "Filter 5")
         items[2].image = UIImage(named: "Profile 1")
+        
         
         UITabBarItem.appearance().setTitleTextAttributes([.font: UIFont(name: "Roboto-Bold", size: 12) as Any], for: .normal)
     }
