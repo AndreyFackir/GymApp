@@ -11,10 +11,41 @@ class StatisticViewController: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .red
+        setupViews()
+        setConstraints()
         
     }
     
+    private let statisticLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "STATISTICS"
+        label.textColor = .specialBlack
+        label.font = .robotoMedium24
+        return label
+    }()
     
     
+    
+}
+
+
+//MARK: - SetupViews
+extension StatisticViewController {
+    
+    private func setupViews() {
+        view.backgroundColor = .specialbackground
+        view.addSubview(statisticLabel)
+    }
+}
+
+//MARK: - SetConstraints
+extension StatisticViewController {
+    private func setConstraints() {
+        
+        NSLayoutConstraint.activate([
+            statisticLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
+            statisticLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+        ])
+    }
 }

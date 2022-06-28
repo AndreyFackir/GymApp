@@ -100,11 +100,8 @@ class TimerWorkoutViewController: UIViewController {
         timerLabel.text = "\(min):\(sec)"
         timerWorkoutView.exercizeNameLabel.text = workoutModel.workoutName
         
-        
     }
-    
-    
-    
+      
 }
 
 

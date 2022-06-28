@@ -153,8 +153,8 @@
 				8115AFFF2866F58500768B61 /* StartWorkoutViewController.swift */,
 				816D6562286A3DCC00B36637 /* TimerWorkoutViewController.swift */,
 				815C2D6B2860D1EE00BDD273 /* MainTabBarController.swift */,
-				815C2D6D2860D37300BDD273 /* ProfileViewController.swift */,
 				815C2D6F2860D3C500BDD273 /* StatisticViewController.swift */,
+				815C2D6D2860D37300BDD273 /* ProfileViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
