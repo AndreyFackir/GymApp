@@ -48,7 +48,7 @@ class TimerWorkoutViewController: UIViewController {
     }()
     
     private let timerLabel: UILabel = {
-       
+        
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.text = "01:30"
         $0.font = .robotoBold50
@@ -85,14 +85,24 @@ class TimerWorkoutViewController: UIViewController {
         })
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
-      }()
+    }()
     
     private var setNumber = 1
     private func setParameters() {
         timerWorkoutView.valueOfSetsLabel.text = "\(setNumber)/\(workoutModel.workoutSets)"
-        timerWorkoutView.valueOfTimerLabel.text = "\(workoutModel.workoutTimer)"
+        
+        let (min, sec) = {(sec: Int) -> (Int, Int) in
+            
+            return (sec / 60, sec % 60)
+        }(workoutModel.workoutTimer)
+        
+        timerWorkoutView.valueOfTimerLabel.text = "\(min) min \(sec) sec"
+        timerLabel.text = "\(min):\(sec)"
+        timerWorkoutView.exercizeNameLabel.text = workoutModel.workoutName
+        
+        
     }
-     
+    
     
     
 }
@@ -100,6 +110,7 @@ class TimerWorkoutViewController: UIViewController {
 
 
 
+//MARK: - NextSetProtocol
 extension TimerWorkoutViewController: NextSetProtocol {
     func nextSetTapped() {
         if setNumber < workoutModel.workoutSets {
@@ -109,8 +120,6 @@ extension TimerWorkoutViewController: NextSetProtocol {
             alertOK(title: "Congras", message: "Toy finished your work")
         }
     }
-    
-    
 }
 
 //MARK: - Setup Views
