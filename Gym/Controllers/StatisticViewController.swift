@@ -58,6 +58,7 @@ extension StatisticViewController {
     private func setDelegates() {
         tableWithParametrs.dataSource = self
         tableWithParametrs.delegate = self
+        tableWithParametrs.register(StatisticTableViewCell.self, forCellReuseIdentifier: idStatisticTableViewCell)
     }
 }
 
@@ -81,7 +82,7 @@ extension StatisticViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: idStatisticTableViewCell, for: indexPath) as! StatisticTableViewCell
-        
+        cell.backgroundColor = .speciakGreen
         return cell
     }
     
@@ -91,6 +92,10 @@ extension StatisticViewController: UITableViewDataSource {
 //MARK: - UITableViewDelegate
 
 extension StatisticViewController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        100
+    }
     
 }
 //MARK: - SetConstraints
@@ -115,9 +120,10 @@ extension StatisticViewController {
         ])
         
         NSLayoutConstraint.activate([
-            tableWithParametrs.topAnchor.constraint(equalTo: exerciseLabel.bottomAnchor, constant: 20),
-            tableWithParametrs.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 25),
-            tableWithParametrs.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -25)
+            tableWithParametrs.topAnchor.constraint(equalTo: exerciseLabel.bottomAnchor, constant: 10),
+            tableWithParametrs.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
+            tableWithParametrs.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
+            tableWithParametrs.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0)
         ])
        
        
