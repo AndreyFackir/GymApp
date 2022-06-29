@@ -26,13 +26,17 @@ class StatisticViewController: UITabBarController {
     }()
     
     private let segments: UISegmentedControl = {
-        let element = UISegmentedControl()
+        let element = UISegmentedControl(items: ["Week", "Month"])
         element.translatesAutoresizingMaskIntoConstraints = false
-       
-      
-        
+        element.selectedSegmentTintColor = .specialYellow
+        element.selectedSegmentIndex = 0
+        element.backgroundColor = .speciakGreen
         return element
     }()
+    
+    private let detailsLabel = UILabel(text: "Exercice")
+    
+   
     
     
 }
@@ -44,6 +48,7 @@ extension StatisticViewController {
     private func setupViews() {
         view.backgroundColor = .specialbackground
         view.addSubview(statisticLabel)
+        view.addSubview((segments))
     }
 }
 
@@ -54,6 +59,13 @@ extension StatisticViewController {
         NSLayoutConstraint.activate([
             statisticLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
             statisticLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+        ])
+        
+        NSLayoutConstraint.activate([
+            segments.topAnchor.constraint(equalTo: statisticLabel.bottomAnchor, constant: 20),
+            segments.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            segments.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            segments.heightAnchor.constraint(equalToConstant: 30)
         ])
     }
 }
