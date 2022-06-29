@@ -13,8 +13,11 @@ class StatisticViewController: UITabBarController {
         super.viewDidLoad()
         setupViews()
         setConstraints()
+        setDelegates()
         
     }
+    
+    private let idStatisticTableViewCell = "idStatisticTableViewCell"
     
     private let statisticLabel: UILabel = {
         let label = UILabel()
@@ -34,13 +37,29 @@ class StatisticViewController: UITabBarController {
         return element
     }()
     
-    private let detailsLabel = UILabel(text: "Exercice")
+    private let exerciseLabel = UILabel(text: "Exercices")
+
+    private let tableWithParametrs: UITableView = {
+        let element = UITableView()
+        element.translatesAutoresizingMaskIntoConstraints = false
+        element.backgroundColor = .red
+        return element
+    }()
     
-   
     
-    
+
+
 }
 
+
+//MARK: - setDelegates
+extension StatisticViewController {
+    
+    private func setDelegates() {
+        tableWithParametrs.dataSource = self
+        tableWithParametrs.delegate = self
+    }
+}
 
 //MARK: - SetupViews
 extension StatisticViewController {
@@ -48,10 +67,32 @@ extension StatisticViewController {
     private func setupViews() {
         view.backgroundColor = .specialbackground
         view.addSubview(statisticLabel)
-        view.addSubview((segments))
+        view.addSubview(segments)
+        view.addSubview(exerciseLabel)
+        view.addSubview(tableWithParametrs)
     }
 }
 
+//MARK: - UITableViewDataSource
+extension StatisticViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        7
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: idStatisticTableViewCell, for: indexPath) as! StatisticTableViewCell
+        
+        return cell
+    }
+    
+}
+
+
+//MARK: - UITableViewDelegate
+
+extension StatisticViewController: UITableViewDelegate {
+    
+}
 //MARK: - SetConstraints
 extension StatisticViewController {
     private func setConstraints() {
@@ -67,5 +108,18 @@ extension StatisticViewController {
             segments.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             segments.heightAnchor.constraint(equalToConstant: 30)
         ])
+        
+        NSLayoutConstraint.activate([
+            exerciseLabel.topAnchor.constraint(equalTo: segments.bottomAnchor, constant: 20),
+            exerciseLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 25)
+        ])
+        
+        NSLayoutConstraint.activate([
+            tableWithParametrs.topAnchor.constraint(equalTo: exerciseLabel.bottomAnchor, constant: 20),
+            tableWithParametrs.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 25),
+            tableWithParametrs.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -25)
+        ])
+       
+       
     }
 }
