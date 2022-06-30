@@ -7,7 +7,9 @@
 
 import UIKit
 
-class TimerWorkoutView: UIView {
+class TimerWorkoutView: UIView{
+
+    
     
     weak var nextSetDelegate: NextSetProtocol?
     
@@ -101,6 +103,7 @@ class TimerWorkoutView: UIView {
         
         let button = UIButton(configuration: configuration, primaryAction: UIAction() {_ in
             print("editingButtonTapped")
+            self.nextSetDelegate?.editingTapped()
         })
         
         button.translatesAutoresizingMaskIntoConstraints = false

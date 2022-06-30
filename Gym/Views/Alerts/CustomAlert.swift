@@ -25,6 +25,9 @@ class CustomAlert {
         return element
     }()
     
+    //создаем чтобы кастомный алерт двигался когда появлятся клава
+    private let scrollView = UIScrollView()
+    
     private var mainView: UIView?
     
     var buttonAction: ((String, String) -> Void)?
@@ -32,22 +35,26 @@ class CustomAlert {
     private let setsTextField = UITextField()
     private let repsTextField = UITextField()
     
-    
-    func alertCustom(viewController: UIViewController, completion: @escaping (String, String) -> Void){
-        //из какого ВС бдуем вызывать - первый параметр, в комплишн передавать будет репсы и сеты
+    //из какого ВС бдуем вызывать - первый параметр, в комплишн передавать будет репсы и сеты
+    func alertCustom(viewController: UIViewController, repsOrTimer: String, completion: @escaping (String, String) -> Void){
+        
+        registerForKeyboardNotificaion()
         
         guard let parentView = viewController.view else { return } //будет вьюха по размеру такая же как и вью у вьюконтроллера
         mainView  = parentView
         
+        scrollView.frame = parentView.frame
+        parentView.addSubview(scrollView)
+        
         backgroundView.frame = parentView.frame
-        parentView.addSubview(backgroundView)
+        scrollView.addSubview(backgroundView)
         
         alertView.frame = CGRect(x: 40,
                                  y: -420,
                                  width: parentView.frame.width - 80,
                                  height: 420)
         
-        parentView.addSubview(alertView)
+        scrollView.addSubview(alertView)
         
         let sportsmnaImageView = UIImageView(frame: CGRect(x: (alertView.frame.width - alertView.frame.height * 0.4) / 2,
                                                            y: 30,
@@ -90,16 +97,18 @@ class CustomAlert {
         
         alertView.addSubview(setsTextField)
         
-        let repsLabel = UILabel(text: "Sets")
-        repsLabel.translatesAutoresizingMaskIntoConstraints = true //так как делаем фреймами
-        repsLabel.frame = CGRect(x: 30,
-                                 y: setsTextField.frame.maxY + 3, //почти тож что и боттом энкор
-                                 width: alertView.frame.width - 60,
-                                 height: 20)
-        alertView.addSubview(repsLabel)
+        
+        
+        let repsOrTimerLabel = UILabel(text: "\(repsOrTimer)")
+        repsOrTimerLabel.translatesAutoresizingMaskIntoConstraints = true
+        repsOrTimerLabel.frame = CGRect(x: 30,
+                                        y: setsTextField.frame.maxY + 3,//почти тож что и боттом энкор
+                                        width: alertView.frame.width - 60,
+                                        height: 20)
+        alertView.addSubview(repsOrTimerLabel)
         
         repsTextField.frame =  CGRect(x: 20,
-                                      y: repsLabel.frame.maxY,
+                                      y: repsOrTimerLabel.frame.maxY,
                                       width: alertView.frame.width - 40,
                                       height: 30)
         repsTextField.backgroundColor = .specialBrown
@@ -142,6 +151,8 @@ class CustomAlert {
         }
         
     }
+    
+    
     @objc  private func okButtonPressed() {
         
         guard let setNumber = setsTextField.text else { return }
@@ -161,15 +172,43 @@ class CustomAlert {
             if done {
                 UIView.animate(withDuration: 0.3) {
                     self.backgroundView.alpha = 0
-                } completion: { done in
+                } completion: { [weak self] done in //слф нужно ослабить , чтобы не было цикла сильных ссылок
+                    guard let self = self else { return }
                     if done {
                         self.alertView.removeFromSuperview()
                         self.backgroundView.removeFromSuperview()
+                        self.scrollView.removeFromSuperview()
+                        self.removeForKeyboardNotificaion()
                     }
                 }
                 
             }
         }
         
+    }
+    
+    private func registerForKeyboardNotificaion() {
+        
+        //обсервер когда клава появляется
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        
+        //обсервер когда клава исчезает
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    private func removeForKeyboardNotificaion() {
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+        
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    //если клава появилась двигаем на 100 пойнтов наверх
+    @objc private func keyboardWillShow() {
+        scrollView.contentOffset = CGPoint(x: 0, y: 100)
+    }
+    
+    //есди спряталась - возвращаем на место
+    @objc private func keyboardWillHide() {
+        scrollView.contentOffset = CGPoint.zero
     }
 }

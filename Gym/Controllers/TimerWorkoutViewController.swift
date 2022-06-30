@@ -96,7 +96,7 @@ class TimerWorkoutViewController: UIViewController {
     }()
     
     private var setNumber = 0
-    
+    private let customAlert = CustomAlert()
     private func setParameters() {
         timerWorkoutView.valueOfSetsLabel.text = "\(setNumber)/\(workoutModel.workoutSets)"
         
@@ -213,7 +213,25 @@ extension TimerWorkoutViewController {
 //MARK: - NextSetProtocol
 extension TimerWorkoutViewController: NextSetProtocol {
     func editingTapped() {
-        print("3")
+        customAlert.alertCustom(viewController: self, repsOrTimer: "Timer of Sets") { [self] sets, timerOfSet in
+            print("a")
+            
+            
+            if sets != "" && timerOfSet != "" {
+                guard let numberOfSets = Int(sets) else { return }
+                guard let numberOfTimer = Int(timerOfSet) else { return }
+                
+                let (min, sec) = {(sec: Int) -> (Int, Int) in
+                    return (sec / 60, sec % 60)
+                }(numberOfTimer)
+                
+                timerWorkoutView.valueOfSetsLabel.text = "\(setNumber)/\(sets)"
+                timerWorkoutView.valueOfTimerLabel.text = "\(min) min \(sec) sec"
+                timerLabel.text = "\(min):\(sec.setZeroToSeconds())"
+                durationTimer = numberOfTimer
+                RealmManager.shared.updateSetsTimerWorkoutModel(model: workoutModel, sets: numberOfSets, timer: numberOfTimer)
+            }
+        }
     }
     
     func nextSetTapped() {

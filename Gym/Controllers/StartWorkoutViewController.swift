@@ -109,7 +109,7 @@ extension StartWorkoutViewController: NextSetProtocol {
     
     
     func editingTapped() {
-        customAlert.alertCustom(viewController: self) { [self] sets, reps in
+        customAlert.alertCustom(viewController: self, repsOrTimer: "Reps") { [self] sets, reps in
             print("a")
             
             if sets != "" && reps != "" {
