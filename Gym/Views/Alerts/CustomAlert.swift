@@ -60,6 +60,69 @@ class CustomAlert {
         editingLabel.textAlignment = .center
         alertView.addSubview(editingLabel)
         
+        let setLabel = UILabel(text: "Sets")
+        setLabel.translatesAutoresizingMaskIntoConstraints = true //так как делаем фреймами
+        setLabel.frame = CGRect(x: 30,
+                                y: editingLabel.frame.maxY + 10, //почти тож что и боттом энкор
+                                width: alertView.frame.width - 60,
+                                height: 20)
+        alertView.addSubview(setLabel)
+        
+        let setsTextField = UITextField(frame: CGRect(x: 20, y: setLabel.frame.maxY,
+                                                      width: alertView.frame.width - 40,
+                                                      height: 30))
+        setsTextField.backgroundColor = .specialBrown
+        setsTextField.borderStyle = .none
+        setsTextField.layer.cornerRadius = 10
+        setsTextField.textColor = .specialGray
+        setsTextField.font = .robotoBold20
+        setsTextField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 15, height: setsTextField.frame.height))
+        setsTextField.leftViewMode = .always
+        setsTextField.clearButtonMode = .always
+        setsTextField.returnKeyType = .done
+        setsTextField.keyboardType = .numberPad
+        
+        alertView.addSubview(setsTextField)
+        
+        let repsLabel = UILabel(text: "Sets")
+        repsLabel.translatesAutoresizingMaskIntoConstraints = true //так как делаем фреймами
+        repsLabel.frame = CGRect(x: 30,
+                                y: setsTextField.frame.maxY + 3, //почти тож что и боттом энкор
+                                width: alertView.frame.width - 60,
+                                height: 20)
+        alertView.addSubview(repsLabel)
+        
+        let repsTextField = UITextField(frame: CGRect(x: 20,
+                                                      y: repsLabel.frame.maxY,
+                                                      width: alertView.frame.width - 40,
+                                                      height: 30))
+        repsTextField.backgroundColor = .specialBrown
+        repsTextField.borderStyle = .none
+        repsTextField.layer.cornerRadius = 10
+        repsTextField.textColor = .specialGray
+        repsTextField.font = .robotoBold20
+        repsTextField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 15, height: repsTextField.frame.height))
+        repsTextField.leftViewMode = .always
+        repsTextField.clearButtonMode = .always
+        repsTextField.returnKeyType = .done
+        repsTextField.keyboardType = .numberPad
+        
+        alertView.addSubview(repsTextField)
+        
+        let okButton = UIButton(frame: CGRect(x: 50,
+                                              y: repsTextField.frame.maxY + 15,
+                                              width: alertView.frame.width - 100,
+                                              height: 35))
+        okButton.backgroundColor = .speciakGreen
+        okButton.setTitle("OK", for: .normal)
+        okButton.titleLabel?.textColor = .white
+        okButton.titleLabel?.font = .robotoMedium18
+        okButton.layer.cornerRadius = 10
+        okButton.addTarget(self, action: #selector(okButtonPressed), for: .touchUpInside)
+        alertView.addSubview(okButton)
+        
+       
+        
         
         UIView.animate(withDuration: 0.3) {
             self.backgroundView.alpha = 0.8
@@ -72,5 +135,30 @@ class CustomAlert {
         }
 
     }
-    
+    @objc  private func okButtonPressed() {
+        print("okButtonPressed")
+        guard let targetView = mainView else { return }
+        
+        //создаем анимацию для закрытия( улетает вниз)
+        
+        UIView.animate(withDuration: 0.3) {
+            self.alertView.frame = CGRect(x: 40,
+                                          y: targetView.frame.height,
+                                          width: targetView.frame.width - 80,
+                                          height: 420)
+        } completion: { done in // когда первая анимация заказнчивается( уезжает вьюшкак), запускается другая( бэкграунда альфа)
+            if done {
+                UIView.animate(withDuration: 0.3) {
+                    self.backgroundView.alpha = 0
+                } completion: { done in
+                    if done {
+                        self.alertView.removeFromSuperview()
+                        self.backgroundView.removeFromSuperview()
+                    }
+                }
+
+            }
+        }
+
+    }
 }
