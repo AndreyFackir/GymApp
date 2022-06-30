@@ -11,7 +11,7 @@ class CustomAlert {
     
     private let backgroundView: UIView = {
         let element = UIView()
-       
+        
         element.backgroundColor = .black
         element.alpha = 0
         return element
@@ -19,13 +19,19 @@ class CustomAlert {
     
     private let alertView: UIView = {
         let element = UIView()
-       //тамик не ставим потому что вс фрймами будем делать
+        //тамик не ставим потому что вс фрймами будем делать
         element.backgroundColor = .specialbackground
         element.layer.cornerRadius = 20
         return element
     }()
     
     private var mainView: UIView?
+    
+    var buttonAction: ((String, String) -> Void)?
+    
+    private let setsTextField = UITextField()
+    private let repsTextField = UITextField()
+    
     
     func alertCustom(viewController: UIViewController, completion: @escaping (String, String) -> Void){
         //из какого ВС бдуем вызывать - первый параметр, в комплишн передавать будет репсы и сеты
@@ -68,9 +74,9 @@ class CustomAlert {
                                 height: 20)
         alertView.addSubview(setLabel)
         
-        let setsTextField = UITextField(frame: CGRect(x: 20, y: setLabel.frame.maxY,
-                                                      width: alertView.frame.width - 40,
-                                                      height: 30))
+        setsTextField.frame =  CGRect(x: 20, y: setLabel.frame.maxY,
+                                      width: alertView.frame.width - 40,
+                                      height: 30)
         setsTextField.backgroundColor = .specialBrown
         setsTextField.borderStyle = .none
         setsTextField.layer.cornerRadius = 10
@@ -87,15 +93,15 @@ class CustomAlert {
         let repsLabel = UILabel(text: "Sets")
         repsLabel.translatesAutoresizingMaskIntoConstraints = true //так как делаем фреймами
         repsLabel.frame = CGRect(x: 30,
-                                y: setsTextField.frame.maxY + 3, //почти тож что и боттом энкор
-                                width: alertView.frame.width - 60,
-                                height: 20)
+                                 y: setsTextField.frame.maxY + 3, //почти тож что и боттом энкор
+                                 width: alertView.frame.width - 60,
+                                 height: 20)
         alertView.addSubview(repsLabel)
         
-        let repsTextField = UITextField(frame: CGRect(x: 20,
-                                                      y: repsLabel.frame.maxY,
-                                                      width: alertView.frame.width - 40,
-                                                      height: 30))
+        repsTextField.frame =  CGRect(x: 20,
+                                      y: repsLabel.frame.maxY,
+                                      width: alertView.frame.width - 40,
+                                      height: 30)
         repsTextField.backgroundColor = .specialBrown
         repsTextField.borderStyle = .none
         repsTextField.layer.cornerRadius = 10
@@ -121,7 +127,8 @@ class CustomAlert {
         okButton.addTarget(self, action: #selector(okButtonPressed), for: .touchUpInside)
         alertView.addSubview(okButton)
         
-       
+        buttonAction = completion
+        
         
         
         UIView.animate(withDuration: 0.3) {
@@ -133,11 +140,15 @@ class CustomAlert {
                 }
             }
         }
-
+        
     }
     @objc  private func okButtonPressed() {
-        print("okButtonPressed")
+        
+        guard let setNumber = setsTextField.text else { return }
+        guard let repsNumber = repsTextField.text else { return }
         guard let targetView = mainView else { return }
+        
+        buttonAction?(setNumber, repsNumber)
         
         //создаем анимацию для закрытия( улетает вниз)
         
@@ -156,9 +167,9 @@ class CustomAlert {
                         self.backgroundView.removeFromSuperview()
                     }
                 }
-
+                
             }
         }
-
+        
     }
 }

@@ -75,7 +75,7 @@ class TimerWorkoutViewController: UIViewController {
             
             if setNumber == workoutModel.workoutSets {
                 dismiss(animated: true)
-                RealmManager.shared.updateWorkoutModel(model: workoutModel, bool: true)
+                RealmManager.shared.updateStatusWorkoutModel(model: workoutModel, bool: true)
             } else {
                 alertOkCancel(title: "Warning", message: "The excercize havent done yet") {
                     dismiss(animated: true)
