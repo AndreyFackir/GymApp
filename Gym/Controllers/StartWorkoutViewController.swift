@@ -107,15 +107,18 @@ class StartWorkoutViewController: UIViewController {
 //1 - подписываемся под протокол и вызываем функцию
 extension StartWorkoutViewController: NextSetProtocol {
     
+    
     func editingTapped() {
         customAlert.alertCustom(viewController: self) { [self] sets, reps in
             print("a")
             
-            startWorkoutView.valueOfSetsLabel.text = "\(numberOfSet)/\(sets)"
-            startWorkoutView.valueOfRepsLabel.text = "\(reps)"
-            guard let numberOfSets = Int(sets) else { return }
-            guard let numberOfReps = Int(reps) else { return }
-            RealmManager.shared.updateSetsRepsWorkoutModel(model: workoutModel, sets: numberOfSets, reps: numberOfReps)
+            if sets != "" && reps != "" {
+                startWorkoutView.valueOfSetsLabel.text = "\(numberOfSet)/\(sets)"
+                startWorkoutView.valueOfRepsLabel.text = "\(reps)"
+                guard let numberOfSets = Int(sets) else { return }
+                guard let numberOfReps = Int(reps) else { return }
+                RealmManager.shared.updateSetsRepsWorkoutModel(model: workoutModel, sets: numberOfSets, reps: numberOfReps)
+            }
         }
     }
     
@@ -128,11 +131,9 @@ extension StartWorkoutViewController: NextSetProtocol {
         } else {
             alertOK(title: "Congrats!", message: "Now you can finish your workout")
         }
-    }
-    
-    
+    }   
 }
-    
+
 
 
 //MARK: - Setup Views

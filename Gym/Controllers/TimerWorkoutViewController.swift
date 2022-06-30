@@ -17,6 +17,7 @@ class TimerWorkoutViewController: UIViewController {
         setConstraints()
         setParameters()
         timerWorkoutView.nextSetDelegate = self
+        addaps()
     }
     
     private let startWorkoutLabel: UILabel = {
@@ -101,7 +102,33 @@ class TimerWorkoutViewController: UIViewController {
         timerWorkoutView.exercizeNameLabel.text = workoutModel.workoutName
         
     }
-      
+    
+    //создаем таймер
+    var timer = Timer()
+    var durationTimer = 10
+    
+    //запускаем таймер по тапу на лейбл
+    private func addaps() {
+        let tapLabel = UITapGestureRecognizer(target: self, action: #selector(startTimer))
+        timerLabel.isUserInteractionEnabled = true
+        timerLabel.addGestureRecognizer(tapLabel)
+    }
+    
+    @objc private func startTimer() {
+        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(timerAction), userInfo: nil, repeats: true)
+    }
+    
+    @objc private func timerAction() {
+        
+        durationTimer -= 1
+        
+        
+        if durationTimer == 0 {
+            print(durationTimer)
+            timer.invalidate()
+        }
+    }
+    
 }
 
 
@@ -118,7 +145,7 @@ extension TimerWorkoutViewController: NextSetProtocol {
             setNumber += 1
             timerWorkoutView.valueOfSetsLabel.text = "\(setNumber)/\(workoutModel.workoutSets)"
         } else {
-            alertOK(title: "Congras", message: "Toy finished your work")
+            alertOK(title: "Congras", message: "You finished your work")
         }
     }
 }
