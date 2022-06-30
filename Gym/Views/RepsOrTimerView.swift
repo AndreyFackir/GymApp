@@ -41,7 +41,7 @@ class RepsOrTimerView: UIView {
         let slider = UISlider()
         slider.translatesAutoresizingMaskIntoConstraints = false
         slider.minimumValue = 0
-        slider.maximumValue = 100
+        slider.maximumValue = 20
         slider.isContinuous = true
         slider.tintColor = .speciakGreen
         slider.value = 0
@@ -86,7 +86,7 @@ class RepsOrTimerView: UIView {
         let slider = UISlider()
         slider.translatesAutoresizingMaskIntoConstraints = false
         slider.minimumValue = 0
-        slider.maximumValue = 100
+        slider.maximumValue = 20
         slider.isContinuous = true
         slider.tintColor = .speciakGreen
         slider.value = 0

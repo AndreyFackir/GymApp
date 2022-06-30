@@ -58,7 +58,7 @@ class CalendarView: UIView {
         layer.cornerRadius = 10
         translatesAutoresizingMaskIntoConstraints = false
         addSubview(collectionView)
-        weekArray()
+       
     }
     
    
@@ -68,31 +68,34 @@ class CalendarView: UIView {
         collectionView.dataSource = self
     }
     
-    private func weekArray() -> [[String]]{
-        
-        let dateFormatter = DateFormatter()
-        dateFormatter.locale = Locale(identifier: "en_GB")
-        dateFormatter.dateFormat = "EEEEEE"
-      
-        var weekArray: [[String]] = [[],[]]
-        let calendar = Calendar.current
-        let today = Date()
-        
-        for i in -6...0 {
-            let date = calendar.date(byAdding: .weekday, value: i, to: today)
-            guard let date = date else { return weekArray }
     
-            let components = calendar.dateComponents([.day], from: date)
-   
-            weekArray[1].append(String(components.day ?? 0))
-            let weekDay = dateFormatter.string(from: date)
-            weekArray[0].append(String(weekDay))
- 
-
-        }
-        
-        return weekArray
-    }
+                                            //Этот метод переписан в экстеншн
+    
+//    private func weekArray() -> [[String]]{
+//
+//        let dateFormatter = DateFormatter()
+//        dateFormatter.locale = Locale(identifier: "en_GB")
+//        dateFormatter.dateFormat = "EEEEEE"
+//
+//        var weekArray: [[String]] = [[],[]]
+//        let calendar = Calendar.current
+//        let today = Date()
+//
+//        for i in -6...0 {
+//            let date = calendar.date(byAdding: .weekday, value: i, to: today)
+//            guard let date = date else { return weekArray }
+//
+//            let components = calendar.dateComponents([.day], from: date)
+//
+//            weekArray[1].append(String(components.day ?? 0))
+//            let weekDay = dateFormatter.string(from: date)
+//            weekArray[0].append(String(weekDay))
+//
+//
+//        }
+//
+//        return weekArray
+//    }
 }
 
 //MARK: - Set Constraints
@@ -122,7 +125,9 @@ extension CalendarView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "idCalendarCell", for: indexPath) as! CalendarCollectionViewCell
         
-        cell.cellConfigure(weekArray: weekArray(), indexPath: indexPath)
+        let dateTimeZone = Date().localDate()
+        let weekArray = dateTimeZone.getWeekArray()
+        cell.cellConfigure(numberOfDay: weekArray[1][indexPath.item], dayOfWeek: weekArray[0][indexPath.item])
         
         if indexPath.item == 6 {
             collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .right)

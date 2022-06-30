@@ -20,7 +20,7 @@ class CalendarCollectionViewCell: UICollectionViewCell {
     }
     
     
-    private let dayOfWeek: UILabel = {
+    private let dayOfWeekLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "We"
@@ -47,27 +47,27 @@ class CalendarCollectionViewCell: UICollectionViewCell {
             if self.isSelected{
                 backgroundColor = .specialYellow
                 layer.cornerRadius = 10
-                dayOfWeek.textColor = .specialBlack
+                dayOfWeekLabel.textColor = .specialBlack
                 numberOfDayLabel.textColor = .specialDarkGreen
                 
             } else {
                 backgroundColor = .speciakGreen
-                dayOfWeek.textColor = .white
+                dayOfWeekLabel.textColor = .white
                 numberOfDayLabel.textColor = .white
             }
         }
     }
     
-     func cellConfigure(weekArray:[[String]], indexPath: IndexPath) {
-        numberOfDayLabel.text = weekArray[1][indexPath.item]
-        dayOfWeek.text = weekArray[0][indexPath.item]
+    func cellConfigure(numberOfDay: String, dayOfWeek: String) {
+        numberOfDayLabel.text = numberOfDay
+        dayOfWeekLabel.text = dayOfWeek
     }
  }
 
 //MARK: -  Setup Views
 extension CalendarCollectionViewCell {
     private func setupViews() {
-        addSubview(dayOfWeek)
+        addSubview(dayOfWeekLabel)
         addSubview(numberOfDayLabel)
         
     }
@@ -78,8 +78,8 @@ extension CalendarCollectionViewCell {
     
     private func setConstraints() {
         NSLayoutConstraint.activate([
-            dayOfWeek.centerXAnchor.constraint(equalTo: centerXAnchor),
-            dayOfWeek.topAnchor.constraint(equalTo: topAnchor, constant: 7)
+            dayOfWeekLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
+            dayOfWeekLabel.topAnchor.constraint(equalTo: topAnchor, constant: 7)
         ])
         
         NSLayoutConstraint.activate([

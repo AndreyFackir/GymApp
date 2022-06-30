@@ -43,6 +43,8 @@ class StatisticViewController: UITabBarController {
         let element = UITableView()
         element.translatesAutoresizingMaskIntoConstraints = false
         element.backgroundColor = .specialbackground
+        element.bounces = false
+        element.showsVerticalScrollIndicator = false
         return element
     }()
     
@@ -120,7 +122,7 @@ extension StatisticViewController {
         ])
         
         NSLayoutConstraint.activate([
-            tableWithParametrs.topAnchor.constraint(equalTo: exerciseLabel.bottomAnchor, constant: 10),
+            tableWithParametrs.topAnchor.constraint(equalTo: exerciseLabel.bottomAnchor, constant: 0),
             tableWithParametrs.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
             tableWithParametrs.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
             tableWithParametrs.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0)

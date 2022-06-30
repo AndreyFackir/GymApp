@@ -129,9 +129,18 @@ class NewWorkoutViewController: UIViewController {
         let tapScreen = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
         tapScreen.cancelsTouchesInView = false
         view.addGestureRecognizer(tapScreen)
+        
+        //cкрываем клаву еслси двигаем слайдером
+        let swipeScreen = UISwipeGestureRecognizer(target: self, action: #selector(swipeHideKeyboard))
+        swipeScreen.cancelsTouchesInView = false
+        view.addGestureRecognizer(swipeScreen)
     }
     
     @objc private func hideKeyboard(){
+        view.endEditing(true)
+    }
+    
+    @objc private func swipeHideKeyboard(){
         view.endEditing(true)
     }
     
@@ -142,12 +151,12 @@ class NewWorkoutViewController: UIViewController {
         workoutModel.workoutName = nameWorkout
         
         //берем дату
-        workoutModel.workoutDate = dateAndRepeatView.datePicker.date
+        workoutModel.workoutDate = dateAndRepeatView.datePicker.date.localDate() //localDate создали в экстеншн - показывает текуще время и дату
         // берем день недели
-        let calendar = Calendar.current
-        let components = calendar.dateComponents([.weekday], from: dateAndRepeatView.datePicker.date)
-        guard let weekday = components.weekday else { return }
-        workoutModel.workoutNumberOfDay = weekday
+//        let calendar = Calendar.current
+//        let components = calendar.dateComponents([.weekday], from: dateAndRepeatView.datePicker.date)
+//        guard let weekday = components.weekday else { return }
+        workoutModel.workoutNumberOfDay = dateAndRepeatView.datePicker.date.getWeekDayNumber() //взяли дату и получаем номер дня недели (getWeekDayNumber)
         
         //берем положение свитча
         workoutModel.workoutRepeats = dateAndRepeatView.switcherRepeat.isOn
