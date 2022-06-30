@@ -42,7 +42,7 @@ class StatisticViewController: UITabBarController {
     private let tableWithParametrs: UITableView = {
         let element = UITableView()
         element.translatesAutoresizingMaskIntoConstraints = false
-        element.backgroundColor = .red
+        element.backgroundColor = .specialbackground
         return element
     }()
     
@@ -82,7 +82,7 @@ extension StatisticViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: idStatisticTableViewCell, for: indexPath) as! StatisticTableViewCell
-        cell.backgroundColor = .speciakGreen
+        
         return cell
     }
     
@@ -94,7 +94,7 @@ extension StatisticViewController: UITableViewDataSource {
 extension StatisticViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        100
+        60
     }
     
 }

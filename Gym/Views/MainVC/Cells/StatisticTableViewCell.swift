@@ -19,7 +19,26 @@ class StatisticTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    private let exercizeNameLabel: UILabel = {
+        let element = UILabel()
+        element.translatesAutoresizingMaskIntoConstraints = false
+        element.text = "Biceps"
+        element.font = .robotoMedium18
+        return element
+    }()
     
+    private let beforeLabel = UILabel(text: "Before: 18")
+    private let nowLabel = UILabel(text: "Now: 20")
+    private var beforeNowStackView = UIStackView()
+    
+    private let diffValueLabel: UILabel = {
+        let element = UILabel()
+        element.translatesAutoresizingMaskIntoConstraints = false
+        element.text = "+2"
+        element.textColor = .speciakGreen
+        element.font = .robotoMedium18
+        return element
+    }()
 
 }
 
@@ -28,15 +47,34 @@ class StatisticTableViewCell: UITableViewCell {
 extension StatisticTableViewCell {
     
     private func setupViews() {
-        
         backgroundColor = .clear
         selectionStyle = .none
+        addSubview(exercizeNameLabel)
+        beforeNowStackView = UIStackView(arrangeSubviews: [beforeLabel, nowLabel], axis: .horizontal, spacing: 10)
+        addSubview(beforeNowStackView)
+        addSubview(diffValueLabel)
     }
 }
 
 //MARK: - setConstraints
 extension StatisticTableViewCell {
     private func setConstraints() {
+        NSLayoutConstraint.activate([
+            exercizeNameLabel.topAnchor.constraint(equalTo: topAnchor, constant: 10),
+            exercizeNameLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 25),
+            exercizeNameLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -25)
+        ])
         
+        NSLayoutConstraint.activate([
+            beforeNowStackView.topAnchor.constraint(equalTo: exercizeNameLabel.bottomAnchor, constant: 5),
+            beforeNowStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 25),
+            
+        ])
+        
+        NSLayoutConstraint.activate([
+            diffValueLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
+            diffValueLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -25)
+            
+        ])
     }
 }
