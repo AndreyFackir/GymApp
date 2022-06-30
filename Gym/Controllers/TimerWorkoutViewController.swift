@@ -44,6 +44,7 @@ class TimerWorkoutViewController: UIViewController {
     
     @objc func closeButtonTapped() {
         dismiss(animated: true, completion: nil)
+        timer.invalidate()
     }
     
     private let timerImage: UIImageView = {
@@ -88,12 +89,14 @@ class TimerWorkoutViewController: UIViewController {
                 }
             }
             
+            timer.invalidate()
         })
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
     
-    private var setNumber = 1
+    private var setNumber = 0
+    
     private func setParameters() {
         timerWorkoutView.valueOfSetsLabel.text = "\(setNumber)/\(workoutModel.workoutSets)"
         
@@ -103,8 +106,10 @@ class TimerWorkoutViewController: UIViewController {
         }(workoutModel.workoutTimer)
         
         timerWorkoutView.valueOfTimerLabel.text = "\(min) min \(sec) sec"
-        timerLabel.text = "\(min):\(sec)"
+        timerLabel.text = "\(min):\(sec.setZeroToSeconds())"
         timerWorkoutView.exercizeNameLabel.text = workoutModel.workoutName
+        
+        durationTimer = workoutModel.workoutTimer
         
     }
     
@@ -121,10 +126,18 @@ class TimerWorkoutViewController: UIViewController {
     
     @objc private func startTimer() {
         
-        //запуск анимации
-        basicAnimation()
+        timerWorkoutView.editingButton.isEnabled = false
+        timerWorkoutView.nextSetButton.isEnabled = false
         
-        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(timerAction), userInfo: nil, repeats: true)
+        if setNumber == workoutModel.workoutSets {
+            alertOK(title: "Error", message: "Finish ypur work")
+        } else {
+            //запуск анимации
+            basicAnimation()
+            
+            timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(timerAction), userInfo: nil, repeats: true)
+        }
+        
     }
     
     @objc private func timerAction() {
@@ -135,7 +148,20 @@ class TimerWorkoutViewController: UIViewController {
         if durationTimer == 0 {
             print(durationTimer)
             timer.invalidate()
+            durationTimer = workoutModel.workoutTimer
+            
+            setNumber += 1
+            timerWorkoutView.valueOfSetsLabel.text = "\(setNumber)/\(workoutModel.workoutSets)"
+            
+            timerWorkoutView.editingButton.isEnabled = true
+            timerWorkoutView.nextSetButton.isEnabled = true
         }
+        
+        let (min, sec) = {(sec: Int) -> (Int, Int) in
+            
+            return (sec / 60, sec % 60)
+        }(durationTimer)
+        timerLabel.text = "\(min):\(sec.setZeroToSeconds())"
     }
     
     //работа с анимацией

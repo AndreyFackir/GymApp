@@ -10,7 +10,7 @@ import UIKit
 class TimerWorkoutView: UIView {
     
     weak var nextSetDelegate: NextSetProtocol?
-
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupViews()
@@ -24,13 +24,13 @@ class TimerWorkoutView: UIView {
     
     
     let exercizeNameLabel: UILabel = {
-       let label = UILabel()
-       label.translatesAutoresizingMaskIntoConstraints = false
-       label.text = "Squats"
-       label.textColor = .specialBlack
-       label.font = .robotoMedium24
-       return label
-   }()
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "Squats"
+        label.textColor = .specialBlack
+        label.font = .robotoMedium24
+        return label
+    }()
     
     private let setsLabel:UILabel = {
         let label = UILabel()
@@ -86,7 +86,7 @@ class TimerWorkoutView: UIView {
         return line
     }()
     
-    private lazy var editingButton: UIButton = {
+    lazy var editingButton: UIButton = {
         
         var configuration = UIButton.Configuration.plain()
         configuration.image = UIImage(systemName: "pencil")
@@ -101,21 +101,21 @@ class TimerWorkoutView: UIView {
         
         let button = UIButton(configuration: configuration, primaryAction: UIAction() {_ in
             print("editingButtonTapped")
-         })
+        })
         
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
     
     
-    private lazy var nextSetButton: UIButton = {
+    lazy var nextSetButton: UIButton = {
         
         var configuration  = UIButton.Configuration.filled()
         configuration.baseForegroundColor = .specialBlack
         configuration.baseBackgroundColor = .specialYellow
         configuration.contentInsets = .zero
         configuration.cornerStyle = .large
-    
+        
         var text = AttributeContainer()
         text.font = .robotoMedium18
         configuration.attributedTitle = AttributedString("Next Set", attributes: text)
@@ -123,7 +123,7 @@ class TimerWorkoutView: UIView {
         let button = UIButton(configuration: configuration, primaryAction: UIAction() { [self]_ in
             print("nextSetButtonTapped")
             nextSetDelegate?.nextSetTapped()
-         })
+        })
         
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
@@ -198,6 +198,6 @@ extension TimerWorkoutView {
             nextSetButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 15),
             nextSetButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -15),
             nextSetButton.heightAnchor.constraint(equalToConstant: 40)
-         ])
+        ])
     }
 }
