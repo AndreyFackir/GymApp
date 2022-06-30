@@ -36,8 +36,30 @@ class CustomAlert {
         backgroundView.frame = parentView.frame
         parentView.addSubview(backgroundView)
         
-        alertView.frame = CGRect(x: 40, y: -420, width: parentView.frame.width - 80, height: 420)
+        alertView.frame = CGRect(x: 40,
+                                 y: -420,
+                                 width: parentView.frame.width - 80,
+                                 height: 420)
+        
         parentView.addSubview(alertView)
+        
+        let sportsmnaImageView = UIImageView(frame: CGRect(x: (alertView.frame.width - alertView.frame.height * 0.4) / 2,
+                                                           y: 30,
+                                                           width: alertView.frame.height * 0.4,
+                                                           height: alertView.frame.height * 0.4))
+        sportsmnaImageView.image = UIImage(named: "Girl")
+        sportsmnaImageView.contentMode = .scaleAspectFit
+        alertView.addSubview(sportsmnaImageView)
+        
+        let editingLabel = UILabel(frame: CGRect(x: 10,
+                                                 y: alertView.frame.height * 0.4 + 50,
+                                                 width: alertView.frame.width - 20,
+                                                 height: 25))
+        editingLabel.text = "Editing"
+        editingLabel.font = .robotoMedium24
+        editingLabel.textAlignment = .center
+        alertView.addSubview(editingLabel)
+        
         
         UIView.animate(withDuration: 0.3) {
             self.backgroundView.alpha = 0.8
