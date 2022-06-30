@@ -109,6 +109,10 @@ class TimerWorkoutViewController: UIViewController {
 
 //MARK: - NextSetProtocol
 extension TimerWorkoutViewController: NextSetProtocol {
+    func editingTapped() {
+        print("3")
+    }
+    
     func nextSetTapped() {
         if setNumber < workoutModel.workoutSets {
             setNumber += 1

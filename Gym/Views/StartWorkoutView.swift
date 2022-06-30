@@ -10,6 +10,7 @@ import UIKit
 // 1 - создаем протокол
 protocol NextSetProtocol: AnyObject {
     func nextSetTapped()
+    func editingTapped()
 }
 
 class StartWorkoutView: UIView {
@@ -105,7 +106,7 @@ class StartWorkoutView: UIView {
         
         let button = UIButton(configuration: configuration, primaryAction: UIAction() {_ in
             print("editingButtonTapped")
-          
+            self.cellNextSetDelegate?.editingTapped()
            
         })
         button.translatesAutoresizingMaskIntoConstraints = false

@@ -146,26 +146,46 @@ extension CalendarView: UICollectionViewDataSource {
 extension CalendarView: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print("collection View tapped")
+//
+//
+//        // по нажатию на ячейку будет выбрана дата и обновиться тейблвью на эту дату
+//        let calendar = Calendar.current
+//        let formatter = DateFormatter()
+//        formatter.timeZone = TimeZone(abbreviation: "UTC")
+//        formatter.dateFormat = "yyyy/MM/dd HH:mm"
+//
+//        let components = calendar.dateComponents([.month, .year], from: Date())
+//        guard let month = components.month else { return }
+//        guard let year = components.year else { return }
+//
+//        //обращаеемся к ячейке
+//        guard  let cell = collectionView.cellForItem(at: indexPath) as? CalendarCollectionViewCell else { return }
+//        guard let numberOfDayString = cell.numberOfDayLabel.text else { return }
+//        guard let numberOfDay = Int(numberOfDayString) else { return }
+//
+//        guard let date = formatter.date(from: "\(year)/\(month)/\(numberOfDay) 00:00") else {return}
         
+       //cellCollectionViewDelegate?.selectIem(date: date)
         
-        // по нажатию на ячейку будет выбрана дата и обновиться тейблвью на эту дату
-        let calendar = Calendar.current
-        let formatter = DateFormatter()
-        formatter.timeZone = TimeZone(abbreviation: "UTC")
-        formatter.dateFormat = "yyyy/MM/dd HH:mm"
+        let dateTimeZone = Date().localDate()
         
-        let components = calendar.dateComponents([.month, .year], from: Date())
-        guard let month = components.month else { return }
-        guard let year = components.year else { return }
-        
-        //обращаеемся к ячейке
-        guard  let cell = collectionView.cellForItem(at: indexPath) as? CalendarCollectionViewCell else { return }
-        guard let numberOfDayString = cell.numberOfDayLabel.text else { return }
-        guard let numberOfDay = Int(numberOfDayString) else { return }
-        
-        guard let date = formatter.date(from: "\(year)/\(month)/\(numberOfDay) 00:00") else {return}
-        
-        cellCollectionViewDelegate?.selectIem(date: date)
+        switch indexPath.item {
+        case 0:
+            cellCollectionViewDelegate?.selectIem(date: dateTimeZone.offsetDays(days: 6))
+        case 1:
+            cellCollectionViewDelegate?.selectIem(date: dateTimeZone.offsetDays(days: 5))
+        case 2:
+            cellCollectionViewDelegate?.selectIem(date: dateTimeZone.offsetDays(days: 4))
+        case 3:
+            cellCollectionViewDelegate?.selectIem(date: dateTimeZone.offsetDays(days: 3))
+        case 4:
+            cellCollectionViewDelegate?.selectIem(date: dateTimeZone.offsetDays(days: 2))
+        case 5:
+            cellCollectionViewDelegate?.selectIem(date: dateTimeZone.offsetDays(days: 1))
+        default:
+            cellCollectionViewDelegate?.selectIem(date: dateTimeZone.offsetDays(days: 0))
+
+        }
         
     }
 }
