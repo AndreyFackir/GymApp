@@ -20,6 +20,11 @@ class TimerWorkoutViewController: UIViewController {
         addaps()
     }
     
+    //вызываем анимацию здесь так как мы используем половину ширины и высоты
+    override func viewDidLayoutSubviews() {
+        animationCircle()
+    }
+    
     private let startWorkoutLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -115,6 +120,10 @@ class TimerWorkoutViewController: UIViewController {
     }
     
     @objc private func startTimer() {
+        
+        //запуск анимации
+        basicAnimation()
+        
         timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(timerAction), userInfo: nil, repeats: true)
     }
     
@@ -129,9 +138,50 @@ class TimerWorkoutViewController: UIViewController {
         }
     }
     
+    //работа с анимацией
+    let shapeLayer = CAShapeLayer()
+    
+    
+   
 }
 
-
+//MARK: - Animation
+extension TimerWorkoutViewController {
+    
+    private func animationCircle() { //отрисовка круга
+        
+        //получаем центр
+        let center = CGPoint(x: timerImage.frame.width / 2, y: timerImage.frame.height / 2)
+        
+        //конец линии
+        let endAngle = (-CGFloat.pi / 2)
+        //начало
+        let startAngle = 2 * CGFloat.pi + endAngle
+        
+        //создаем безье паз
+        let circeularPath = UIBezierPath(arcCenter: center, radius: 113, startAngle: startAngle, endAngle: endAngle, clockwise: false)
+        
+        shapeLayer.path = circeularPath.cgPath
+        shapeLayer.lineWidth = 21
+        shapeLayer.fillColor = UIColor.clear.cgColor
+        shapeLayer.strokeEnd = 1 //идет к конечной точке
+        shapeLayer.lineCap = .round //край линии закругленный
+        shapeLayer.strokeColor = UIColor.speciakGreen.cgColor
+        
+        timerImage.layer.addSublayer(shapeLayer)
+    }
+    
+    private func basicAnimation() {
+        
+        let basicAnimation = CABasicAnimation(keyPath: "strokeEnd")
+        basicAnimation.toValue = 0 // если 0, то анимация проходит один в один, если напрмер 0,5 то таймер будет на нуле а анимация бдует наполовине
+        basicAnimation.duration = CFTimeInterval(durationTimer)
+        basicAnimation.fillMode = .forwards
+        basicAnimation.isRemovedOnCompletion = true
+        
+        shapeLayer.add(basicAnimation, forKey: "basicAnimation")
+    }
+}
 
 
 //MARK: - NextSetProtocol
