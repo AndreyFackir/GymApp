@@ -54,7 +54,7 @@ class CalendarView: UIView {
     
     private func setupViews() {
         
-        backgroundColor = .speciakGreen
+        backgroundColor = .specialGreen
         layer.cornerRadius = 10
         translatesAutoresizingMaskIntoConstraints = false
         addSubview(collectionView)
@@ -133,7 +133,7 @@ extension CalendarView: UICollectionViewDataSource {
             collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .right)
         }
         
-        cell.backgroundColor = .speciakGreen
+        cell.backgroundColor = .specialGreen
         
         return cell
     }

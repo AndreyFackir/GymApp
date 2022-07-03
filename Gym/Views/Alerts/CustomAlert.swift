@@ -128,7 +128,7 @@ class CustomAlert {
                                               y: repsTextField.frame.maxY + 15,
                                               width: alertView.frame.width - 100,
                                               height: 35))
-        okButton.backgroundColor = .speciakGreen
+        okButton.backgroundColor = .specialGreen
         okButton.setTitle("OK", for: .normal)
         okButton.titleLabel?.textColor = .white
         okButton.titleLabel?.font = .robotoMedium18

@@ -43,7 +43,7 @@ class RepsOrTimerView: UIView {
         slider.minimumValue = 0
         slider.maximumValue = 20
         slider.isContinuous = true
-        slider.tintColor = .speciakGreen
+        slider.tintColor = .specialGreen
         slider.value = 0
         slider.addTarget(self, action: #selector(setSliderValuseChanged), for: .valueChanged)
         return slider
@@ -88,7 +88,7 @@ class RepsOrTimerView: UIView {
         slider.minimumValue = 0
         slider.maximumValue = 20
         slider.isContinuous = true
-        slider.tintColor = .speciakGreen
+        slider.tintColor = .specialGreen
         slider.value = 0
         slider.addTarget(self, action: #selector(repsSliderValuseChanged), for: .valueChanged)
         return slider
@@ -126,7 +126,7 @@ class RepsOrTimerView: UIView {
         slider.minimumValue = 0
         slider.maximumValue = 3599
         slider.isContinuous = true
-        slider.tintColor = .speciakGreen
+        slider.tintColor = .specialGreen
         slider.value = 0
         slider.addTarget(self, action: #selector(timerSliderValuseChanged), for: .valueChanged)
         return slider

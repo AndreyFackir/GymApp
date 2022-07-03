@@ -41,7 +41,7 @@ class ProfileViewController: UITabBarController {
     private let nameView: UIView = {
         let element = UIView()
         element.translatesAutoresizingMaskIntoConstraints = false
-        element.backgroundColor = .speciakGreen
+        element.backgroundColor = .specialGreen
         element.layer.cornerRadius = 10
         return element
     }()
@@ -55,6 +55,47 @@ class ProfileViewController: UITabBarController {
         return element
     }()
     
+    private let heighLabel: UILabel = {
+        let element = UILabel()
+        element.translatesAutoresizingMaskIntoConstraints = false
+        element.text = "Height: 181"
+        element.textColor = .specialBlack
+        element.font = .robotoMedium14
+        return element
+    }()
+    
+    private let weightLabel: UILabel = {
+        let element = UILabel()
+        element.translatesAutoresizingMaskIntoConstraints = false
+        element.text = "Weight: 92"
+        element.textColor = .specialBlack
+        element.font = .robotoMedium14
+        return element
+    }()
+    
+    private lazy var editingButton: UIButton = {
+        
+        var configuration = UIButton.Configuration.plain()
+        configuration.image = UIImage(systemName: "pencil")
+        configuration.imagePlacement = .trailing
+        configuration.imagePadding = 5
+        configuration.baseForegroundColor = .specialGreen
+        configuration.contentInsets = .zero
+        
+        var text = AttributeContainer()
+        text.font = .robotoMedium14
+        configuration.attributedTitle = AttributedString("Editing", attributes: text)
+        
+        let button = UIButton(configuration: configuration, primaryAction: UIAction() {_ in
+            print("editingButtonTapped")
+        })
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+    
+    private var heightWeightStack = UIStackView()
+    
+    
     
 }
 
@@ -66,6 +107,10 @@ extension ProfileViewController {
         view.addSubview(nameView)
         view.addSubview(profilePhotoImageView)
         nameView.addSubview(nameLabel)
+        view.addSubview(heighLabel)
+        heightWeightStack = UIStackView(arrangeSubviews: [heighLabel, weightLabel], axis: .horizontal, spacing: 10)
+        view.addSubview(heightWeightStack)
+        view.addSubview(editingButton)
        
     }
 }
@@ -96,5 +141,17 @@ extension ProfileViewController {
             nameLabel.centerXAnchor.constraint(equalTo: nameView.centerXAnchor),
             nameLabel.bottomAnchor.constraint(equalTo: nameView.bottomAnchor, constant: -15)
         ])
+        
+        
+        NSLayoutConstraint.activate([
+            heightWeightStack.topAnchor.constraint(equalTo: nameView.bottomAnchor, constant: 10),
+            heightWeightStack.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20)
+        ])
+        
+        NSLayoutConstraint.activate([
+            editingButton.topAnchor.constraint(equalTo: nameView.bottomAnchor, constant: 10),
+            editingButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20)
+        ])
+       
     }
 }

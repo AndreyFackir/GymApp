@@ -192,7 +192,7 @@ extension TimerWorkoutViewController {
         shapeLayer.fillColor = UIColor.clear.cgColor
         shapeLayer.strokeEnd = 1 //идет к конечной точке
         shapeLayer.lineCap = .round //край линии закругленный
-        shapeLayer.strokeColor = UIColor.speciakGreen.cgColor
+        shapeLayer.strokeColor = UIColor.specialGreen.cgColor
         
         timerImage.layer.addSublayer(shapeLayer)
     }

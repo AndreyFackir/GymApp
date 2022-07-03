@@ -35,7 +35,7 @@ class StatisticTableViewCell: UITableViewCell {
         let element = UILabel()
         element.translatesAutoresizingMaskIntoConstraints = false
         element.text = "+2"
-        element.textColor = .speciakGreen
+        element.textColor = .specialGreen
         element.font = .robotoMedium18
         return element
     }()

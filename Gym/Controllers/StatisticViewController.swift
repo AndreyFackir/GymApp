@@ -33,7 +33,7 @@ class StatisticViewController: UITabBarController {
         element.translatesAutoresizingMaskIntoConstraints = false
         element.selectedSegmentTintColor = .specialYellow
         element.selectedSegmentIndex = 0
-        element.backgroundColor = .speciakGreen
+        element.backgroundColor = .specialGreen
         return element
     }()
     

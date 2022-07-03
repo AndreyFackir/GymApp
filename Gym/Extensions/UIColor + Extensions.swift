@@ -11,7 +11,7 @@ extension UIColor {
     
     static let specialbackground = UIColor(red: 255/255, green: 254/255, blue: 234/255, alpha: 1.0)
     static let specialGray = UIColor(red: 81/255, green: 81/255, blue: 80/255, alpha: 1.0)
-    static let speciakGreen = UIColor(red: 0/255, green: 150/255, blue: 117/255, alpha: 1.0)
+    static let specialGreen = UIColor(red: 0/255, green: 150/255, blue: 117/255, alpha: 1.0)
     static let specialDarkGreen = UIColor(red: 0/255, green: 91/255, blue: 67/255, alpha: 1)
     static let specialYellow = systemYellow
     static let specilaLightBrown = UIColor(red: 200/255, green: 196/255, blue: 184/255, alpha: 1.0)

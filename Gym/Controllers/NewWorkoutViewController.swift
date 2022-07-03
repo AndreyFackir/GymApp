@@ -105,7 +105,7 @@ class NewWorkoutViewController: UIViewController {
         button.titleLabel?.font = .robotoMedium18
         button.tintColor = .white
         button.addTarget(self, action: #selector(saveButtonPressed), for: .touchUpInside)
-        button.backgroundColor = .speciakGreen
+        button.backgroundColor = .specialGreen
         button.layer.cornerRadius = 10
         return button
     }()

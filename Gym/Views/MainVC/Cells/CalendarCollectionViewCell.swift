@@ -51,7 +51,7 @@ class CalendarCollectionViewCell: UICollectionViewCell {
                 numberOfDayLabel.textColor = .specialDarkGreen
                 
             } else {
-                backgroundColor = .speciakGreen
+                backgroundColor = .specialGreen
                 dayOfWeekLabel.textColor = .white
                 numberOfDayLabel.textColor = .white
             }
