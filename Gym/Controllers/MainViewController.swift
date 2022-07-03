@@ -69,7 +69,6 @@ class MainViewController: UIViewController {
         tableView.separatorStyle = .none
         //убираем индикатор прокрутки
         tableView.showsVerticalScrollIndicator = false
-        tableView.isHidden = false
         return tableView
     }()
     
@@ -78,7 +77,6 @@ class MainViewController: UIViewController {
         image.image = UIImage(named: "Frame 1")
         image.contentMode = .scaleAspectFit
         image.translatesAutoresizingMaskIntoConstraints = false
-        image.isHidden = true
         return image
     }()
     
