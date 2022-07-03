@@ -19,19 +19,63 @@ class ProfileCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    private let exerciseCellName: UILabel = {
+        let element = UILabel()
+        element.translatesAutoresizingMaskIntoConstraints = false
+        element.text = "TRICEPS"
+        element.textColor = .white
+        element.font = .robotoMedium18
+        return element
+    }()
+    
+    private let exerciseCellImage: UIImageView = {
+        let element = UIImageView()
+        element.translatesAutoresizingMaskIntoConstraints = false
+        element.image = UIImage(named: "Bell")
+        element.tintColor = .white
+        return element
+    }()
+    
+    private let exersiceCellValue: UILabel = {
+        let element = UILabel()
+        element.translatesAutoresizingMaskIntoConstraints = false
+        element.text = "240"
+        element.textColor = .white
+        element.font = .robotoBold40
+        return element
+    }()
     
 }
 
 //MARK: - Setup Views
 extension ProfileCollectionViewCell {
     private func setupViews() {
-        backgroundColor = .specialGreen
+//        backgroundColor = .specialGreen
         layer.cornerRadius = 20
+        addSubview(exerciseCellName)
+        addSubview(exerciseCellImage)
+        addSubview(exersiceCellValue)
     }
 }
 
 extension ProfileCollectionViewCell {
     private func setConstraints() {
+        NSLayoutConstraint.activate([
+            exerciseCellName.topAnchor.constraint(equalTo: topAnchor, constant: 5),
+            exerciseCellName.centerXAnchor.constraint(equalTo: centerXAnchor)
+        ])
+        
+        NSLayoutConstraint.activate([
+            exerciseCellImage.topAnchor.constraint(equalTo: exerciseCellName.bottomAnchor, constant: 5),
+            exerciseCellImage.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
+            exerciseCellImage.widthAnchor.constraint(equalToConstant: 60),
+            exerciseCellImage.heightAnchor.constraint(equalToConstant: 60)
+        ])
+        
+        NSLayoutConstraint.activate([
+            exersiceCellValue.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10),
+            exersiceCellValue.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10)
+        ])
         
     }
 }

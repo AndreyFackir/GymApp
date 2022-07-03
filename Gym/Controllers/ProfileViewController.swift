@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 class ProfileViewController: UITabBarController {
     
@@ -15,6 +16,7 @@ class ProfileViewController: UITabBarController {
         setConstraints()
         setDelegates()
         exersizeCollectionView.register(ProfileCollectionViewCell.self, forCellWithReuseIdentifier: profileCollectionViewCell)
+        
     }
     
     
@@ -108,7 +110,43 @@ class ProfileViewController: UITabBarController {
     
     private let profileCollectionViewCell = "profileCollectionViewCell"
     
+    private let targetLabel: UILabel = {
+        let element = UILabel()
+        element.translatesAutoresizingMaskIntoConstraints = false
+        element.text = "Target: 20 workouts"
+        element.textColor = .specialBlack
+        element.font = .robotoBold16
+        return element
+    }()
     
+    private let startProgressLabel: UILabel = {
+        let element = UILabel()
+        element.translatesAutoresizingMaskIntoConstraints = false
+        element.textColor = .specialBlack
+        element.text = "0"
+        element.font = .robotoMedium18
+        return element
+    }()
+    
+    private let endProgressLabel: UILabel = {
+        let element = UILabel()
+        element.translatesAutoresizingMaskIntoConstraints = false
+        element.textColor = .specialBlack
+        element.text = "20"
+        element.font = .robotoMedium18
+        return element
+    }()
+    
+    private var starEndStackView = UIStackView()
+    
+    private let progressBar: UIProgressView = {
+        let element = UIProgressView()
+        element.translatesAutoresizingMaskIntoConstraints = false
+        element.progressTintColor = .specialGreen
+        element.layer.cornerRadius = 5
+        element.setProgress(0.5, animated: false)
+        return element
+    }()
     
 }
 
@@ -125,6 +163,8 @@ extension ProfileViewController: UICollectionViewDataSource {
         
         
         cell.backgroundColor = .specialGreen
+        
+        
         return cell
     }
     
@@ -173,9 +213,10 @@ extension ProfileViewController {
         view.addSubview(heightWeightStack)
         view.addSubview(editingButton)
         view.addSubview(exersizeCollectionView)
-        
-       
-       
+        view.addSubview(targetLabel)
+        view.addSubview(progressBar)
+        starEndStackView = UIStackView(arrangeSubviews: [startProgressLabel, endProgressLabel], axis: .horizontal, spacing: 10)
+        view.addSubview(starEndStackView)
     }
 }
 
@@ -222,8 +263,26 @@ extension ProfileViewController {
             exersizeCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             exersizeCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             exersizeCollectionView.widthAnchor.constraint(equalToConstant: 300),
-            exersizeCollectionView.heightAnchor.constraint(equalToConstant: 300)
+            exersizeCollectionView.heightAnchor.constraint(equalToConstant: 220)
         ])
        
+        NSLayoutConstraint.activate([
+            targetLabel.topAnchor.constraint(equalTo: exersizeCollectionView.bottomAnchor, constant: 10),
+            targetLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20)
+        ])
+        
+        NSLayoutConstraint.activate([
+            starEndStackView.topAnchor.constraint(equalTo: targetLabel.bottomAnchor, constant: 25),
+            starEndStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            starEndStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20)
+        ])
+        
+        
+        NSLayoutConstraint.activate([
+            progressBar.topAnchor.constraint(equalTo: starEndStackView.bottomAnchor, constant: 5),
+            progressBar.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            progressBar.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            progressBar.heightAnchor.constraint(equalToConstant: 15)
+        ])
     }
 }

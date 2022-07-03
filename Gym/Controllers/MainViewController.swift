@@ -172,7 +172,7 @@ class MainViewController: UIViewController {
         getWorkouts(date: Date()) //cегодншная дата
         //не забыть зарегистрировать ячейку!!!!
         tableView.register(WorkoutTableViewCell.self, forCellReuseIdentifier: idWorkoutTableViewCell)
-        
+       
           
     }
       
