@@ -13,6 +13,8 @@ class ProfileViewController: UITabBarController {
         super.viewDidLoad()
         setupViews()
         setConstraints()
+        setDelegates()
+        exersizeCollectionView.register(ProfileCollectionViewCell.self, forCellWithReuseIdentifier: profileCollectionViewCell)
     }
     
     
@@ -95,9 +97,68 @@ class ProfileViewController: UITabBarController {
     
     private var heightWeightStack = UIStackView()
     
+    private let exersizeCollectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.backgroundColor = .none
+        
+        return collectionView
+    }()
+    
+    private let profileCollectionViewCell = "profileCollectionViewCell"
+    
     
     
 }
+
+
+//MARK: - UICollectionViewDataSource
+
+extension ProfileViewController: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        4
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "profileCollectionViewCell", for: indexPath) as! ProfileCollectionViewCell
+        
+        
+        cell.backgroundColor = .specialGreen
+        return cell
+    }
+    
+    
+}
+
+//MARK: - UICollectionViewDelegate
+extension ProfileViewController: UICollectionViewDelegate {
+    
+    
+    
+}
+
+//MARK: - UICollectionViewFlowLayout
+extension ProfileViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+        CGSize(width: 190, height: 100)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        3
+    }
+   
+    
+}
+
+extension ProfileViewController {
+    private func setDelegates() {
+        exersizeCollectionView.delegate = self
+        exersizeCollectionView.dataSource = self
+    }
+}
+
 
 //MARK: - Setup Views
 extension ProfileViewController {
@@ -111,6 +172,9 @@ extension ProfileViewController {
         heightWeightStack = UIStackView(arrangeSubviews: [heighLabel, weightLabel], axis: .horizontal, spacing: 10)
         view.addSubview(heightWeightStack)
         view.addSubview(editingButton)
+        view.addSubview(exersizeCollectionView)
+        
+       
        
     }
 }
@@ -151,6 +215,14 @@ extension ProfileViewController {
         NSLayoutConstraint.activate([
             editingButton.topAnchor.constraint(equalTo: nameView.bottomAnchor, constant: 10),
             editingButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20)
+        ])
+        
+        NSLayoutConstraint.activate([
+            exersizeCollectionView.topAnchor.constraint(equalTo: nameView.bottomAnchor, constant: 50),
+            exersizeCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            exersizeCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            exersizeCollectionView.widthAnchor.constraint(equalToConstant: 300),
+            exersizeCollectionView.heightAnchor.constraint(equalToConstant: 300)
         ])
        
     }
