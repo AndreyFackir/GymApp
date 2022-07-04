@@ -94,7 +94,7 @@ class ProfileViewController: UIViewController {
         let button = UIButton(configuration: configuration, primaryAction: UIAction() {_ in
             print("editingButtonTapped")
             let editingVC = EditingProfileViewController()
-            editingVC.modalPresentationStyle = .fullScreen
+           // editingVC.modalPresentationStyle = .fullScreen
             self.present(editingVC, animated: true, completion: nil)
         })
         button.translatesAutoresizingMaskIntoConstraints = false
