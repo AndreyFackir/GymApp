@@ -7,7 +7,7 @@
 
 import UIKit
 
-class StatisticViewController: UITabBarController {
+class StatisticViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()

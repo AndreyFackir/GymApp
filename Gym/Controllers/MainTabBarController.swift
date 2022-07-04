@@ -24,6 +24,7 @@ class MainTabBarController: UITabBarController {
         //обводка
         tabBar.layer.borderWidth = 1
         tabBar.layer.borderColor = UIColor.specilaLightBrown.cgColor
+        tabBar.isTranslucent = true
         
     }
     

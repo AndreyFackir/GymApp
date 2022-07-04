@@ -8,7 +8,7 @@
 import UIKit
 import RealmSwift
 
-class ProfileViewController: UITabBarController {
+class ProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,6 +18,7 @@ class ProfileViewController: UITabBarController {
         exersizeCollectionView.register(ProfileCollectionViewCell.self, forCellWithReuseIdentifier: profileCollectionViewCell)
         
     }
+    
     
     
     private let profileLabel: UILabel = {
@@ -92,6 +93,9 @@ class ProfileViewController: UITabBarController {
         
         let button = UIButton(configuration: configuration, primaryAction: UIAction() {_ in
             print("editingButtonTapped")
+            let editingVC = EditingProfileViewController()
+            editingVC.modalPresentationStyle = .fullScreen
+            self.present(editingVC, animated: true, completion: nil)
         })
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
@@ -143,8 +147,10 @@ class ProfileViewController: UITabBarController {
         let element = UIProgressView()
         element.translatesAutoresizingMaskIntoConstraints = false
         element.progressTintColor = .specialGreen
-        element.layer.cornerRadius = 5
+        element.layer.cornerRadius = 10
         element.setProgress(0.5, animated: false)
+        element.layer.masksToBounds = true
+
         return element
     }()
     
@@ -162,8 +168,11 @@ extension ProfileViewController: UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "profileCollectionViewCell", for: indexPath) as! ProfileCollectionViewCell
         
         
-        cell.backgroundColor = .specialGreen
         
+        switch indexPath.item {
+        case 1,2: cell.backgroundColor = .specialYellow
+        default: cell.backgroundColor = .specialGreen
+        }
         
         return cell
     }
@@ -282,7 +291,7 @@ extension ProfileViewController {
             progressBar.topAnchor.constraint(equalTo: starEndStackView.bottomAnchor, constant: 5),
             progressBar.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             progressBar.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            progressBar.heightAnchor.constraint(equalToConstant: 15)
+            progressBar.heightAnchor.constraint(equalToConstant: 20)
         ])
     }
 }
