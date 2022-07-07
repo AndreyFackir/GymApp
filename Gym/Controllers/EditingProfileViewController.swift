@@ -43,6 +43,7 @@ class EditingProfileViewController: UIViewController {
     
     override func viewDidLayoutSubviews() {
         profilePhotoButton.layer.cornerRadius = profilePhotoButton.frame.height / 2
+      
     }
            
     private let emptyView: UIView = {
@@ -128,6 +129,7 @@ class EditingProfileViewController: UIViewController {
             print("saveButtonTapped")
             
         })
+        
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()

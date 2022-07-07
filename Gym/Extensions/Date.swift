@@ -38,12 +38,13 @@ extension Date {
         let year = calendar.component(.year, from: self)
         
         let dateStart = formater.date(from: "\(year)/\(month)/\(day)") ?? Date()
+        let local = dateStart.localDate()
         let dateEnd: Date = {
-            let components = DateComponents(day: 1, second: -1)
-            return Calendar.current.date(byAdding: components, to: dateStart) ?? Date()
+            let components = DateComponents(day: 1)
+            return Calendar.current.date(byAdding: components, to: local) ?? Date()
         }()
         
-        return (dateStart, dateEnd)
+        return (local, dateEnd)
         
     }
     
@@ -51,6 +52,11 @@ extension Date {
     func offsetDays(days: Int) -> Date {
         let offsetDate = Calendar.current.date(byAdding: .day, value: -days, to: self) ?? Date()
         return offsetDate
+    }
+    
+    func offsetMonth(month: Int) -> Date {
+        let offsetMonth = Calendar.current.date(byAdding: . month, value: -month, to: self) ?? Date()
+        return offsetMonth
     }
     
     func getWeekArray() -> [[String]] {
@@ -63,15 +69,17 @@ extension Date {
         //создаем массив который бдуем возвращать
         var weekArray:[[String]] = [[],[]]
         let calendar = Calendar.current
-        
+        //calendar.timeZone = TimeZone(abbreviation: "UTC")!
         for index in -6...0 {
             let date = calendar.date(byAdding: .weekday, value: index, to: self) ?? Date()
+            print(date)
             let day = calendar.component(.day, from: date) //получаем число дня из календаря
             
             weekArray[1].append("\(day)")
             
             let weekDay = formatter.string(from: date)
             weekArray[0].append(weekDay) //получаем день недели  из календаря
+            print(day)
         }
         
         return weekArray

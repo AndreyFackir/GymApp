@@ -160,6 +160,7 @@ class MainViewController: UIViewController {
         super.viewWillAppear(animated)
 
         tableView.reloadData()
+        
     }
     
    
