@@ -24,10 +24,30 @@ class RealmManager {
         }
     }
     
+    func saveUserModel(model: UserModel) {
+        try! localRealm.write{
+            localRealm.add(model)
+        }
+    }
+    
     //обновляем статус тренировки( закончена она или нет)
     func updateStatusWorkoutModel(model: WorkoutModel, bool: Bool) {
         try! localRealm.write{
             model.status = bool
+            
+        }
+    }
+    
+    func updateUserModel(model: UserModel) {
+        
+        let user = localRealm.objects(UserModel.self)
+        try! localRealm.write{
+            user[0].userFirstName = model.userFirstName
+            user[0].userLastName = model.userLastName
+            user[0].userHeight = model.userHeight
+            user[0].userWeight = model.userWeight
+            user[0].userImage = model.userImage
+            user[0].userTarget = model.userTarget
             
         }
     }

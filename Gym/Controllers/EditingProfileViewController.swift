@@ -33,7 +33,9 @@ class EditingProfileViewController: UIViewController {
         let imageView = UIImageView()
         imageView.backgroundColor = #colorLiteral(red: 0.7607843137, green: 0.7607843137, blue: 0.7607843137, alpha: 1)
         imageView.layer.borderWidth = 5
-        imageView.image = UIImage(named: "addPhoto")
+        
+        imageView.image = UIImage(systemName: "person.crop.circle.badge.plus")
+       
         imageView.clipsToBounds = true
         imageView.contentMode = .center
         imageView.layer.borderColor = UIColor.white.cgColor
@@ -48,21 +50,11 @@ class EditingProfileViewController: UIViewController {
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    
-
-    
+     
     override func viewDidLayoutSubviews() {
         addPhotoImageView.layer.cornerRadius = addPhotoImageView.frame.height / 2
 
     }
-           
-//    private let emptyView: UIView = {
-//        let element = UIView()
-//        element.translatesAutoresizingMaskIntoConstraints = false
-//        element.backgroundColor = .specialGreen
-//        element.layer.cornerRadius = 10
-//        return element
-//    }()
     
     private let firstNameLabel = UILabel(text: "First name")
     private let firstNameTextField: UITextField = {
@@ -124,6 +116,21 @@ class EditingProfileViewController: UIViewController {
         return element
     }()
     
+    private let targetLabel = UILabel(text: "Target")
+    private let targetTextField: UITextField = {
+        let element = UITextField()
+        element.translatesAutoresizingMaskIntoConstraints = false
+        element.clearButtonMode = .always
+        element.backgroundColor = .specialBrown
+        element.layer.cornerRadius = 10
+        element.font = .robotoBold20
+        element.textColor = .specialGray
+        element.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 15, height: element.frame.height))
+        element.leftViewMode = .always
+        element.returnKeyType = .done
+        return element
+    }()
+    
     private lazy var saveButton: UIButton = {
         var configuration = UIButton.Configuration.filled()
         configuration.cornerStyle = .large
@@ -135,9 +142,19 @@ class EditingProfileViewController: UIViewController {
         configuration.attributedTitle = AttributedString("SAVE", attributes: text)
         
        
-        let button = UIButton(configuration: configuration, primaryAction: UIAction() { _ in
+        let button = UIButton(configuration: configuration, primaryAction: UIAction() {_ in
             
+          
             print("saveButtonTapped")
+            self.setUserModel()
+            
+            if self.userArray.count == 0{
+                RealmManager.shared.saveUserModel(model: self.userModel)
+                self.userModel = UserModel()
+            } else {
+                RealmManager.shared.updateUserModel(model: self.userModel)
+                self.userModel = UserModel()
+            }
             self.dismiss(animated: true)
         })
         
@@ -145,11 +162,27 @@ class EditingProfileViewController: UIViewController {
         return button
     }()
     
+    private func loadUserInfo() {
+        if userArray.count != 0 {
+            firstNameTextField.text = userArray[0].userFirstName
+            secondNameTextField.text = userArray[0].userLastName
+            heightTextField.text = "\(userArray[0].userHeight)"
+            weightTextField.text = "\(userArray[0].userWeight)"
+            targetTextField.text = "\(userArray[0].userTarget)"
+            
+            guard let data = userArray[0].userImage else { return }
+            guard let image = UIImage(data: data) else { return }
+            addPhotoImageView.image = image
+            addPhotoImageView.contentMode = .scaleAspectFit
+        }
+    }
+    
     
     private let localRealm = try! Realm()
     private var userArray: Results<UserModel>!
     private var userModel = UserModel()
     
+        // добавляем метод выбора фото по тапу на аватарку
     private func addTaps() {
         let tapImageView = UITapGestureRecognizer(target: self, action: #selector(setUserPhoto))
         addPhotoImageView.isUserInteractionEnabled = true
@@ -160,6 +193,33 @@ class EditingProfileViewController: UIViewController {
         alertFotoCamera { [weak self] source in
             guard let self = self else { return }
             self.chooseImagePicker(source: source)
+        }
+    }
+    
+    
+    private func setUserModel() {
+        guard let firstName = firstNameTextField.text,
+              let lastName = secondNameTextField.text,
+              let height = heightTextField.text,
+              let weight = weightTextField.text,
+              let target = targetTextField.text else { return }
+        
+        guard let intHeight = Int(height),
+                let intWeight = Int(weight),
+                  let inttarget = Int(target) else { return }
+        
+        userModel.userFirstName = firstName
+        userModel.userLastName = lastName
+        userModel.userHeight = intHeight
+        userModel.userWeight = intWeight
+        userModel.userTarget = inttarget
+        
+        
+        if addPhotoImageView.image == UIImage(systemName: "person.crop.circle.badge.plus"){
+            userModel.userImage = nil
+        } else {
+            guard let imageData = addPhotoImageView.image?.pngData() else { return }
+            userModel.userImage = imageData
         }
     }
     
@@ -181,7 +241,7 @@ extension EditingProfileViewController: UIImagePickerControllerDelegate, UINavig
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        let image = info[.editedImage] as? UIImage
+        let image = info[.editedImage] as? UIImage //получаем имедж из редактируемой картинки
         addPhotoImageView.image = image
         addPhotoImageView.contentMode = .scaleAspectFit
         dismiss(animated: true)
@@ -205,6 +265,8 @@ extension EditingProfileViewController {
         view.addSubview(weightTextField)
         view.addSubview(heightLabel)
         view.addSubview(heightTextField)
+        view.addSubview(targetLabel)
+        view.addSubview(targetTextField)
         view.addSubview(saveButton)
        
     }
@@ -281,7 +343,19 @@ extension EditingProfileViewController {
         ])
         
         NSLayoutConstraint.activate([
-            saveButton.topAnchor.constraint(equalTo: heightTextField.bottomAnchor, constant: 40),
+            targetLabel.topAnchor.constraint(equalTo: heightTextField.bottomAnchor, constant: 20),
+            targetLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 25)
+        ])
+        
+        NSLayoutConstraint.activate([
+            targetTextField.topAnchor.constraint(equalTo: targetLabel.bottomAnchor, constant: 5),
+            targetTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            targetTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            targetTextField.heightAnchor.constraint(equalToConstant: 38)
+        ])
+        
+        NSLayoutConstraint.activate([
+            saveButton.topAnchor.constraint(equalTo: targetTextField.bottomAnchor, constant: 40),
             saveButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             saveButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             saveButton.heightAnchor.constraint(equalToConstant: 60)
