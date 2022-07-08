@@ -9,6 +9,7 @@ import UIKit
 
 class ProfileCollectionViewCell: UICollectionViewCell {
     
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupViews()
@@ -44,6 +45,16 @@ class ProfileCollectionViewCell: UICollectionViewCell {
         element.font = .robotoBold40
         return element
     }()
+    
+     func cellConfigure(model: ResultWorkout) {
+        exerciseCellName.text = model.name
+        exersiceCellValue.text = "\(model.result)"
+        
+        guard let data = model.imageData else { return }
+        let image = UIImage(data: data)
+        exerciseCellImage.image = image
+        
+    }
     
 }
 

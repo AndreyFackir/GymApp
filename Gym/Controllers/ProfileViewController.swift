@@ -8,15 +8,30 @@
 import UIKit
 import RealmSwift
 
+struct ResultWorkout {
+    let name: String
+    let result: Int
+    let imageData: Data?
+}
+
+
 class ProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        userArray = localRealm.objects(UserModel.self)
         setupViews()
         setConstraints()
         setDelegates()
         exersizeCollectionView.register(ProfileCollectionViewCell.self, forCellWithReuseIdentifier: profileCollectionViewCell)
-        
+        getWorkoutResults()
+        setupParameters()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setupParameters()
     }
     
     
@@ -65,7 +80,7 @@ class ProfileViewController: UIViewController {
     private let heighLabel: UILabel = {
         let element = UILabel()
         element.translatesAutoresizingMaskIntoConstraints = false
-        element.text = "Height: 181"
+        element.text = "Height: _"
         element.textColor = .specialBlack
         element.font = .robotoMedium14
         return element
@@ -74,7 +89,7 @@ class ProfileViewController: UIViewController {
     private let weightLabel: UILabel = {
         let element = UILabel()
         element.translatesAutoresizingMaskIntoConstraints = false
-        element.text = "Weight: 92"
+        element.text = "Weight: _"
         element.textColor = .specialBlack
         element.font = .robotoMedium14
         return element
@@ -122,7 +137,7 @@ class ProfileViewController: UIViewController {
     private let targetLabel: UILabel = {
         let element = UILabel()
         element.translatesAutoresizingMaskIntoConstraints = false
-        element.text = "Target: 20 workouts"
+        element.text = "Target: 0 workouts"
         element.textColor = .specialBlack
         element.font = .robotoBold16
         return element
@@ -141,7 +156,7 @@ class ProfileViewController: UIViewController {
         let element = UILabel()
         element.translatesAutoresizingMaskIntoConstraints = false
         element.textColor = .specialBlack
-        element.text = "20"
+        element.text = "0"
         element.font = .robotoMedium18
         return element
     }()
@@ -162,6 +177,61 @@ class ProfileViewController: UIViewController {
         return element
     }()
     
+    private let localRealm = try! Realm()
+    private var workoutArray: Results<WorkoutModel>!
+    private var userArray: Results<UserModel>!
+    
+    
+    private var resultWorkout = [ResultWorkout]()
+    
+    private func getWorkoutsName() -> [String] {
+        var nameArray = [String]()
+        
+        //получаем все записи из бд
+        workoutArray = localRealm.objects(WorkoutModel.self)
+        
+        //перебираем каждую модель и если нет в массиве то  закидываем в массив
+        for workoutModel in workoutArray {
+            if !nameArray.contains(workoutModel.workoutName) {
+                nameArray.append(workoutModel.workoutName)
+            }
+        }
+        return nameArray
+    }
+    
+    private func getWorkoutResults() {
+        let nameArray = getWorkoutsName() //все имена упражнений уникальные
+        
+        for name in nameArray {
+            let predicateName = NSPredicate(format: "workoutName = '\(name)'") //выдираем все упражнения
+            workoutArray = localRealm.objects(WorkoutModel.self).filter(predicateName).sorted(byKeyPath: "workoutName") //сортируем по имени упражнения
+            
+            var results  = 0
+            var image: Data?
+            workoutArray.forEach { model in
+                results += model.workoutReps
+                image = model.workoutImage
+            }
+            let resultModel = ResultWorkout(name: name, result: results, imageData: image)
+            resultWorkout.append(resultModel)
+        }
+        
+    }
+    
+    private func setupParameters() {
+        if userArray.count != 0 {
+            nameLabel.text = userArray[0].userFirstName + userArray[0].userLastName
+            heighLabel.text = "Height: \(userArray[0].userHeight)"
+            weightLabel.text = "Weight: \(userArray[0].userWeight)"
+            targetLabel.text = "Target: \(userArray[0].userTarget) workouts"
+            endProgressLabel.text = "\(userArray[0].userTarget)"
+            
+            guard let data = userArray[0].userImage else { return }
+            guard let image = UIImage(data: data) else { return }
+            profilePhotoImageView.image = image
+        }
+    }
+    
 }
 
 
@@ -169,18 +239,16 @@ class ProfileViewController: UIViewController {
 
 extension ProfileViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-       8
+        resultWorkout.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "profileCollectionViewCell", for: indexPath) as! ProfileCollectionViewCell
         
+        let model = resultWorkout[indexPath.row]
+        cell.cellConfigure(model: model)
         
-        
-        switch indexPath.item {
-        case 1,2: cell.backgroundColor = .specialYellow
-        default: cell.backgroundColor = .specialGreen
-        }
+        cell.backgroundColor = indexPath.row % 4 == 0 || indexPath.row % 4 == 3 ? .specialGreen : .specialYellow
         
         return cell
     }
@@ -205,6 +273,8 @@ extension ProfileViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         3
     }
+    
+   
    
     
 }
