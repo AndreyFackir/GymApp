@@ -36,6 +36,8 @@ class ProfileViewController: UIViewController {
         imageView.layer.borderColor = UIColor.white.cgColor
         imageView.layer.borderWidth = 5
         imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.clipsToBounds = true
+        imageView.contentMode = .scaleAspectFit 
         return imageView
     }()
     
@@ -109,6 +111,8 @@ class ProfileViewController: UIViewController {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.backgroundColor = .none
+        collectionView.bounces = false
+        collectionView.showsHorizontalScrollIndicator = false
       
         return collectionView
     }()
@@ -145,13 +149,16 @@ class ProfileViewController: UIViewController {
     private var starEndStackView = UIStackView()
     
     private let progressBar: UIProgressView = {
-        let element = UIProgressView()
+        let element = UIProgressView(progressViewStyle: .bar)
         element.translatesAutoresizingMaskIntoConstraints = false
         element.progressTintColor = .specialGreen
         element.layer.cornerRadius = 10
+        element.clipsToBounds = true
         element.setProgress(0.5, animated: false)
-        element.layer.masksToBounds = true
-
+        
+        //corner radius у активной полоски
+        element.layer.sublayers?[1].cornerRadius = 10
+        element.subviews[1].clipsToBounds = true
         return element
     }()
     

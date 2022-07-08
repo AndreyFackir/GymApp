@@ -68,8 +68,8 @@ extension Date {
         
         //создаем массив который бдуем возвращать
         var weekArray:[[String]] = [[],[]]
-        let calendar = Calendar.current
-        //calendar.timeZone = TimeZone(abbreviation: "UTC")!
+        var calendar = Calendar.current
+        calendar.timeZone = TimeZone(abbreviation: "UTC")!
         for index in -6...0 {
             let date = calendar.date(byAdding: .weekday, value: index, to: self) ?? Date()
             print(date)

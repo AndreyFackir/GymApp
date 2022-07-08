@@ -39,6 +39,21 @@ class StatisticTableViewCell: UITableViewCell {
         element.font = .robotoMedium18
         return element
     }()
+    
+    func cellConfigure(differenceWorkout: DifferenceWorkout) {
+        exercizeNameLabel.text = differenceWorkout.name
+        beforeLabel.text = "Before: \(differenceWorkout.firstReps)"
+        nowLabel.text = "Now: \(differenceWorkout.lastReps)"
+        
+        let difference = differenceWorkout.lastReps - differenceWorkout.firstReps
+        diffValueLabel.text = "\(difference)"
+        
+        switch difference {
+        case ..<0: diffValueLabel.textColor = .specialGreen
+        case 1...: diffValueLabel.textColor = .specialYellow
+        default: diffValueLabel.textColor = .specialGray
+        }
+    }
 
 }
 

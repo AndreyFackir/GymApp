@@ -30,7 +30,7 @@ class EditingProfileViewController: UIViewController {
         configuration.baseBackgroundColor = UIColor(red: 194/255, green: 194/255, blue: 194/255, alpha: 1.0)
         configuration.cornerStyle = .capsule
         configuration.image = UIImage(systemName: "person.crop.circle.badge.plus")
-       
+        
         let button = UIButton(configuration: configuration, primaryAction: UIAction() {_ in
             print("profilePhotoButtonTapped")
             

@@ -6,8 +6,20 @@
 //
 
 import UIKit
+import RealmSwift
+
+//структура для отображения результатов статистики
+struct DifferenceWorkout {
+    let name: String // название упражнения
+    let lastReps: Int
+    let firstReps: Int
+    // add timer
+}
+
 
 class StatisticViewController: UIViewController {
+    
+    var differenceArray = [DifferenceWorkout]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -15,6 +27,11 @@ class StatisticViewController: UIViewController {
         setConstraints()
         setDelegates()
         
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tableWithParametrs.reloadData()
     }
     
     private let idStatisticTableViewCell = "idStatisticTableViewCell"
@@ -34,8 +51,27 @@ class StatisticViewController: UIViewController {
         element.selectedSegmentTintColor = .specialYellow
         element.selectedSegmentIndex = 0
         element.backgroundColor = .specialGreen
+        element.setTitleTextAttributes([NSAttributedString.Key.foregroundColor : UIColor.white], for: .normal)
+        element.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.specialGray], for: .selected)
+        element.addTarget(self, action: #selector(segmentChanged) , for: .valueChanged)
         return element
     }()
+    
+    @objc private func segmentChanged() {
+        print("segments changed")
+        if segments.selectedSegmentIndex == 0{
+            differenceArray = [DifferenceWorkout]()
+            let dateStart = dateToday.offsetDays(days: 7) //берем сегодняшнюю дату
+            getDifferenceModel(dateStart: dateStart)
+            tableWithParametrs.reloadData()
+        } else {
+            differenceArray = [DifferenceWorkout]()
+            let dateStart = dateToday.offsetMonth(month: 1)
+            getDifferenceModel(dateStart: dateStart)
+            tableWithParametrs.reloadData()
+        }
+        
+    }
     
     private let exerciseLabel = UILabel(text: "Exercices")
 
@@ -48,8 +84,52 @@ class StatisticViewController: UIViewController {
         return element
     }()
     
+    //cоздаем реалм для отображения статистики в таблице
+    let localRealm = try! Realm()
+    var workoutArray: Results<WorkoutModel>! // cоздаем резуьтаты поиска по модели WorkoutModel
+    let dateToday = Date().localDate()
     
-
+    
+    private func setStartScreen() {
+        getDifferenceModel(dateStart: dateToday.offsetDays(days: 7))
+        tableWithParametrs.reloadData()
+    }
+    
+    //хотим получить уникальные записи ( например, жим, присед) массив с именами всех наших упражнений
+    private func getWorkoutsName() -> [String] {
+        var nameArray = [String]()
+        
+        //получаем все записи из бд
+        workoutArray = localRealm.objects(WorkoutModel.self)
+        
+        //перебираем каждую модель и если нет в массиве то  закидываем в массив
+        for workoutModel in workoutArray {
+            if !nameArray.contains(workoutModel.workoutName) {
+                nameArray.append(workoutModel.workoutName)
+            }
+        }
+        return nameArray
+    }
+    
+    private func getDifferenceModel(dateStart: Date) {
+        
+        let dateEnd = Date().localDate()
+        let nameArray = getWorkoutsName()
+        
+        for name in nameArray {
+            
+          //берем имя упражнения и по имени выбираем между конечной датой и начальной
+            let predicateDifference = NSPredicate(format: "workoutName = '\(name)' AND workoutDate BETWEEN %@", [dateStart, dateEnd])
+            //берем все значения из бд и фльтруем по нашему предикату, сортируя по дате
+            workoutArray = localRealm.objects(WorkoutModel.self).filter(predicateDifference).sorted(byKeyPath: "workoutDate")
+            
+            guard let last = workoutArray.last?.workoutReps,
+                  let first = workoutArray.first?.workoutReps else { return }
+            
+            let differenceWorkout = DifferenceWorkout(name: name, lastReps: last, firstReps: first)
+            differenceArray.append(differenceWorkout)
+        }
+    }
 
 }
 
@@ -79,12 +159,13 @@ extension StatisticViewController {
 //MARK: - UITableViewDataSource
 extension StatisticViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        7
+        differenceArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: idStatisticTableViewCell, for: indexPath) as! StatisticTableViewCell
-        
+        let differenceModel = differenceArray[indexPath.row]
+        cell.cellConfigure(differenceWorkout: differenceModel)
         return cell
     }
     
