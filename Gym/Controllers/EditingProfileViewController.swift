@@ -143,14 +143,13 @@ class EditingProfileViewController: UIViewController {
         
        
         let button = UIButton(configuration: configuration, primaryAction: UIAction() {_ in
-            
-          
             print("saveButtonTapped")
+            
             self.setUserModel()
             
             if self.userArray.count == 0{
                 RealmManager.shared.saveUserModel(model: self.userModel)
-                self.userModel = UserModel()
+                self.userModel = UserModel() // всегда обновляем сразу
             } else {
                 RealmManager.shared.updateUserModel(model: self.userModel)
                 self.userModel = UserModel()

@@ -18,6 +18,7 @@ class MainViewController: UIViewController {
         imageView.layer.borderColor = UIColor.white.cgColor
         imageView.layer.borderWidth = 5
         imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.clipsToBounds = true
         return imageView
     }()
     
@@ -93,6 +94,7 @@ class MainViewController: UIViewController {
     private let calendarView = CalendarView()
     private let weatherView = WeatherView()
     private let idWorkoutTableViewCell = "idWorkoutTableViewCell"
+    private var userArray: Results<UserModel>!
     
     var workoutModel = WorkoutModel()
     
@@ -149,6 +151,17 @@ class MainViewController: UIViewController {
     }
     
     
+    private func  setupUserParammetres() {
+        if userArray.count != 0 {
+            userNameLabel.text = userArray[0].userFirstName + userArray[0].userLastName
+            
+            guard let data = userArray[0].userImage else { return }
+            guard let image = UIImage(data: data) else { return }
+            userPhotoImageView.image = image
+        }
+    }
+    
+    
     
     //из-за особенностей жиз цикла прописываем отделльный меотд для закругления
     override func viewDidLayoutSubviews() {
@@ -158,8 +171,10 @@ class MainViewController: UIViewController {
     //для того, чтобы после сохранения в БД наша таблица обновлялась
     override func viewWillAppear (_ animated: Bool) {
         super.viewWillAppear(animated)
-
+        setupUserParammetres()
         tableView.reloadData()
+        
+       
         
     }
     
@@ -167,13 +182,16 @@ class MainViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        userArray = localRealm.objects(UserModel.self)
         setupViews()
         setConstraints()
         setDelegates()
+        setupUserParammetres()
         getWorkouts(date: Date()) //cегодншная дата
         //не забыть зарегистрировать ячейку!!!!
         tableView.register(WorkoutTableViewCell.self, forCellReuseIdentifier: idWorkoutTableViewCell)
-       
+     
           
     }
       
