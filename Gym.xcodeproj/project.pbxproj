@@ -46,6 +46,7 @@
 		81E8E07428562D03005B4E87 /* DateAndRepeatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E8E07328562D03005B4E87 /* DateAndRepeatView.swift */; };
 		81E8E07E2857A0CA005B4E87 /* RepsOrTimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E8E07D2857A0CA005B4E87 /* RepsOrTimerView.swift */; };
 		81FE7D0C2878247500507467 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81FE7D0B2878247500507467 /* UserModel.swift */; };
+		81FE7D0E287837B300507467 /* GalleryOrFotoAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81FE7D0D287837B300507467 /* GalleryOrFotoAlert.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -88,6 +89,7 @@
 		81E8E07328562D03005B4E87 /* DateAndRepeatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateAndRepeatView.swift; sourceTree = "<group>"; };
 		81E8E07D2857A0CA005B4E87 /* RepsOrTimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepsOrTimerView.swift; sourceTree = "<group>"; };
 		81FE7D0B2878247500507467 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
+		81FE7D0D287837B300507467 /* GalleryOrFotoAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryOrFotoAlert.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +111,7 @@
 				815AED0C2864E3FE0047E8A8 /* Alerts.swift */,
 				816D6560286A1BFA00B36637 /* OkCancelAlert.swift */,
 				81D5F6C2286DAD4700B974D3 /* CustomAlert.swift */,
+				81FE7D0D287837B300507467 /* GalleryOrFotoAlert.swift */,
 			);
 			path = Alerts;
 			sourceTree = "<group>";
@@ -353,6 +356,7 @@
 				81E8E0722855EFB4005B4E87 /* NewWorkoutViewController.swift in Sources */,
 				8126B214284922FC00687A39 /* AppDelegate.swift in Sources */,
 				81D5F6C3286DAD4700B974D3 /* CustomAlert.swift in Sources */,
+				81FE7D0E287837B300507467 /* GalleryOrFotoAlert.swift in Sources */,
 				81578771287353C4001DBB31 /* EditingProfileViewController.swift in Sources */,
 				8115B0002866F58500768B61 /* StartWorkoutViewController.swift in Sources */,
 				815C2D702860D3C500BDD273 /* StatisticViewController.swift in Sources */,
@@ -508,6 +512,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Gym/Resources/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Gym;
+				INFOPLIST_KEY_NSCameraUsageDescription = "$(PRODUCT_NAME)photo use";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
@@ -538,6 +543,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Gym/Resources/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Gym;
+				INFOPLIST_KEY_NSCameraUsageDescription = "$(PRODUCT_NAME)photo use";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;

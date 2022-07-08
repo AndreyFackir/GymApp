@@ -71,7 +71,7 @@ class ProfileViewController: UIViewController {
     private let nameLabel: UILabel = {
         let element = UILabel()
         element.translatesAutoresizingMaskIntoConstraints = false
-        element.text = "Andrey Fackir"
+        element.text = "Your Name"
         element.font = .robotoMedium24
         element.textColor = .white
         return element
@@ -111,7 +111,7 @@ class ProfileViewController: UIViewController {
         let button = UIButton(configuration: configuration, primaryAction: UIAction() {_ in
             print("editingButtonTapped")
             let editingVC = EditingProfileViewController()
-           // editingVC.modalPresentationStyle = .fullScreen
+            editingVC.modalPresentationStyle = .fullScreen
             self.present(editingVC, animated: true, completion: nil)
         })
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -168,8 +168,9 @@ class ProfileViewController: UIViewController {
         element.translatesAutoresizingMaskIntoConstraints = false
         element.progressTintColor = .specialGreen
         element.layer.cornerRadius = 10
+        element.backgroundColor = .specialLine
         element.clipsToBounds = true
-        element.setProgress(0.5, animated: false)
+        element.setProgress(0, animated: false)
         
         //corner radius у активной полоски
         element.layer.sublayers?[1].cornerRadius = 10

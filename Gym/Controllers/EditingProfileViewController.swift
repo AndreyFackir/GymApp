@@ -6,13 +6,18 @@
 //
 
 import UIKit
+import RealmSwift
 
 class EditingProfileViewController: UIViewController {
     
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        userArray = localRealm.objects(UserModel.self)
         setupViews()
         setConstraints()
+        addTaps()
     }
     
     private let editingProfileLabel: UILabel = {
@@ -24,35 +29,40 @@ class EditingProfileViewController: UIViewController {
         return label
     }()
     
-    private lazy var profilePhotoButton: UIButton = {
-        var configuration = UIButton.Configuration.filled()
-        configuration.baseForegroundColor = .white
-        configuration.baseBackgroundColor = UIColor(red: 194/255, green: 194/255, blue: 194/255, alpha: 1.0)
-        configuration.cornerStyle = .capsule
-        configuration.image = UIImage(systemName: "person.crop.circle.badge.plus")
-        
-        let button = UIButton(configuration: configuration, primaryAction: UIAction() {_ in
-            print("profilePhotoButtonTapped")
-            
-        })
-        button.layer.borderColor = UIColor.white.cgColor
-        button.layer.borderWidth = 5
-        button.translatesAutoresizingMaskIntoConstraints = false
-        return button
+    private let addPhotoImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.backgroundColor = #colorLiteral(red: 0.7607843137, green: 0.7607843137, blue: 0.7607843137, alpha: 1)
+        imageView.layer.borderWidth = 5
+        imageView.image = UIImage(named: "addPhoto")
+        imageView.clipsToBounds = true
+        imageView.contentMode = .center
+        imageView.layer.borderColor = UIColor.white.cgColor
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
     }()
     
+    private let addPhotoView: UIView = {
+       let view = UIView()
+        view.backgroundColor = .specialGreen
+        view.layer.cornerRadius = 10
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
+
+    
     override func viewDidLayoutSubviews() {
-        profilePhotoButton.layer.cornerRadius = profilePhotoButton.frame.height / 2
-      
+        addPhotoImageView.layer.cornerRadius = addPhotoImageView.frame.height / 2
+
     }
            
-    private let emptyView: UIView = {
-        let element = UIView()
-        element.translatesAutoresizingMaskIntoConstraints = false
-        element.backgroundColor = .specialGreen
-        element.layer.cornerRadius = 10
-        return element
-    }()
+//    private let emptyView: UIView = {
+//        let element = UIView()
+//        element.translatesAutoresizingMaskIntoConstraints = false
+//        element.backgroundColor = .specialGreen
+//        element.layer.cornerRadius = 10
+//        return element
+//    }()
     
     private let firstNameLabel = UILabel(text: "First name")
     private let firstNameTextField: UITextField = {
@@ -125,9 +135,10 @@ class EditingProfileViewController: UIViewController {
         configuration.attributedTitle = AttributedString("SAVE", attributes: text)
         
        
-        let button = UIButton(configuration: configuration, primaryAction: UIAction() {_ in
-            print("saveButtonTapped")
+        let button = UIButton(configuration: configuration, primaryAction: UIAction() { _ in
             
+            print("saveButtonTapped")
+            self.dismiss(animated: true)
         })
         
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -135,6 +146,48 @@ class EditingProfileViewController: UIViewController {
     }()
     
     
+    private let localRealm = try! Realm()
+    private var userArray: Results<UserModel>!
+    private var userModel = UserModel()
+    
+    private func addTaps() {
+        let tapImageView = UITapGestureRecognizer(target: self, action: #selector(setUserPhoto))
+        addPhotoImageView.isUserInteractionEnabled = true
+        addPhotoImageView.addGestureRecognizer(tapImageView)
+    }
+    
+    @objc private func setUserPhoto() {
+        alertFotoCamera { [weak self] source in
+            guard let self = self else { return }
+            self.chooseImagePicker(source: source)
+        }
+    }
+    
+    
+}
+
+//MARK: - UIImagePickerControllerDelegate, UINavigationControllerDelegate
+
+extension EditingProfileViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+    func chooseImagePicker( source: UIImagePickerController.SourceType){
+        if UIImagePickerController.isSourceTypeAvailable(source) {
+            let imagePicker = UIImagePickerController()
+            imagePicker.delegate = self
+            imagePicker.allowsEditing = true
+            imagePicker.sourceType = source
+            present(imagePicker, animated: true)
+        }
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        let image = info[.editedImage] as? UIImage
+        addPhotoImageView.image = image
+        addPhotoImageView.contentMode = .scaleAspectFit
+        dismiss(animated: true)
+    }
+    
+
 }
 
 //MARK: -  setupViews
@@ -142,8 +195,8 @@ extension EditingProfileViewController {
     private func setupViews() {
         view.backgroundColor = .specialbackground
         view.addSubview(editingProfileLabel)
-        view.addSubview(emptyView)
-        view.addSubview(profilePhotoButton)
+        view.addSubview(addPhotoView)
+        view.addSubview(addPhotoImageView)
         view.addSubview(firstNameLabel)
         view.addSubview(firstNameTextField)
         view.addSubview(secondNameLabel)
@@ -166,21 +219,21 @@ extension EditingProfileViewController {
         ])
         
         NSLayoutConstraint.activate([
-            profilePhotoButton.topAnchor.constraint(equalTo: editingProfileLabel.bottomAnchor, constant: 10),
-            profilePhotoButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            profilePhotoButton.heightAnchor.constraint(equalToConstant: 100),
-            profilePhotoButton.widthAnchor.constraint(equalToConstant: 100)
+            addPhotoImageView.topAnchor.constraint(equalTo: editingProfileLabel.bottomAnchor, constant: 10),
+            addPhotoImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            addPhotoImageView.heightAnchor.constraint(equalToConstant: 100),
+            addPhotoImageView.widthAnchor.constraint(equalToConstant: 100)
         ])
         
         NSLayoutConstraint.activate([
-            emptyView.topAnchor.constraint(equalTo: editingProfileLabel.bottomAnchor, constant: 60),
-            emptyView.heightAnchor.constraint(equalToConstant: 100),
-            emptyView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            emptyView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20)
+            addPhotoView.topAnchor.constraint(equalTo: editingProfileLabel.bottomAnchor, constant: 60),
+            addPhotoView.heightAnchor.constraint(equalToConstant: 100),
+            addPhotoView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            addPhotoView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20)
         ])
         
         NSLayoutConstraint.activate([
-            firstNameLabel.topAnchor.constraint(equalTo: emptyView.bottomAnchor, constant: 30),
+            firstNameLabel.topAnchor.constraint(equalTo: addPhotoView.bottomAnchor, constant: 30),
             firstNameLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 25)
         ])
         
