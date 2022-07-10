@@ -146,7 +146,7 @@ class MainViewController: UIViewController {
         let compound = NSCompoundPredicate(type: .or, subpredicates: [predicateRepeat, predicateUnrepeat])
         
         workoutArray = localRealm.objects(WorkoutModel.self).filter(compound).sorted(byKeyPath: "workoutName")
-        
+        checkWorkoutToday()
         tableView.reloadData()
     }
     
@@ -161,6 +161,17 @@ class MainViewController: UIViewController {
         }
     }
     
+    
+    private func checkWorkoutToday() {
+        if workoutArray.count == 0 {
+            tableView.isHidden = true
+            noWorkoutImage.isHidden = false
+        } else {
+            tableView.isHidden = false
+            noWorkoutImage.isHidden = true
+            tableView.reloadData()
+        }
+    }
     
     
     //из-за особенностей жиз цикла прописываем отделльный меотд для закругления

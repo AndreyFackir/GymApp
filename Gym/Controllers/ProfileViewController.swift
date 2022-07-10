@@ -27,11 +27,13 @@ class ProfileViewController: UIViewController {
         exersizeCollectionView.register(ProfileCollectionViewCell.self, forCellWithReuseIdentifier: profileCollectionViewCell)
         getWorkoutResults()
         setupParameters()
+       
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setupParameters()
+        exersizeCollectionView.reloadData()
     }
     
     
@@ -268,11 +270,11 @@ extension ProfileViewController: UICollectionViewDelegate {
 extension ProfileViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        CGSize(width: 190, height: 100)
+        CGSize(width: 187, height: 100)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        3
+       5
     }
     
    

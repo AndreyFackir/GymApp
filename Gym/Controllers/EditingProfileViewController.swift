@@ -149,11 +149,12 @@ class EditingProfileViewController: UIViewController {
             
             if self.userArray.count == 0{
                 RealmManager.shared.saveUserModel(model: self.userModel)
-                self.userModel = UserModel() // всегда обновляем сразу
+                
             } else {
                 RealmManager.shared.updateUserModel(model: self.userModel)
-                self.userModel = UserModel()
+                
             }
+            self.userModel = UserModel() // всегда обновляем сразу
             self.dismiss(animated: true)
         })
         

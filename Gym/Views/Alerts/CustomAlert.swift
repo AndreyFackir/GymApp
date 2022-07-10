@@ -28,7 +28,7 @@ class CustomAlert {
     //создаем чтобы кастомный алерт двигался когда появлятся клава
     private let scrollView = UIScrollView()
     
-    private var mainView: UIView?
+    private var mainView: UIView? 
     
     var buttonAction: ((String, String) -> Void)?
     
