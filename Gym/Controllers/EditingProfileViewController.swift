@@ -29,6 +29,18 @@ class EditingProfileViewController: UIViewController {
         return label
     }()
     
+    private let closeButton: UIButton = {
+        let button =  UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setImage(UIImage(named: "Close Button"), for: .normal)
+        button.addTarget(self, action: #selector(closeButtonTapped), for: .touchUpInside)
+        return button
+    }()
+    
+    @objc func closeButtonTapped() {
+        dismiss(animated: true, completion: nil)
+    }
+    
     private let addPhotoImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.backgroundColor = #colorLiteral(red: 0.7607843137, green: 0.7607843137, blue: 0.7607843137, alpha: 1)
@@ -268,6 +280,7 @@ extension EditingProfileViewController {
         view.addSubview(targetLabel)
         view.addSubview(targetTextField)
         view.addSubview(saveButton)
+        view.addSubview(closeButton)
        
     }
 }
@@ -279,6 +292,14 @@ extension EditingProfileViewController {
             editingProfileLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
             editingProfileLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         ])
+        
+        NSLayoutConstraint.activate([
+            closeButton.centerYAnchor.constraint(equalTo: editingProfileLabel.centerYAnchor, constant: 0),
+            closeButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            closeButton.heightAnchor.constraint(equalToConstant: 30),
+            closeButton.widthAnchor.constraint(equalToConstant: 30)
+        ])
+        
         
         NSLayoutConstraint.activate([
             addPhotoImageView.topAnchor.constraint(equalTo: editingProfileLabel.bottomAnchor, constant: 10),

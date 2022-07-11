@@ -36,7 +36,7 @@ class ProfileViewController: UIViewController {
         exersizeCollectionView.reloadData()
     }
     
-    
+   
     
     private let profileLabel: UILabel = {
         let label = UILabel()
@@ -307,12 +307,15 @@ extension ProfileViewController {
         view.addSubview(progressBar)
         starEndStackView = UIStackView(arrangeSubviews: [startProgressLabel, endProgressLabel], axis: .horizontal, spacing: 10)
         view.addSubview(starEndStackView)
+       
     }
 }
 
 //MARK: - Set Constrains
 extension ProfileViewController {
     private func setConstraints() {
+       
+        
         NSLayoutConstraint.activate([
             profileLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
             profileLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor)
@@ -357,7 +360,7 @@ extension ProfileViewController {
         ])
        
         NSLayoutConstraint.activate([
-            targetLabel.topAnchor.constraint(equalTo: exersizeCollectionView.bottomAnchor, constant: 10),
+            targetLabel.topAnchor.constraint(equalTo: exersizeCollectionView.bottomAnchor, constant: 25),
             targetLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20)
         ])
         

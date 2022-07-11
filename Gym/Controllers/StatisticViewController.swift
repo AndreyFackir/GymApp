@@ -61,7 +61,7 @@ class StatisticViewController: UIViewController {
         print("segments changed")
         if segments.selectedSegmentIndex == 0{
             differenceArray = [DifferenceWorkout]()
-            let dateStart = dateToday.offsetDays(days: 7) //берем сегодняшнюю дату
+            let dateStart = dateToday.offsetDays(days: 7) //берем сегодняшнюю дату, отсчитываем 7 дней от нее
             getDifferenceModel(dateStart: dateStart)
             tableWithParametrs.reloadData()
         } else {
@@ -87,7 +87,7 @@ class StatisticViewController: UIViewController {
     //cоздаем реалм для отображения статистики в таблице
     let localRealm = try! Realm()
     var workoutArray: Results<WorkoutModel>! // cоздаем резуьтаты поиска по модели WorkoutModel
-    let dateToday = Date().localDate()
+    let dateToday = Date().localDate() //текущая дата
     
     
     private func setStartScreen() {
