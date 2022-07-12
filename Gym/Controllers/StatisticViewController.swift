@@ -19,7 +19,7 @@ struct DifferenceWorkout {
 
 class StatisticViewController: UIViewController {
     
-    var differenceArray = [DifferenceWorkout]()
+   
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -101,7 +101,10 @@ class StatisticViewController: UIViewController {
     let localRealm = try! Realm()
     var workoutArray: Results<WorkoutModel>! // cоздаем резуьтаты поиска по модели WorkoutModel
     let dateToday = Date().localDate() //текущая дата
+    private var differenceArray = [DifferenceWorkout]()
     
+    private var filteredArray = [DifferenceWorkout]() // массив с отфильтрованныим значениями по текстфилду
+    private var isFiltered = false //когда вводим значение в текстфилд меняем значение
     
     private func setStartScreen() {
         getDifferenceModel(dateStart: dateToday.offsetDays(days: 7))
@@ -144,6 +147,16 @@ class StatisticViewController: UIViewController {
         }
     }
 
+    //будем фильтровать тренировки
+    private func filteringWorkout(text: String) {
+        
+        for workout in differenceArray {
+            if workout.name.lowercased().contains(text.lowercased()) {
+                filteredArray.append(workout)
+            }
+        }
+    }
+    
 }
 
 
@@ -154,6 +167,7 @@ extension StatisticViewController {
         tableWithParametrs.dataSource = self
         tableWithParametrs.delegate = self
         tableWithParametrs.register(StatisticTableViewCell.self, forCellReuseIdentifier: idStatisticTableViewCell)
+        searchTextField.delegate = self
     }
 }
 
@@ -170,15 +184,38 @@ extension StatisticViewController {
     }
 }
 
+//MARK: - UITextFieldDelegate
+extension StatisticViewController: UITextFieldDelegate {
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        searchTextField.resignFirstResponder() //скрываем клавупо кнопке done
+    }
+    
+    //будем ли мы заменять текст в текстфилде на какой то текст. Если да, то возвращает тру
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if let text = textField.text, let textRange = Range(range, in: text) {
+            let updatedText = text.replacingCharacters(in: textRange, with: string)// отображается каждая буква при вводе в текстфилд
+            filteredArray = [DifferenceWorkout]() //обновляем массив, чтобы не было повторений по поиску. Например фильтруем по букве А. Если не обновить массив, то отфильтрованное значение отсанется там
+            isFiltered = (updatedText.count > 0 ? true : false)
+            filteringWorkout(text: updatedText) //проверяем из текстфилда содержит ли символы
+            tableWithParametrs.reloadData()
+            
+            //решить проблему когда ничего нет в текстфилд
+        }
+        return true
+    }
+}
+
 //MARK: - UITableViewDataSource
 extension StatisticViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        differenceArray.count
+        isFiltered ? filteredArray.count : differenceArray.count //колиесвто ячеек меняется в зависиотси отфильтрован ли массив или нет
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: idStatisticTableViewCell, for: indexPath) as! StatisticTableViewCell
-        let differenceModel = differenceArray[indexPath.row]
+        let differenceModel = isFiltered ? filteredArray[indexPath.row] : differenceArray[indexPath.row]
+        
         cell.cellConfigure(differenceWorkout: differenceModel)
         return cell
     }

@@ -47,6 +47,7 @@
 		81E8E07E2857A0CA005B4E87 /* RepsOrTimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E8E07D2857A0CA005B4E87 /* RepsOrTimerView.swift */; };
 		81FE7D0C2878247500507467 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81FE7D0B2878247500507467 /* UserModel.swift */; };
 		81FE7D0E287837B300507467 /* GalleryOrFotoAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81FE7D0D287837B300507467 /* GalleryOrFotoAlert.swift */; };
+		81FE7D10287DE57400507467 /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81FE7D0F287DE57400507467 /* Notifications.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -90,6 +91,7 @@
 		81E8E07D2857A0CA005B4E87 /* RepsOrTimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepsOrTimerView.swift; sourceTree = "<group>"; };
 		81FE7D0B2878247500507467 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		81FE7D0D287837B300507467 /* GalleryOrFotoAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryOrFotoAlert.swift; sourceTree = "<group>"; };
+		81FE7D0F287DE57400507467 /* Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -151,6 +153,7 @@
 			children = (
 				8126B213284922FC00687A39 /* AppDelegate.swift */,
 				8126B215284922FC00687A39 /* SceneDelegate.swift */,
+				81FE7D0F287DE57400507467 /* Notifications.swift */,
 			);
 			path = Application;
 			sourceTree = "<group>";
@@ -349,6 +352,7 @@
 				81666F142862315500746946 /* WorkoutModel.swift in Sources */,
 				81E8E07428562D03005B4E87 /* DateAndRepeatView.swift in Sources */,
 				8126B231284CA93800687A39 /* UIColor + Extensions.swift in Sources */,
+				81FE7D10287DE57400507467 /* Notifications.swift in Sources */,
 				8126B245284CFAB300687A39 /* WeatherView.swift in Sources */,
 				8126B218284922FC00687A39 /* MainViewController.swift in Sources */,
 				81E8E07E2857A0CA005B4E87 /* RepsOrTimerView.swift in Sources */,
