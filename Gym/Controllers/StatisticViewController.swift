@@ -72,6 +72,19 @@ class StatisticViewController: UIViewController {
         }
         
     }
+    private let searchTextField: UITextField = {
+        let element = UITextField()
+        element.translatesAutoresizingMaskIntoConstraints = false
+        element.clearButtonMode = .always
+        element.backgroundColor = .specialBrown
+        element.layer.cornerRadius = 10
+        element.font = .robotoBold20
+        element.textColor = .specialGray
+        element.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 15, height: element.frame.height))
+        element.leftViewMode = .always
+        element.returnKeyType = .done
+        return element
+    }()
     
     private let exerciseLabel = UILabel(text: "Exercices")
 
@@ -153,6 +166,7 @@ extension StatisticViewController {
         view.addSubview(segments)
         view.addSubview(exerciseLabel)
         view.addSubview(tableWithParametrs)
+        view.addSubview(searchTextField)
     }
 }
 
@@ -198,7 +212,14 @@ extension StatisticViewController {
         ])
         
         NSLayoutConstraint.activate([
-            exerciseLabel.topAnchor.constraint(equalTo: segments.bottomAnchor, constant: 20),
+            searchTextField.topAnchor.constraint(equalTo: segments.bottomAnchor, constant: 10),
+            searchTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            searchTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            searchTextField.heightAnchor.constraint(equalToConstant: 38)
+        ])
+        
+        NSLayoutConstraint.activate([
+            exerciseLabel.topAnchor.constraint(equalTo: searchTextField.bottomAnchor, constant: 20),
             exerciseLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 25)
         ])
         

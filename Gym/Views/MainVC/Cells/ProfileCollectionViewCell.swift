@@ -80,7 +80,8 @@ extension ProfileCollectionViewCell {
             exerciseCellImage.topAnchor.constraint(equalTo: exerciseCellName.bottomAnchor, constant: 5),
             exerciseCellImage.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
             exerciseCellImage.widthAnchor.constraint(equalToConstant: 60),
-            exerciseCellImage.heightAnchor.constraint(equalToConstant: 60)
+            exerciseCellImage.heightAnchor.constraint(equalToConstant: 60),
+            exerciseCellImage.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -15)
         ])
         
         NSLayoutConstraint.activate([

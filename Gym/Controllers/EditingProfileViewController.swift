@@ -18,6 +18,7 @@ class EditingProfileViewController: UIViewController {
         setupViews()
         setConstraints()
         addTaps()
+        loadUserInfo()
     }
     
     private let editingProfileLabel: UILabel = {
@@ -159,7 +160,7 @@ class EditingProfileViewController: UIViewController {
             
             self.setUserModel()
             
-            if self.userArray.count == 0{
+            if self.userArray.count == 0 {
                 RealmManager.shared.saveUserModel(model: self.userModel)
                 
             } else {
@@ -252,6 +253,7 @@ extension EditingProfileViewController: UIImagePickerControllerDelegate, UINavig
         }
     }
     
+    //сможем ли мы получить имадж из галереи
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         let image = info[.editedImage] as? UIImage //получаем имедж из редактируемой картинки
         addPhotoImageView.image = image

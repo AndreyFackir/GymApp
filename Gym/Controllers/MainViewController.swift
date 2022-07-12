@@ -133,7 +133,7 @@ class MainViewController: UIViewController {
         
                                         //ВСЕ ЧТО НАПИСАНО ВЫШЕ ВЫНЕСЕНО В ЭКСТНШН DATE
         
-        let dateTimeZone = date.localDate()
+        let dateTimeZone = date
         let weekday = dateTimeZone.getWeekDayNumber()
         let dateStart = dateTimeZone.startEndDate().0 // так как метод startEndDate возвращает тюпл, то обращаемся через 0, 1
         let dateEnd = dateTimeZone.startEndDate().1
@@ -153,7 +153,7 @@ class MainViewController: UIViewController {
     
     private func  setupUserParammetres() {
         if userArray.count != 0 {
-            userNameLabel.text = userArray[0].userFirstName + userArray[0].userLastName
+            userNameLabel.text = userArray[0].userFirstName + " " + userArray[0].userLastName
             
             guard let data = userArray[0].userImage else { return }
             guard let image = UIImage(data: data) else { return }
@@ -199,7 +199,7 @@ class MainViewController: UIViewController {
         setConstraints()
         setDelegates()
         setupUserParammetres()
-        getWorkouts(date: Date()) //cегодншная дата
+        getWorkouts(date: Date().localDate()) //cегодншная дата
         //не забыть зарегистрировать ячейку!!!!
         tableView.register(WorkoutTableViewCell.self, forCellReuseIdentifier: idWorkoutTableViewCell)
      

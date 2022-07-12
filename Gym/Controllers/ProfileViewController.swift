@@ -26,8 +26,6 @@ class ProfileViewController: UIViewController {
         setDelegates()
         exersizeCollectionView.register(ProfileCollectionViewCell.self, forCellWithReuseIdentifier: profileCollectionViewCell)
         getWorkoutResults()
-        setupParameters()
-       
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -223,7 +221,7 @@ class ProfileViewController: UIViewController {
     
     private func setupParameters() {
         if userArray.count != 0 {
-            nameLabel.text = userArray[0].userFirstName + userArray[0].userLastName
+            nameLabel.text = userArray[0].userFirstName + " " + userArray[0].userLastName
             heighLabel.text = "Height: \(userArray[0].userHeight)"
             weightLabel.text = "Weight: \(userArray[0].userWeight)"
             targetLabel.text = "Target: \(userArray[0].userTarget) workouts"
@@ -270,7 +268,7 @@ extension ProfileViewController: UICollectionViewDelegate {
 extension ProfileViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        CGSize(width: 187, height: 100)
+        CGSize(width: collectionView.frame.width / 2.07, height: 120)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
@@ -355,8 +353,8 @@ extension ProfileViewController {
             exersizeCollectionView.topAnchor.constraint(equalTo: nameView.bottomAnchor, constant: 50),
             exersizeCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             exersizeCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            exersizeCollectionView.widthAnchor.constraint(equalToConstant: 300),
-            exersizeCollectionView.heightAnchor.constraint(equalToConstant: 220)
+            exersizeCollectionView.widthAnchor.constraint(equalToConstant: view.frame.width),
+            exersizeCollectionView.heightAnchor.constraint(equalToConstant: 250)
         ])
        
         NSLayoutConstraint.activate([
