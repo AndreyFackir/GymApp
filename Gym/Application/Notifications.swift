@@ -42,9 +42,11 @@ class Notifications: NSObject {
         content.badge = 1
         
     //теперь создадим распсиание на срабатывание контента
-        var triggerDate = Calendar.current.dateComponents([.year, .month, .day], from: date)//дата из входных параметров
-        triggerDate.hour = 12
-        triggerDate.minute = 00
+        var calendar = Calendar.current
+        calendar.timeZone = TimeZone(abbreviation: "UTC")!
+        var triggerDate = calendar.dateComponents([.year, .month, .day], from: date)//дата из входных параметров
+        triggerDate.hour = 21
+        triggerDate.minute = 17
         let trigger = UNCalendarNotificationTrigger(dateMatching: triggerDate, repeats: false)
         
         // создаем реквест
@@ -60,7 +62,7 @@ class Notifications: NSObject {
 //создадим экстешнш
 extension Notifications: UNUserNotificationCenterDelegate{
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-        completionHandler([.alert, .sound ]) //хотим чтобы поялялся алерт и звук при уведомлении
+        completionHandler([.banner, .sound ]) //хотим чтобы поялялся алерт и звук при уведомлении
     }
     
     //отвечает за нажатие на уведлмение и чтото должно произойти

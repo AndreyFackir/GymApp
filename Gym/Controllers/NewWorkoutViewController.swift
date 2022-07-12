@@ -182,6 +182,7 @@ class NewWorkoutViewController: UIViewController {
         if count != 0 && workoutModel.workoutSets != 0 && (workoutModel.workoutReps != 0 || workoutModel.workoutTimer != 0){
             
             RealmManager.shared.saveWorkoutModel(model: workoutModel)
+            createNotification() //создали уведомление
            
             //после записи в БД сразу обновляем модель, иначе если нажать два раза подряд выпадет ошибка
             workoutModel = WorkoutModel()
@@ -208,6 +209,14 @@ class NewWorkoutViewController: UIViewController {
         repsOrTimerView.repsSlider.value = 0
         repsOrTimerView.timerSlider.value = 0
         repsOrTimerView.valueOfTimerLabel.text = "0 min"
+    }
+    
+    //создаем уведомления
+    private func createNotification() {
+        let notifications = Notifications() //создаем экземляр класса
+        let stringDate = workoutModel.workoutDate.ddMMMyyyFromDate() //из даты получаем строку ф ормате стринг
+        notifications.scheduleNotification(date: workoutModel.workoutDate, id: "workout" + stringDate)
+        
     }
     
     
