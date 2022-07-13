@@ -7,9 +7,18 @@
 
 import UIKit
 
+struct OnboardingModel {
+    let topLabel: String
+    let bottomLabel: String
+    let image: UIImage
+}
+
 class OnboardingViewController: UIViewController{
     
    private let idOnboardingCell = "idOnboardingCell"
+   private var onboardingArray = [OnboardingModel]()
+   private var collectionItem = 0
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -68,6 +77,22 @@ extension OnboardingViewController {
         view.addSubview(onboardoinCollection)
         onboardoinCollection.register(OnboardingCollectionViewCell.self, forCellWithReuseIdentifier: idOnboardingCell)
         
+        guard let imageFirst = UIImage(named: "onboardingFirst"),
+              let imageSecond = UIImage(named: "onboardingSecond"),
+              let imageThird = UIImage(named: "onboardingThird") else { return }
+        
+        let firstScreen = OnboardingModel(topLabel: "Have a good health",
+                                          bottomLabel: "Being healthy is all, no health is nothing. So why dont we start workout", image: imageFirst)
+        
+        let secondScreen = OnboardingModel(topLabel: "Be Stronger",
+                                           bottomLabel: "Take 30 minutes every dayor more to exersice",
+                                           image: imageSecond)
+        
+        let thirdScreen = OnboardingModel(topLabel: "Have a nice body",
+                                          bottomLabel: "Bad body shape, poor soul",
+                                          image: imageThird)
+        onboardingArray = [firstScreen, secondScreen, thirdScreen]
+        
     }
 }
 
@@ -82,12 +107,13 @@ extension OnboardingViewController {
 //MARK: - UICollectionViewDataSource
 extension OnboardingViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        3
+        onboardingArray.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: idOnboardingCell, for: indexPath) as! OnboardingCollectionViewCell
-       
+        let model = onboardingArray[indexPath.row]
+        cell.cellConfigure(model: model)
         return cell
     }
        
@@ -115,9 +141,9 @@ extension OnboardingViewController {
         ])
         
         NSLayoutConstraint.activate([
+            onboardoinCollection.topAnchor.constraint(equalTo: view.topAnchor, constant: 0),
             onboardoinCollection.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
             onboardoinCollection.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
-            onboardoinCollection.topAnchor.constraint(equalTo: view.topAnchor, constant: 0),
             onboardoinCollection.bottomAnchor.constraint(equalTo: pageControl.topAnchor, constant: -20)
         ])
     }

@@ -25,6 +25,7 @@ class OnboardingCollectionViewCell: UICollectionViewCell {
         element.text = "Have a good helath"
         element.textColor = .specialGreen
         element.font = .robotoBold20
+        element.textAlignment = .center
         return element
     }()
     
@@ -32,6 +33,7 @@ class OnboardingCollectionViewCell: UICollectionViewCell {
         let element = UIImageView()
         element.translatesAutoresizingMaskIntoConstraints = false
         element.image = UIImage(named: "onboardingFirst")
+        element.contentMode = .scaleAspectFill
         return element
     }()
     
@@ -39,19 +41,26 @@ class OnboardingCollectionViewCell: UICollectionViewCell {
         let element = UILabel()
         element.translatesAutoresizingMaskIntoConstraints = false
         element.text = "Being healthy is all"
-        element.textColor = .specialGreen
-        element.font = .robotoBold20
+        element.textColor = .white
+        element.font = .robotoMedium18
+        element.textAlignment = .center
+        element.numberOfLines = 4
         return element
     }()
     
+     func cellConfigure(model: OnboardingModel) {
+        topLabel.text = model.topLabel
+        bottomLabel.text = model.bottomLabel
+        image.image = model.image
+    }
 }
 
 //MARK: - setupViews
 extension OnboardingCollectionViewCell {
     private func setupViews() {
-        backgroundColor = .blue
-        addSubview(topLabel)
+        backgroundColor = .specialGreen
         addSubview(image)
+        addSubview(topLabel)
         addSubview(bottomLabel)
     }
 }
@@ -59,23 +68,25 @@ extension OnboardingCollectionViewCell {
 //MARK: - setConstraints
 extension OnboardingCollectionViewCell {
     private func setConstraints() {
-        NSLayoutConstraint.activate([
-            topLabel.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 60),
-            topLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
-            topLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20)
-        ])
         
         NSLayoutConstraint.activate([
             image.topAnchor.constraint(equalTo: topAnchor, constant: 0),
             image.leadingAnchor.constraint(equalTo: leadingAnchor,constant: 0),
             image.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 0),
-            image.heightAnchor.constraint(equalTo: heightAnchor, constant: 0.7)
+            image.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.7)
         ])
         
         NSLayoutConstraint.activate([
-            bottomLabel.topAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -20),
+            topLabel.topAnchor.constraint(equalTo: topAnchor, constant: 60),
+            topLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
+            topLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20)
+        ])
+        
+        NSLayoutConstraint.activate([
+            bottomLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -20),
             bottomLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
-            bottomLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20)
+            bottomLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
+            bottomLabel.heightAnchor.constraint(equalToConstant: 85)
         ])
     }
 }
