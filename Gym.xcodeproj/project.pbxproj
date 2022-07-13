@@ -48,6 +48,8 @@
 		81FE7D0C2878247500507467 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81FE7D0B2878247500507467 /* UserModel.swift */; };
 		81FE7D0E287837B300507467 /* GalleryOrFotoAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81FE7D0D287837B300507467 /* GalleryOrFotoAlert.swift */; };
 		81FE7D10287DE57400507467 /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81FE7D0F287DE57400507467 /* Notifications.swift */; };
+		81FE7D12287F1B5700507467 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81FE7D11287F1B5700507467 /* OnboardingViewController.swift */; };
+		81FE7D14287F2F1800507467 /* OnboardingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81FE7D13287F2F1800507467 /* OnboardingCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -92,6 +94,8 @@
 		81FE7D0B2878247500507467 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		81FE7D0D287837B300507467 /* GalleryOrFotoAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryOrFotoAlert.swift; sourceTree = "<group>"; };
 		81FE7D0F287DE57400507467 /* Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
+		81FE7D11287F1B5700507467 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
+		81FE7D13287F2F1800507467 /* OnboardingCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -170,6 +174,7 @@
 		8126B229284CA74500687A39 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				81FE7D11287F1B5700507467 /* OnboardingViewController.swift */,
 				815C2D6B2860D1EE00BDD273 /* MainTabBarController.swift */,
 				8126B217284922FC00687A39 /* MainViewController.swift */,
 				81E8E0712855EFB4005B4E87 /* NewWorkoutViewController.swift */,
@@ -246,6 +251,7 @@
 				8126B246284FC64F00687A39 /* WorkoutTableViewCell.swift */,
 				81D5F6BE286CD6D300B974D3 /* StatisticTableViewCell.swift */,
 				8158F3D92871A16500DDF34F /* ProfileCollectionViewCell.swift */,
+				81FE7D13287F2F1800507467 /* OnboardingCollectionViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -344,6 +350,7 @@
 				815C2D6C2860D1EE00BDD273 /* MainTabBarController.swift in Sources */,
 				8126B240284CE22D00687A39 /* CalendarView.swift in Sources */,
 				81D5F6BF286CD6D300B974D3 /* StatisticTableViewCell.swift in Sources */,
+				81FE7D12287F1B5700507467 /* OnboardingViewController.swift in Sources */,
 				8126B235284CAD3B00687A39 /* UIStackView + Extensions.swift in Sources */,
 				81D5F6C5286DEB9900B974D3 /* Int + Extension.swift in Sources */,
 				8126B247284FC64F00687A39 /* WorkoutTableViewCell.swift in Sources */,
@@ -352,6 +359,7 @@
 				81666F142862315500746946 /* WorkoutModel.swift in Sources */,
 				81E8E07428562D03005B4E87 /* DateAndRepeatView.swift in Sources */,
 				8126B231284CA93800687A39 /* UIColor + Extensions.swift in Sources */,
+				81FE7D14287F2F1800507467 /* OnboardingCollectionViewCell.swift in Sources */,
 				81FE7D10287DE57400507467 /* Notifications.swift in Sources */,
 				8126B245284CFAB300687A39 /* WeatherView.swift in Sources */,
 				8126B218284922FC00687A39 /* MainViewController.swift in Sources */,
