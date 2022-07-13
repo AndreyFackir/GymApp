@@ -96,7 +96,7 @@ class MainViewController: UIViewController {
     private let idWorkoutTableViewCell = "idWorkoutTableViewCell"
     private var userArray: Results<UserModel>!
     
-    var workoutModel = WorkoutModel()
+   var workoutModel = WorkoutModel()
     
     //создаем объект реалма
     private let localRealm = try! Realm()
@@ -182,24 +182,21 @@ class MainViewController: UIViewController {
     //для того, чтобы после сохранения в БД наша таблица обновлялась
     override func viewWillAppear (_ animated: Bool) {
         super.viewWillAppear(animated)
-        setupUserParammetres()
+         
         tableView.reloadData()
-        
-       
-        
+        setupUserParammetres()
+         
     }
-    
-   
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        workoutModel = WorkoutModel()
         userArray = localRealm.objects(UserModel.self)
         setupViews()
         setConstraints()
         setDelegates()
         setupUserParammetres()
-        getWorkouts(date: Date().localDate()) //cегодншная дата
+        getWorkouts(date: Date()) //cегодншная дата
         //не забыть зарегистрировать ячейку!!!!
         tableView.register(WorkoutTableViewCell.self, forCellReuseIdentifier: idWorkoutTableViewCell)
      

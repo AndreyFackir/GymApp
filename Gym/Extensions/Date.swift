@@ -10,7 +10,7 @@ import Foundation
 extension Date {
     
     //метод, преобразующий дату в соответсвтии с тайм зоной в которой находится юзер
-    func localDate() -> Date{
+    func localDate() -> Date {
         let timeZoneOffset = Double(TimeZone.current.secondsFromGMT(for: self))
         let localDate = Calendar.current.date(byAdding: .second, value: Int(timeZoneOffset), to: self) ?? Date()
         return localDate
@@ -30,9 +30,9 @@ extension Date {
         
         let formater = DateFormatter()
         formater.dateFormat = "yyyy/MM/dd"
-        formater.timeZone = TimeZone(abbreviation: "UTC")
         
-        let calendar = Calendar.current
+        var calendar = Calendar.current
+        calendar.timeZone = TimeZone(abbreviation: "UTC")!
         let day = calendar.component(.day, from: self)
         let month = calendar.component(.month, from: self)
         let year = calendar.component(.year, from: self)
@@ -41,7 +41,7 @@ extension Date {
         let local = dateStart.localDate()
         let dateEnd: Date = {
             let components = DateComponents(day: 1)
-            return Calendar.current.date(byAdding: components, to: local) ?? Date()
+            return calendar.date(byAdding: components, to: local) ?? Date()
         }()
         
         return (local, dateEnd)
@@ -71,8 +71,8 @@ extension Date {
         var calendar = Calendar.current
         calendar.timeZone = TimeZone(abbreviation: "UTC")!
         for index in -6...0 {
-            let date = calendar.date(byAdding: .weekday, value: index, to: self) ?? Date()
-            print(date)
+            let date = calendar.date(byAdding: .day, value: index, to: self) ?? Date()
+           
             let day = calendar.component(.day, from: date) //получаем число дня из календаря
             
             weekArray[1].append("\(day)")

@@ -94,7 +94,7 @@ class NewWorkoutViewController: UIViewController {
     private let localRealm = try! Realm()
     
     //создаем модель
-    var workoutModel = WorkoutModel()
+    private var workoutModel = WorkoutModel()
     
     private let testImage = UIImage(named: "Bell")
     
@@ -112,11 +112,8 @@ class NewWorkoutViewController: UIViewController {
     
     @objc func saveButtonPressed() {
         print("saveButtonPressed")
-        print(workoutModel)
         setModel()
-        print(workoutModel)
         saveModel()
-        print(workoutModel)
     }
     
     private func setDelegates() {
@@ -187,6 +184,7 @@ class NewWorkoutViewController: UIViewController {
             //после записи в БД сразу обновляем модель, иначе если нажать два раза подряд выпадет ошибка
             workoutModel = WorkoutModel()
             alertOK(title: "Sucsess", message: nil)
+           
             //обнуляем все лейблы
             refreshWorkoutObject()
             

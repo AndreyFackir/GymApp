@@ -12,11 +12,11 @@ import UIKit
 //создаем уведомления
 class Notifications: NSObject {
     
-    let notoficationCenter = UNUserNotificationCenter.current()
+    let notificationCenter = UNUserNotificationCenter.current()
     
     //прежде чем мы сможем получать уведомления нам нужен доступ
     func requestAutorization() {
-        notoficationCenter.requestAuthorization(options: [.alert, .sound, .badge]) { granted, error in
+        notificationCenter.requestAuthorization(options: [.alert, .sound, .badge]) { granted, error in
             guard granted else { return }
             
             //после п роверки разрешения на уведомления вызываем метод
@@ -26,7 +26,7 @@ class Notifications: NSObject {
     
     //проверяем все ли настройки об уведомлениях включены
     func getNotificationsSettings() {
-        notoficationCenter.getNotificationSettings { settings in
+        notificationCenter.getNotificationSettings { settings in
             print(settings)
         }
     }
@@ -37,7 +37,7 @@ class Notifications: NSObject {
         // у каждого уведомления есть контент(заголовк, тело, звук и тд)
         let content = UNMutableNotificationContent() //можно будет менять потому что Mutable
         content.title = "Workout"
-        content.body = " Today you have a training"
+        content.body = "Today you have a training"
         content.sound = .default
         content.badge = 1
         
@@ -45,13 +45,13 @@ class Notifications: NSObject {
         var calendar = Calendar.current
         calendar.timeZone = TimeZone(abbreviation: "UTC")!
         var triggerDate = calendar.dateComponents([.year, .month, .day], from: date)//дата из входных параметров
-        triggerDate.hour = 21
-        triggerDate.minute = 17
+        triggerDate.hour = 18
+        triggerDate.minute = 15
         let trigger = UNCalendarNotificationTrigger(dateMatching: triggerDate, repeats: false)
         
         // создаем реквест
         let request  = UNNotificationRequest(identifier: id, content: content, trigger: trigger)
-        notoficationCenter.add(request) { error in
+        notificationCenter.add(request) { error in
             print("Error \(error?.localizedDescription ?? "error")")
         }
         
@@ -60,14 +60,14 @@ class Notifications: NSObject {
 }
 
 //создадим экстешнш
-extension Notifications: UNUserNotificationCenterDelegate{
+extension Notifications: UNUserNotificationCenterDelegate {
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-        completionHandler([.banner, .sound ]) //хотим чтобы поялялся алерт и звук при уведомлении
+        completionHandler([.alert, .sound ]) //хотим чтобы поялялся алерт и звук при уведомлении
     }
     
     //отвечает за нажатие на уведлмение и чтото должно произойти
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
         UIApplication.shared.applicationIconBadgeNumber = 0 //убираем значок с количеством уведомлений
-        notoficationCenter.removeAllDeliveredNotifications()//после доставки удаляем все уведомления
+        notificationCenter.removeAllDeliveredNotifications()//после доставки удаляем все уведомления
     }
 }

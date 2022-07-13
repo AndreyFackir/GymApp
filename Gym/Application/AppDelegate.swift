@@ -18,7 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         //когда прила готова к загрузке вызываем метож
         notification.requestAutorization()
-        notification.notoficationCenter.delegate = notification
+        notification.notificationCenter.delegate = notification
         return true
     }
 

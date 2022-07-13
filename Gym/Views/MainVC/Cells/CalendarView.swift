@@ -167,7 +167,7 @@ extension CalendarView: UICollectionViewDelegate {
         
        //cellCollectionViewDelegate?.selectIem(date: date)
         
-        let dateTimeZone = Date().localDate()
+        let dateTimeZone = Date()
         
         switch indexPath.item {
         case 0:

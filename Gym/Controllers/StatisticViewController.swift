@@ -19,19 +19,19 @@ struct DifferenceWorkout {
 
 class StatisticViewController: UIViewController {
     
-   
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
         setConstraints()
         setDelegates()
+       
         
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         tableWithParametrs.reloadData()
+        setStartScreen()
     }
     
     private let idStatisticTableViewCell = "idStatisticTableViewCell"
@@ -107,6 +107,7 @@ class StatisticViewController: UIViewController {
     private var isFiltered = false //когда вводим значение в текстфилд меняем значение
     
     private func setStartScreen() {
+        differenceArray = [DifferenceWorkout]()
         getDifferenceModel(dateStart: dateToday.offsetDays(days: 7))
         tableWithParametrs.reloadData()
     }
