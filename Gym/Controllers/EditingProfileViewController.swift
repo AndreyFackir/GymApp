@@ -156,7 +156,7 @@ class EditingProfileViewController: UIViewController {
         
        
         let button = UIButton(configuration: configuration, primaryAction: UIAction() {_ in
-            print("saveButtonTapped")
+          
             
             self.setUserModel()
             

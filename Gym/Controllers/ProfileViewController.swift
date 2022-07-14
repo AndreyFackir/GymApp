@@ -25,14 +25,18 @@ class ProfileViewController: UIViewController {
         setConstraints()
         setDelegates()
         exersizeCollectionView.register(ProfileCollectionViewCell.self, forCellWithReuseIdentifier: profileCollectionViewCell)
-        getWorkoutResults()
+       
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setupParameters()
+        getWorkoutResults()
         exersizeCollectionView.reloadData()
     }
+    
+    
     
    
     
@@ -96,7 +100,6 @@ class ProfileViewController: UIViewController {
     }()
     
     private lazy var editingButton: UIButton = {
-        
         var configuration = UIButton.Configuration.plain()
         configuration.image = UIImage(systemName: "pencil")
         configuration.imagePlacement = .trailing
@@ -109,7 +112,7 @@ class ProfileViewController: UIViewController {
         configuration.attributedTitle = AttributedString("Editing", attributes: text)
         
         let button = UIButton(configuration: configuration, primaryAction: UIAction() {_ in
-            print("editingButtonTapped")
+           
             let editingVC = EditingProfileViewController()
             editingVC.modalPresentationStyle = .fullScreen
             self.present(editingVC, animated: true, completion: nil)
@@ -202,7 +205,7 @@ class ProfileViewController: UIViewController {
     
     private func getWorkoutResults() {
         let nameArray = getWorkoutsName() //все имена упражнений уникальные
-        
+      resultWorkout = [ResultWorkout]()
         for name in nameArray {
             let predicateName = NSPredicate(format: "workoutName = '\(name)'") //выдираем все упражнения
             workoutArray = localRealm.objects(WorkoutModel.self).filter(predicateName).sorted(byKeyPath: "workoutName") //сортируем по имени упражнения
@@ -210,11 +213,13 @@ class ProfileViewController: UIViewController {
             var results  = 0
             var image: Data?
             workoutArray.forEach { model in
+                
                 results += model.workoutReps
                 image = model.workoutImage
             }
             let resultModel = ResultWorkout(name: name, result: results, imageData: image)
             resultWorkout.append(resultModel)
+            
         }
         
     }
@@ -257,12 +262,6 @@ extension ProfileViewController: UICollectionViewDataSource {
     
 }
 
-//MARK: - UICollectionViewDelegate
-extension ProfileViewController: UICollectionViewDelegate {
-    
-    
-    
-}
 
 //MARK: - UICollectionViewFlowLayout
 extension ProfileViewController: UICollectionViewDelegateFlowLayout {
@@ -274,10 +273,7 @@ extension ProfileViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
        5
     }
-    
-   
-   
-    
+      
 }
 
 extension ProfileViewController {

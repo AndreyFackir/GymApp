@@ -79,7 +79,7 @@ extension Date {
             
             let weekDay = formatter.string(from: date)
             weekArray[0].append(weekDay) //получаем день недели  из календаря
-            print(day)
+          
         }
         
         return weekArray

@@ -38,6 +38,7 @@ class Notifications: NSObject {
         let content = UNMutableNotificationContent() //можно будет менять потому что Mutable
         content.title = "Workout"
         content.body = "Today you have a training"
+        content.interruptionLevel = UNNotificationInterruptionLevel.timeSensitive
         content.sound = .default
         content.badge = 1
         
@@ -45,8 +46,9 @@ class Notifications: NSObject {
         var calendar = Calendar.current
         calendar.timeZone = TimeZone(abbreviation: "UTC")!
         var triggerDate = calendar.dateComponents([.year, .month, .day], from: date)//дата из входных параметров
-        triggerDate.hour = 18
-        triggerDate.minute = 15
+        print("this is a triggerdate \(triggerDate)")
+        triggerDate.hour = 20
+        triggerDate.minute = 25
         let trigger = UNCalendarNotificationTrigger(dateMatching: triggerDate, repeats: false)
         
         // создаем реквест
@@ -54,7 +56,7 @@ class Notifications: NSObject {
         notificationCenter.add(request) { error in
             print("Error \(error?.localizedDescription ?? "error")")
         }
-        
+    
         
     }
 }
@@ -62,7 +64,7 @@ class Notifications: NSObject {
 //создадим экстешнш
 extension Notifications: UNUserNotificationCenterDelegate {
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-        completionHandler([.alert, .sound ]) //хотим чтобы поялялся алерт и звук при уведомлении
+        completionHandler([.banner, .sound ]) //хотим чтобы поялялся алерт и звук при уведомлении
     }
     
     //отвечает за нажатие на уведлмение и чтото должно произойти

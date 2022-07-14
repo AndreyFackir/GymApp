@@ -15,9 +15,9 @@ struct OnboardingModel {
 
 class OnboardingViewController: UIViewController{
     
-   private let idOnboardingCell = "idOnboardingCell"
-   private var onboardingArray = [OnboardingModel]()
-   private var collectionItem = 0
+    private let idOnboardingCell = "idOnboardingCell"
+    private var onboardingArray = [OnboardingModel]()
+    private var collectionItem = 0
     
     
     override func viewDidLoad() {
@@ -25,7 +25,6 @@ class OnboardingViewController: UIViewController{
         setupViews()
         setConstraints()
         setDelegates()
-        
     }
     
     private let nextButton: UIButton = {
@@ -40,8 +39,20 @@ class OnboardingViewController: UIViewController{
         return element
     }()
     
-     @objc private func nextButtonTapped() {
-        print("nextButtonTapped")
+    @objc private func nextButtonTapped() {
+        
+        if collectionItem == 1 {// когда равен одному и нажимаем кнопку еще раз, то меняется тайтл кнопки
+            nextButton.setTitle("START", for: .normal)
+        }
+        
+        if collectionItem == 2 {
+            saveUserDefaults()
+        } else {
+            collectionItem += 1
+            let index: IndexPath = [0, collectionItem]
+            onboardoinCollection.scrollToItem(at: index, at: .centeredHorizontally, animated: true)
+            pageControl.currentPage = collectionItem
+        }
     }
     
     private let pageControl: UIPageControl = {
@@ -54,7 +65,7 @@ class OnboardingViewController: UIViewController{
     }()
     
     private let onboardoinCollection: UICollectionView = {
-       let layout = UICollectionViewFlowLayout()
+        let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         layout.minimumLineSpacing = 0
         let collection = UICollectionView(frame: .zero, collectionViewLayout: layout)
@@ -64,8 +75,13 @@ class OnboardingViewController: UIViewController{
         collection.backgroundColor = .none
         return collection
     }()
-
-
+    
+    private func saveUserDefaults() { // для храннеия пользовательских настроек
+        let userDafaults = UserDefaults.standard // создаем экземпляр
+        userDafaults.set(true, forKey: "OnboardingWasViewed") // устанавливаем значение
+        dismiss(animated: true, completion: nil)
+    }
+    
 }
 
 //MARK: - setupViews
@@ -116,7 +132,7 @@ extension OnboardingViewController: UICollectionViewDelegate, UICollectionViewDa
         cell.cellConfigure(model: model)
         return cell
     }
-       
+    
 }
 //MARK: - UICollectionViewDelegateFlowLayout
 extension OnboardingViewController: UICollectionViewDelegateFlowLayout {

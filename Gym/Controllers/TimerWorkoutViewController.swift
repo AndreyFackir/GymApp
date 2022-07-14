@@ -78,7 +78,7 @@ class TimerWorkoutViewController: UIViewController {
         configuration.attributedTitle = AttributedString("FINISH", attributes: text)
         
         let button = UIButton(configuration: configuration, primaryAction: UIAction() { [self]_ in
-            print("FAF")
+           
             
             if setNumber == workoutModel.workoutSets {
                 dismiss(animated: true)
@@ -146,7 +146,7 @@ class TimerWorkoutViewController: UIViewController {
         
         
         if durationTimer == 0 {
-            print(durationTimer)
+         
             timer.invalidate()
             durationTimer = workoutModel.workoutTimer
             
@@ -214,7 +214,7 @@ extension TimerWorkoutViewController {
 extension TimerWorkoutViewController: NextSetProtocol {
     func editingTapped() {
         customAlert.alertCustom(viewController: self, repsOrTimer: "Timer of Sets") { [self] sets, timerOfSet in
-            print("a")
+         
             
             
             if sets != "" && timerOfSet != "" {

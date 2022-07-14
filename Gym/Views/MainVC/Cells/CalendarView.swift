@@ -145,8 +145,7 @@ extension CalendarView: UICollectionViewDataSource {
 //5 - подписываем на делегаты
 extension CalendarView: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("collection View tapped")
-//
+     
 //
 //        // по нажатию на ячейку будет выбрана дата и обновиться тейблвью на эту дату
 //        let calendar = Calendar.current

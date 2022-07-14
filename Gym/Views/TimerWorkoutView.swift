@@ -102,7 +102,7 @@ class TimerWorkoutView: UIView{
         configuration.attributedTitle = AttributedString("Editing", attributes: text)
         
         let button = UIButton(configuration: configuration, primaryAction: UIAction() {_ in
-            print("editingButtonTapped")
+          
             self.nextSetDelegate?.editingTapped()
         })
         
@@ -124,7 +124,7 @@ class TimerWorkoutView: UIView{
         configuration.attributedTitle = AttributedString("Next Set", attributes: text)
         
         let button = UIButton(configuration: configuration, primaryAction: UIAction() { [self]_ in
-            print("nextSetButtonTapped")
+          
             nextSetDelegate?.nextSetTapped()
         })
         

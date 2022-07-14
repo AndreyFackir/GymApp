@@ -105,7 +105,7 @@ class StartWorkoutView: UIView {
         configuration.attributedTitle = AttributedString("Editing", attributes: text)
         
         let button = UIButton(configuration: configuration, primaryAction: UIAction() {_ in
-            print("editingButtonTapped")
+          
             self.cellNextSetDelegate?.editingTapped()
            
         })
@@ -127,7 +127,7 @@ class StartWorkoutView: UIView {
         configuration.attributedTitle = AttributedString("Next Set", attributes: text)
         
         let button = UIButton(configuration: configuration, primaryAction: UIAction() {_ in
-            print("nextSetButtonTapped")
+          
             //3 - вызываем метод протокола через делегат
             self.cellNextSetDelegate?.nextSetTapped()
         })

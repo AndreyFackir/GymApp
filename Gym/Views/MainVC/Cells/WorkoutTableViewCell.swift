@@ -95,11 +95,11 @@ class WorkoutTableViewCell: UITableViewCell {
     }()
     
     @objc private func startButtonPressed() {
-        print("Start button is pressed")
+     
         
         //будем обращаться к методу протокола когда нажимаем на кнопку Старт, поэтому указываем
         cellStartWorkoutDelegate?.startButtonTapped(model: workoutModel)
-        print(workoutModel)
+      
     }
     
     func cellConfigure(model: WorkoutModel) {

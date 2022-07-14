@@ -74,7 +74,7 @@ class StartWorkoutViewController: UIViewController {
         configuration.attributedTitle = AttributedString("FINISH", attributes: text)
         
         let button = UIButton(configuration: configuration, primaryAction: UIAction() {_ in
-            print("FAF")
+          
             
             //если количество сетов равно искомому количеству
             if self.numberOfSet == self.workoutModel.workoutSets {
@@ -110,7 +110,7 @@ extension StartWorkoutViewController: NextSetProtocol {
     
     func editingTapped() {
         customAlert.alertCustom(viewController: self, repsOrTimer: "Reps") { [self] sets, reps in
-            print("a")
+         
             
             if sets != "" && reps != "" {
                 startWorkoutView.valueOfSetsLabel.text = "\(numberOfSet)/\(sets)"
@@ -123,7 +123,7 @@ extension StartWorkoutViewController: NextSetProtocol {
     }
     
     func nextSetTapped() {
-        print("nextSetTapped")
+     
         
         if numberOfSet < workoutModel.workoutSets {
             numberOfSet += 1

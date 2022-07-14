@@ -200,7 +200,21 @@ class MainViewController: UIViewController {
         //не забыть зарегистрировать ячейку!!!!
         tableView.register(WorkoutTableViewCell.self, forCellReuseIdentifier: idWorkoutTableViewCell)
      
-          
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        showOnboarding()
+    }
+    
+    private func showOnboarding() {
+        let userDefaults = UserDefaults.standard
+        let onboardingWasViewed = userDefaults.bool(forKey: "OnboardingWasViewed") //есть ли в юзер дефолтс чтото по ключу
+        if onboardingWasViewed == false { // если просмотрено то сохраняем в  тру
+            let onboardingVC = OnboardingViewController()
+            onboardingVC.modalPresentationStyle = .fullScreen
+            present(onboardingVC, animated: false, completion: nil) //если не просмотрено, то загружаем онбоардинг
+        }
     }
       
 }

@@ -58,7 +58,7 @@ class StatisticViewController: UIViewController {
     }()
     
     @objc private func segmentChanged() {
-        print("segments changed")
+      
         if segments.selectedSegmentIndex == 0{
             differenceArray = [DifferenceWorkout]()
             let dateStart = dateToday.offsetDays(days: 7) //берем сегодняшнюю дату, отсчитываем 7 дней от нее
