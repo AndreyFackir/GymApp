@@ -205,6 +205,20 @@ extension StatisticViewController: UITextFieldDelegate {
         }
         return true
     }
+    
+    //когда очищается поисковый текстфилд
+    func textFieldShouldClear(_ textField: UITextField) -> Bool {
+        isFiltered = false // так как не фильтруем
+        differenceArray = [DifferenceWorkout]() // обновляем снова массив
+        getDifferenceModel(dateStart: dateToday.offsetDays(days: 7)) //заполняем массив за 7 дней
+        tableWithParametrs.reloadData()
+        return true
+        
+        //доделать
+        //if segment в положении 1{
+//        getDifferenceModel(dateStart: dateToday.offsetMonth(month: 1)
+//    }
+    }
 }
 
 //MARK: - UITableViewDataSource

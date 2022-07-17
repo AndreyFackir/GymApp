@@ -39,22 +39,6 @@ class OnboardingViewController: UIViewController{
         return element
     }()
     
-    @objc private func nextButtonTapped() {
-        
-        if collectionItem == 1 {// когда равен одному и нажимаем кнопку еще раз, то меняется тайтл кнопки
-            nextButton.setTitle("START", for: .normal)
-        }
-        
-        if collectionItem == 2 {
-            saveUserDefaults()
-        } else {
-            collectionItem += 1
-            let index: IndexPath = [0, collectionItem]
-            onboardoinCollection.scrollToItem(at: index, at: .centeredHorizontally, animated: true)
-            pageControl.currentPage = collectionItem
-        }
-    }
-    
     private let pageControl: UIPageControl = {
         let element = UIPageControl()
         element.translatesAutoresizingMaskIntoConstraints = false
@@ -75,6 +59,22 @@ class OnboardingViewController: UIViewController{
         collection.backgroundColor = .none
         return collection
     }()
+    
+    @objc private func nextButtonTapped() {
+        
+        if collectionItem == 1 {// когда равен одному и нажимаем кнопку еще раз, то меняется тайтл кнопки
+            nextButton.setTitle("START", for: .normal)
+        }
+        
+        if collectionItem == 2 {
+            saveUserDefaults()
+        } else {
+            collectionItem += 1
+            let index: IndexPath = [0, collectionItem]
+            onboardoinCollection.scrollToItem(at: index, at: .centeredHorizontally, animated: true)
+            pageControl.currentPage = collectionItem
+        }
+    }
     
     private func saveUserDefaults() { // для храннеия пользовательских настроек
         let userDafaults = UserDefaults.standard // создаем экземпляр

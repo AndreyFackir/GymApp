@@ -13,7 +13,6 @@ class MainTabBarController: UITabBarController {
         super.viewDidLoad()
         setupTabBar()
         setupItems()
-        
     }
     
     private func setupTabBar() {
@@ -25,7 +24,6 @@ class MainTabBarController: UITabBarController {
         tabBar.layer.borderWidth = 1
         tabBar.layer.borderColor = UIColor.specilaLightBrown.cgColor
         tabBar.isTranslucent = true
-        
     }
     
     private func setupItems() {
@@ -43,11 +41,9 @@ class MainTabBarController: UITabBarController {
         items[1].title = "Statistic"
         items[2].title = "Profile"
        
-        
         items[0].image = UIImage(named: "Document Justify Center 2")
         items[1].image = UIImage(named: "Filter 5")
         items[2].image = UIImage(named: "Profile 1")
-        
         
         UITabBarItem.appearance().setTitleTextAttributes([.font: UIFont(name: "Roboto-Bold", size: 12) as Any], for: .normal)
     }

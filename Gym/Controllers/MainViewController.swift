@@ -10,7 +10,18 @@ import RealmSwift
 
 class MainViewController: UIViewController {
     
-   
+    private let calendarView = CalendarView()
+    private let weatherView = WeatherView()
+    private let idWorkoutTableViewCell = "idWorkoutTableViewCell"
+    private var userArray: Results<UserModel>!
+    var workoutModel = WorkoutModel()
+    
+    //создаем объект реалма
+    private let localRealm = try! Realm()
+    //создаем массив для хранения данных с типом РЕЗАЛТС и в скобках модель которую хотим получить
+    //сюда будут записывать все данные
+    private var workoutArray: Results<WorkoutModel>!
+    
     //1 - создали элемент
     private let userPhotoImageView: UIImageView = {
         let imageView = UIImageView()
@@ -22,7 +33,7 @@ class MainViewController: UIViewController {
         return imageView
     }()
     
-     private let userNameLabel: UILabel = {
+    private let userNameLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "User NameUser "
@@ -58,7 +69,6 @@ class MainViewController: UIViewController {
         return label
     }()
     
-    
     //1 - create tableView
     private let tableView: UITableView = {
         let tableView = UITableView()
@@ -86,52 +96,37 @@ class MainViewController: UIViewController {
         let newWorkoutViewController = NewWorkoutViewController()
         newWorkoutViewController.modalPresentationStyle = .fullScreen
         present(newWorkoutViewController, animated: true, completion: nil)
-       
+        
     }
-    
-   
-    
-    private let calendarView = CalendarView()
-    private let weatherView = WeatherView()
-    private let idWorkoutTableViewCell = "idWorkoutTableViewCell"
-    private var userArray: Results<UserModel>!
-    
-   var workoutModel = WorkoutModel()
-    
-    //создаем объект реалма
-    private let localRealm = try! Realm()
-    //создаем массив для хранения данных с типом РЕЗАЛТС и в скобках модель которую хотим получить
-    //сюда будут записывать все данные
-    private var workoutArray: Results<WorkoutModel>! 
     
     //параметр ДЕЙТ нужен для подставления даты по нажатию на календарь
     private func getWorkouts(date: Date) {
         
-//        let calendar = Calendar.current //cоздаем календарь и выбираем наш календарь в заависимотси от нахождения устройства
-//
-//        let formatter = DateFormatter()
-//
-//        let components = calendar.dateComponents([.weekday, .day, .month, .year], from: date) //массив викдей - номер дня, берем из дейт( входной параметр)
-//
-//        guard let weekday = components.weekday else { return }
-//        guard let day = components.day else { return }
-//        guard let month = components.month else { return }
-//        guard let year = components.year else { return }
-//        print(weekday) //день недели
-//
-//        formatter.timeZone = TimeZone(abbreviation: "UTC")
-//        formatter.dateFormat = "yyyy/MM/dd HH:mm"
-//
-//        guard let dateStart = formatter.date(from: "\(year)/\(month)/\(day) 00:00") else { return } //сегоднящний день
-//
-//        let dateEnd: Date = {
-//            let components = DateComponents(day: 1, second: -1) //мы хотим взять день и сделать минус 1 сек, даные будут получены до 23:59:59
-//
-//            return Calendar.current.date(byAdding: components, to: dateStart) ?? Date()
-//        }()
+        //        let calendar = Calendar.current //cоздаем календарь и выбираем наш календарь в заависимотси от нахождения устройства
+        //
+        //        let formatter = DateFormatter()
+        //
+        //        let components = calendar.dateComponents([.weekday, .day, .month, .year], from: date) //массив викдей - номер дня, берем из дейт( входной параметр)
+        //
+        //        guard let weekday = components.weekday else { return }
+        //        guard let day = components.day else { return }
+        //        guard let month = components.month else { return }
+        //        guard let year = components.year else { return }
+        //        print(weekday) //день недели
+        //
+        //        formatter.timeZone = TimeZone(abbreviation: "UTC")
+        //        formatter.dateFormat = "yyyy/MM/dd HH:mm"
+        //
+        //        guard let dateStart = formatter.date(from: "\(year)/\(month)/\(day) 00:00") else { return } //сегоднящний день
+        //
+        //        let dateEnd: Date = {
+        //            let components = DateComponents(day: 1, second: -1) //мы хотим взять день и сделать минус 1 сек, даные будут получены до 23:59:59
+        //
+        //            return Calendar.current.date(byAdding: components, to: dateStart) ?? Date()
+        //        }()
         
         
-                                        //ВСЕ ЧТО НАПИСАНО ВЫШЕ ВЫНЕСЕНО В ЭКСТНШН DATE
+        //ВСЕ ЧТО НАПИСАНО ВЫШЕ ВЫНЕСЕНО В ЭКСТНШН DATE
         
         let dateTimeZone = date
         let weekday = dateTimeZone.getWeekDayNumber()
@@ -182,10 +177,10 @@ class MainViewController: UIViewController {
     //для того, чтобы после сохранения в БД наша таблица обновлялась
     override func viewWillAppear (_ animated: Bool) {
         super.viewWillAppear(animated)
-         
+        getWeather()
         tableView.reloadData()
         setupUserParammetres()
-         
+        
     }
     
     override func viewDidLoad() {
@@ -199,7 +194,7 @@ class MainViewController: UIViewController {
         getWorkouts(date: Date()) //cегодншная дата
         //не забыть зарегистрировать ячейку!!!!
         tableView.register(WorkoutTableViewCell.self, forCellReuseIdentifier: idWorkoutTableViewCell)
-     
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -216,7 +211,23 @@ class MainViewController: UIViewController {
             present(onboardingVC, animated: false, completion: nil) //если не просмотрено, то загружаем онбоардинг
         }
     }
-      
+    
+    private func getWeather() {
+        NetworkDataFetch.shared.fetchWeather { [weak self] model, error in
+            guard let self = self else { return }
+            if error == nil {
+                guard let model = model else { return }
+                self.weatherView.weatherLabel.text = "\(model.weather[0].iconLocal) \(Int(model.main.temp))°C"
+                self.weatherView.descriptionWeather.text = model.weather[0].description
+                
+                //guard let imageIcon = model.weather[0].icon else { return }
+                self.weatherView.weatherImage.image = UIImage(systemName: model.weather[0].iconImage)
+            } else {
+                self.alertOK(title: "Error", message: "No weather data")
+            }
+        }
+    }
+    
 }
 
 //MARK: - StartWorkoutProtocol
@@ -274,8 +285,6 @@ extension MainViewController: SelectCollectionViewItemProtocol {
     func selectIem(date: Date) {
         getWorkouts(date: date)
     }
-    
-    
 }
 
 //MARK: - UITableViewDataSource
@@ -290,7 +299,7 @@ extension MainViewController: UITableViewDataSource {
         let model = workoutArray[indexPath.row] //по каждой яейке получаем запись из массива
         
         cell.cellConfigure(model: model)
-         
+        
         //после того как прописаи протокол, назначаем делегата...так как у нас ячейка, то назначаем ячейку
         cell.cellStartWorkoutDelegate = self
         
@@ -382,5 +391,5 @@ extension MainViewController {
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0)
         ])
-     }
+    }
 }
